@@ -17,10 +17,10 @@ customize:
         enabled: false # Whether to show profile bar
         avatar: # css/images/avatar.png
         gravatar: zth_9451@qq.com # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
-        author: zthxxx
+        author: linshuizhaoying
         author_title: Designer & Programmer
         location: Chengdu, China
-        follow: https://github.com/zthxxx/
+        follow: https://github.com/linshuizhaoying/
     highlight: monokai
     sidebar: left # sidebar position, options: left, right
     category_perExpand: false # enable article categories list per expanding
@@ -28,9 +28,9 @@ customize:
     favicon: /favicon.ico # path to favicon
     default_index_file: index.md # if this, it will display at site index instead of default index page
     social_links:
-        github: https://github.com/zthxxx/zthxxx.github.io
-        stack-overflow: http://stackoverflow.com/users/7277090/zthxxx?tab=profile
-        codepen: http://codepen.io/zthxxx/
+        github: https://github.com/linshuizhaoying/wiki.github.io
+        stack-overflow: http://stackoverflow.com/users/7277090/linshuizhaoying?tab=profile
+        codepen: http://codepen.io/linshuizhaoying/
         rss: /atom.xml
     social_link_tooltip: true # enable the social link tooltip, options: true, false
 
@@ -60,7 +60,7 @@ search:
 history_control: # make you wiki has history version control in page
     enable: true
     server_link: https://github.com # recommend use GitHub https://github.com
-    user: zthxxx
+    user: linshuizhaoying
     repertory: Wiki-site
     branch: writing
 
