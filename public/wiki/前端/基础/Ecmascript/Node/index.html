@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>Node | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,Javascript,Node">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前置知识基础 Node是采用单线程，异步式I/O，事件驱动式的让javascript运行在服务器端的开发平台 Node.js在执行中会维护一个事件队列，每个异步式I/O请求完成后会被推送到事件队列，等待程序进程处理。利用事件循环的处理能力:Node.js适用于应用程序处理大量并发的I/O。  核心模块EventEmitter EventEmitter是node中一个实现观察者模式的类，主要功能是监">
+<meta name="keywords" content="前端,Javascript,Node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/基础/Ecmascript/Node/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="前置知识基础 Node是采用单线程，异步式I/O，事件驱动式的让javascript运行在服务器端的开发平台 Node.js在执行中会维护一个事件队列，每个异步式I/O请求完成后会被推送到事件队列，等待程序进程处理。利用事件循环的处理能力:Node.js适用于应用程序处理大量并发的I/O。  核心模块EventEmitter EventEmitter是node中一个实现观察者模式的类，主要功能是监">
+<meta property="og:updated_time" content="2017-07-12T12:11:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node">
+<meta name="twitter:description" content="前置知识基础 Node是采用单线程，异步式I/O，事件驱动式的让javascript运行在服务器端的开发平台 Node.js在执行中会维护一个事件队列，每个异步式I/O请求完成后会被推送到事件队列，等待程序进程处理。利用事件循环的处理能力:Node.js适用于应用程序处理大量并发的I/O。  核心模块EventEmitter EventEmitter是node中一个实现观察者模式的类，主要功能是监">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/基础/Ecmascript/Node" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/">基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/Ecmascript/">Ecmascript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Javascript/">Javascript</a>, <a class="tag-link" href="/tags/Node/">Node</a>, <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/基础/Ecmascript/Node/">
+            <time datetime="2017-07-11T12:56:16.000Z" itemprop="datePublished">2017-07-11</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/基础/Ecmascript/Node.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/基础/Ecmascript/Node.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/基础/Ecmascript/Node.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Node
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心模块"><span class="toc-number">1.2.</span> <span class="toc-text">核心模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EventEmitter"><span class="toc-number">1.2.1.</span> <span class="toc-text">EventEmitter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffer"><span class="toc-number">1.2.2.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream"><span class="toc-number">1.2.3.</span> <span class="toc-text">Stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http模块"><span class="toc-number">1.2.4.</span> <span class="toc-text">http模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cluster-模块"><span class="toc-number">1.2.5.</span> <span class="toc-text">cluster 模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nodejs中的Stream和Buffer有什么区别"><span class="toc-number">1.3.</span> <span class="toc-text">Nodejs中的Stream和Buffer有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node有哪些定时功能"><span class="toc-number">1.4.</span> <span class="toc-text">node有哪些定时功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node中的异步和同步怎么理解"><span class="toc-number">1.5.</span> <span class="toc-text">node中的异步和同步怎么理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#express"><span class="toc-number">1.6.</span> <span class="toc-text">express</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">1.6.1.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mongodb"><span class="toc-number">1.7.</span> <span class="toc-text">Mongodb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#和SQL区别"><span class="toc-number">1.7.1.</span> <span class="toc-text">和SQL区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mongoose是什么？有支持哪些特性"><span class="toc-number">1.7.2.</span> <span class="toc-text">mongoose是什么？有支持哪些特性?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#koa"><span class="toc-number">1.8.</span> <span class="toc-text">koa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#阅读node的http模块和Stream模块源码"><span class="toc-number">1.9.</span> <span class="toc-text">阅读node的http模块和Stream模块源码(?)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libuv的底层实现"><span class="toc-number">1.10.</span> <span class="toc-text">libuv的底层实现(?)</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><blockquote>
+<p>Node是采用单线程，异步式I/O，事件驱动式的让javascript运行在服务器端的开发平台</p>
+<p>Node.js在执行中会维护一个事件队列，每个异步式I/O请求完成后会被推送到事件队列，等待程序进程处理。<br>利用事件循环的处理能力:Node.js适用于应用程序处理大量并发的I/O。</p>
+</blockquote>
+<h2 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h2><h3 id="EventEmitter"><a href="#EventEmitter" class="headerlink" title="EventEmitter"></a>EventEmitter</h3><blockquote>
+<p>EventEmitter是node中一个实现观察者模式的类，主要功能是监听和发射消息，用于处理多模块交互问题</p>
+<p>所有能触发事件的对象都是EventEmitter类的实例。 这些对象开放了一个eventEmitter.on()函数，允许将一个或多个函数附加到会被对象触发的命名事件上</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">实现一个eventEmitter</div><div class="line">           <span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);  </div><div class="line">           <span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;  </div><div class="line"></div><div class="line">           <span class="function"><span class="keyword">function</span> <span class="title">MyEmitter</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">               EventEmitter.call(<span class="keyword">this</span>);  </div><div class="line">           &#125; <span class="comment">// 构造函数  </span></div><div class="line"></div><div class="line">           util.inherits(MyEmitter, EventEmitter); <span class="comment">// 继承  </span></div><div class="line"></div><div class="line">           <span class="keyword">var</span> em = <span class="keyword">new</span> MyEmitter();  </div><div class="line">           em.on(<span class="string">'hello'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;  </div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'收到事件hello的数据:'</span>, data);  </div><div class="line">           &#125;); <span class="comment">// 接收事件，并打印到控制台  </span></div><div class="line">           em.emit(<span class="string">'hello'</span>, <span class="string">'EventEmitter传递消息真方便!'</span>);</div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><blockquote>
+<p>Buffer对象是Node处理二进制数据的一个接口。它是Node原生提供的全局对象</p>
+<p>JavaScript比较擅长处理字符串，对于处理二进制数据（比如TCP数据流），就不太擅长。Buffer对象就是为了解决这个问题而设计的。</p>
+</blockquote>
+<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><blockquote>
+<p>stream是基于事件EventEmitter的数据管理模式．由各种不同的抽象接口组成，主要包括可写，可读，可读写，可转换等几种类型</p>
+</blockquote>
+<ul>
+<li><p>Stream是Node中一个非常重要的概念，被大量对象实现，尤其是Node中的I/O操作</p>
+</li>
+<li><p>Stream是一个抽像的接口，一般不会直接使用，需要实现内部的某些抽象方法(例如_read、_write、_transform)</p>
+</li>
+<li><p>Stream是EventEmitter的子类，实际上Stream的数据传递内部依然是通过事件(data)来实现的</p>
+</li>
+<li><p>Stream分为四种：readable、writeable、Duplex、transform</p>
+</li>
+</ul>
+<h3 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 实现一个简单的http服务器</div><div class="line">     * 代码</div><div class="line">          * <span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>); <span class="comment">// 加载http模块  </span></div><div class="line"></div><div class="line">                http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;  </div><div class="line">                    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/html'</span>&#125;); <span class="comment">// 200代表状态成功, 文档类型是给浏览器识别用的  </span></div><div class="line">                    res.write(<span class="string">'&lt;meta charset="UTF-8"&gt; &lt;h1&gt;我是标题啊！&lt;/h1&gt; &lt;font color="red"&gt;这么原生，初级的服务器，下辈子能用着吗?!&lt;/font&gt;'</span>); <span class="comment">// 返回给客户端的html数据  </span></div><div class="line">                    res.end(); <span class="comment">// 结束输出流  </span></div><div class="line">                &#125;).listen(<span class="number">3000</span>); <span class="comment">// 绑定3ooo, 查看效果请访问 http://localhost:3000</span></div><div class="line">     * 加载http模块，创建服务器，监听端口</div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="cluster-模块"><a href="#cluster-模块" class="headerlink" title="cluster 模块"></a>cluster 模块</h3><blockquote>
+<p>CPU都是多核的背景下.<br>它可以通过一个父进程管理子进程的方式来实现集群的功能。<br>每个worker进程通过使用child_process.fork()函数，基于IPC（Inter-Process Communication，进程间通信），实现与master进程间通信。</p>
+<p>当worker使用server.listen（…）函数时 ，将参数序列传递给master进程。如果master进程已经匹配workers，会将传递句柄给工人。如果master没有匹配好worker，那么会创建一个worker，再传递并句柄传递给worker。</p>
+</blockquote>
+<h2 id="Nodejs中的Stream和Buffer有什么区别"><a href="#Nodejs中的Stream和Buffer有什么区别" class="headerlink" title="Nodejs中的Stream和Buffer有什么区别"></a>Nodejs中的Stream和Buffer有什么区别</h2><ul>
+<li>buffer</li>
+</ul>
+<blockquote>
+<p>为数据缓冲对象，是一个类似数组结构的对象，可以通过指定开始写入的位置及写入的数据长度，往其中写入二进制数据</p>
+</blockquote>
+<ul>
+<li>stream</li>
+</ul>
+<blockquote>
+<p>是对buffer对象的高级封装，其操作的底层还是buffer对象，stream可以设置为可读、可写，或者即可读也可写，在nodejs中继承了EventEmitter接口，可以监听读入、写入的过程</p>
+</blockquote>
+<h2 id="node有哪些定时功能"><a href="#node有哪些定时功能" class="headerlink" title="node有哪些定时功能"></a>node有哪些定时功能</h2><ul>
+<li>process.nextTick</li>
+<li>setTimeout/clearTimeout</li>
+<li>setInterval/clearInterval</li>
+<li>setImmediate/clearImmediate,</li>
+</ul>
+<blockquote>
+<p>优先级<br>在每一轮循环检查中，idle观察者先于I/O观察者，I/O观察者先于check观察者。</p>
+</blockquote>
+<ul>
+<li><p>process.nextTick<br>每次调用，只会将回调函数放入队列，在下一轮tick时取出执行。时间复杂度o(1) 属于IDLE观察者</p>
+</li>
+<li><p>setTimeout<br>setTimeout需要使用红黑树，且after设置为0，其实会被node强制转换为1，存在性能上的问题，建议替换为setImmediate。时间复杂度o(lg(n))</p>
+</li>
+<li><p>setImmediate<br>将函数延迟执行，属于check观察者。</p>
+</li>
+</ul>
+<h2 id="node中的异步和同步怎么理解"><a href="#node中的异步和同步怎么理解" class="headerlink" title="node中的异步和同步怎么理解"></a>node中的异步和同步怎么理解</h2><blockquote>
+<p>同步与异步</p>
+<ol>
+<li><p>同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)。</p>
+</li>
+<li><p>所谓同步，就是在发出调用时，</p>
+<ol>
+<li>在没有得到结果之前，调用不返回。</li>
+<li>一旦调用返回，即得到返回值。<br>换句话说，就是由调用者主动等待这个调用的结果。</li>
+</ol>
+</li>
+<li><p>异步则是相反，调用在发出之后，调用就直接返回，但没有返回结果。</p>
+</li>
+</ol>
+<p>换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这个调用。</p>
+</blockquote>
+<ul>
+<li><p>node是单线程的，异步是通过一次次的循环事件队列来实现的．</p>
+</li>
+<li><p>同步则是说阻塞式的IO,这在高并发环境会是一个很大的性能问题，所以同步一般只在基础框架的启动时使用，用来加载配置文件，初始化程序什么的</p>
+</li>
+</ul>
+<h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>精简</li>
+<li>可扩展</li>
+<li>可以配合多页和单页应用</li>
+</ul>
+<p>express中如何获取路由的参数</p>
+<ul>
+<li>users/:name使用req.params.name来获取;</li>
+<li>req.body.username则是获得表单传入参数username</li>
+<li>express路由支持常用通配符 ?, +, *, and ()</li>
+</ul>
+<h2 id="Mongodb"><a href="#Mongodb" class="headerlink" title="Mongodb"></a>Mongodb</h2><blockquote>
+<p>NoSQL（Not Only SQL）泛指非关系型数据库</p>
+<p>MongoDB数据库是面向文档的数据库，该数据库是非阻塞型数据库，内部查询支持javascript。</p>
+</blockquote>
+<h3 id="和SQL区别"><a href="#和SQL区别" class="headerlink" title="和SQL区别"></a>和SQL区别</h3><ul>
+<li>SQL数据存在特定结构的表中；而NoSQL则更加灵活和可扩展，存储方式可以省是JSON文档、哈希表或者其他方式</li>
+<li>在SQL中，必须定义好表和字段结构后才能添加数据，例如定义表的主键(primary key)，索引(index),触发器(trigger),存储过程(stored procedure)等。表结构可以在被定义之后更新，但是如果有比较大的结构变更的话就会变得比较复杂。 在NoSQL中，数据可以在任何时候任何地方添加，不需要先定义表。</li>
+<li><ol>
+<li><p>SQL数据库被称为关系型数据库（RDBMS），而NoSQL数据库被称为非关系型数据库或分布式数据库。  </p>
+</li>
+<li><p>SQL数据库是基于表的数据库，而NoSQL数据库则有基于文档的，键值对的，图形的或基于列式存储的数据库。  </p>
+</li>
+<li><p>SQL数据库的数据结构必须事先先定义好，而NoSQL数据库的数据是动态无结构的。  </p>
+</li>
+<li><p>SQL数据库的负载能力是以增加硬件配置的垂直扩展方式来增加的，而NoSQL数据库的负载能力可以通过增加数据库服务器的数量来增加（属于水平扩展）。  </p>
+</li>
+</ol>
+<p>5.对于复杂的查询：SQL非常的擅长，而NoSQL则不擅长</p>
+</li>
+</ul>
+<h3 id="mongoose是什么？有支持哪些特性"><a href="#mongoose是什么？有支持哪些特性" class="headerlink" title="mongoose是什么？有支持哪些特性?"></a>mongoose是什么？有支持哪些特性?</h3><blockquote>
+<p>mongoose是mongodb的文档映射模型．主要由Schema, Model和Instance三个方面组成．  </p>
+</blockquote>
+<ul>
+<li>Schema就是定义数据类型，  </li>
+<li>Model就是把Schema和js类绑定到一起，<br>Instance就是一个对象实例．  </li>
+<li>常见mongoose操作有,save, update, find. findOne, findById, static方法等</li>
+</ul>
+<h2 id="koa"><a href="#koa" class="headerlink" title="koa"></a>koa</h2><ul>
+<li><p>处理客户端请求的函数。内部封装一个NEXT回调函数。</p>
+</li>
+<li><p>中间件（Middleware） 是一个函数，它可以访问请求对象（request object (req)）, 响应对象（response object (res)）, 和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量。  </p>
+<p>如果当前中间件没有终结请求-响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。</p>
+</li>
+</ul>
+<p>完美解决了异步组合问题，并解决了异步异常捕获问题（并且 koa 框架在最外层 catch 了异常，应用不会因为异常而中断进程，所以不需要 forever 来重启应用）</p>
+<h2 id="阅读node的http模块和Stream模块源码"><a href="#阅读node的http模块和Stream模块源码" class="headerlink" title="阅读node的http模块和Stream模块源码(?)"></a>阅读node的http模块和Stream模块源码(?)</h2><h2 id="libuv的底层实现"><a href="#libuv的底层实现" class="headerlink" title="libuv的底层实现(?)"></a>libuv的底层实现(?)</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    javascript异步编程
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/基础/Css/考点/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">考点</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

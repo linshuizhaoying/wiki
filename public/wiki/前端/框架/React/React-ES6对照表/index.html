@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>React-Es6对照表 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,React,表">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前言整理在 React 中 ES5、ES6+ 常见用法对照表。 1. Modules随着 Web 技术的进展，模组化开发已经成为一个重要课题。关于 JavaScript 模组化我们这边不详述，建议读者参考 这份投影片 和 这篇文章。 ES5 若使用 CommonJS 标准，一般使用 require() 用法引入模组： 12var React = require(&apos;react&apos;);var MyCom">
+<meta name="keywords" content="前端,React,表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Es6对照表">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/框架/React/React-ES6对照表/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="前言整理在 React 中 ES5、ES6+ 常见用法对照表。 1. Modules随着 Web 技术的进展，模组化开发已经成为一个重要课题。关于 JavaScript 模组化我们这边不详述，建议读者参考 这份投影片 和 这篇文章。 ES5 若使用 CommonJS 标准，一般使用 require() 用法引入模组： 12var React = require(&apos;react&apos;);var MyCom">
+<meta property="og:updated_time" content="2017-07-23T06:36:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Es6对照表">
+<meta name="twitter:description" content="前言整理在 React 中 ES5、ES6+ 常见用法对照表。 1. Modules随着 Web 技术的进展，模组化开发已经成为一个重要课题。关于 JavaScript 模组化我们这边不详述，建议读者参考 这份投影片 和 这篇文章。 ES5 若使用 CommonJS 标准，一般使用 require() 用法引入模组： 12var React = require(&apos;react&apos;);var MyCom">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/框架/React/React-ES6对照表" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/框架/">框架</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/框架/React/">React</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/表/">表</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/框架/React/React-ES6对照表/">
+            <time datetime="2017-07-23T06:30:41.000Z" itemprop="datePublished">2017-07-23</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/框架/React/React-ES6对照表.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/框架/React/React-ES6对照表.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/框架/React/React-ES6对照表.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            React-Es6对照表
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Modules"><span class="toc-number">2.</span> <span class="toc-text">1. Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Classes"><span class="toc-number">3.</span> <span class="toc-text">2. Classes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Method-definition"><span class="toc-number">4.</span> <span class="toc-text">3. Method definition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Property-initializers"><span class="toc-number">5.</span> <span class="toc-text">4. Property initializers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-State"><span class="toc-number">6.</span> <span class="toc-text">5. State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Arrow-functions"><span class="toc-number">7.</span> <span class="toc-text">6. Arrow functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Dynamic-property-names-amp-template-strings"><span class="toc-number">8.</span> <span class="toc-text">7. Dynamic property names & template strings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Destructuring-amp-spread-attributes"><span class="toc-number">9.</span> <span class="toc-text">8. Destructuring & spread attributes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Mixins"><span class="toc-number">10.</span> <span class="toc-text">9. Mixins</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Default-Parameters"><span class="toc-number">11.</span> <span class="toc-text">10. Default Parameters</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>整理在 React 中 ES5、ES6+ 常见用法对照表。</p>
+<h2 id="1-Modules"><a href="#1-Modules" class="headerlink" title="1. Modules"></a>1. Modules</h2><p>随着 Web 技术的进展，模组化开发已经成为一个重要课题。关于 JavaScript 模组化我们这边不详述，建议读者参考 <a href="http://huangxuan.me/js-module-7day/#/" rel="external nofollow noopener noreferrer" target="_blank">这份投影片</a> 和 <a href="http://justineo.github.io/singles/writing-modular-js/" rel="external nofollow noopener noreferrer" target="_blank">这篇文章</a>。</p>
+<p>ES5 若使用 CommonJS 标准，一般使用 <code>require()</code> 用法引入模组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react'</span>);</div><div class="line"><span class="keyword">var</span> MyComponent = <span class="built_in">require</span>(<span class="string">'./MyComponent'</span>);</div></pre></td></tr></table></figure>
+<p>输出则是使用 <code>module.exports</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = MyComponent;</div></pre></td></tr></table></figure>
+<p>ES6+ <code>import</code> 用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> MyComponent <span class="keyword">from</span> <span class="string">'./MyComponent'</span>;</div></pre></td></tr></table></figure>
+<p>输出则是使用 <code>export default</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-Classes"><a href="#2-Classes" class="headerlink" title="2. Classes"></a>2. Classes</h2><p>在 React 中组件（Component）是组成视觉页面的基础。在 ES5 中我们使用 <code>React.createClass()</code> 来建立 Component，而在 ES6+ 则是用 <a href="https://babeljs.io/docs/learn-es2015/#classes" rel="external nofollow noopener noreferrer" target="_blank">Classes</a> 继承 <code>React.Component</code> 来建立 Component。若是有写过 Java 等物件导向语言（OOP）的读者应该对于这种写法比较不陌生，不过要注意的是 JavaScript 仍是原型继承类型的物件导向程式语言，只是使用 <code>Classes</code> 让物件导向使用上更加直观。对于选择 <code>class</code> 使用上还有疑惑的读者建议可以阅读 <a href="https://toddmotto.com/react-create-class-versus-component/" rel="external nofollow noopener noreferrer" target="_blank">React.createClass versus extends React.Component</a> 这篇文章。</p>
+<p>ES5 <code>React.createClass()</code> 用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Photo = React.createClass(&#123;</div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">images</span> <span class="attr">alt</span>=<span class="string">&#123;this.props.description&#125;</span> <span class="attr">src</span>=<span class="string">&#123;this.props.src&#125;</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      );</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">ReactDOM.render(<span class="tag">&lt;<span class="name">Photo</span> /&gt;</span>, document.getElementById('main'));</div></pre></td></tr></table></figure>
+<p>ES6+ <code>class</code> 用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Photo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">images</span> <span class="attr">alt</span>=<span class="string">&#123;this.props.description&#125;</span> <span class="attr">src</span>=<span class="string">&#123;this.props.src&#125;</span> /&gt;</span>;</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">ReactDOM.render(<span class="tag">&lt;<span class="name">Photo</span> /&gt;</span>, document.getElementById('main'));</div></pre></td></tr></table></figure>
+<p>在 ES5 我们会在 <code>componentWillMount</code> 生命周期定义希望在 <code>render</code> 前执行，且只会执行一次的任务：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Photo = React.createClass(&#123;</div><div class="line">  <span class="attr">componentWillMount</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在 ES6+ 则是定义在 <code>constructor</code> 建构子中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Photo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="comment">// 原本在 componentWillMount 操作的动作可以放在这</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-Method-definition"><a href="#3-Method-definition" class="headerlink" title="3. Method definition"></a>3. Method definition</h2><p>在 ES6 中我们使用 <code>Method</code> 可以忽略 <code>function</code> 和 <code>,</code>，使用上更为简洁！ES5 <code>React.createClass()</code> 用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Photo = React.createClass(&#123;</div><div class="line">  <span class="attr">handleClick</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;&#125;,</div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>ES6+ class 用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Photo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  handleClick(e) &#123;&#125;</div><div class="line">  render() &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4-Property-initializers"><a href="#4-Property-initializers" class="headerlink" title="4. Property initializers"></a>4. Property initializers</h2><p>Component 属性值是资料传递重要的元素，在 ES5 中我们使用 <code>propTypes</code> 和  <code>getDefaultProps</code> 来定义属性（props）的预设值和型别：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Todo = React.createClass(&#123;</div><div class="line">  <span class="attr">getDefaultProps</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">checked</span>: <span class="literal">false</span>,</div><div class="line">      <span class="attr">maxLength</span>: <span class="number">10</span>,</div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">propTypes</span>: &#123;</div><div class="line">    <span class="attr">checked</span>: React.PropTypes.bool.isRequired,</div><div class="line">    <span class="attr">maxLength</span>: React.PropTypes.number.isRequired</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span>();</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在 ES6+ 中我们则是参考 <a href="https://github.com/jeffmo/es-class-fields-and-static-properties" rel="external nofollow noopener noreferrer" target="_blank">ES7 property initializers</a> 使用 <code>class</code> 中的静态属性（static properties）来定义：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> defaultProps = &#123;</div><div class="line">    <span class="attr">checked</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">maxLength</span>: <span class="number">10</span>,</div><div class="line">  &#125;; <span class="comment">// 注意有分号</span></div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">    <span class="attr">checked</span>: React.PropTypes.bool.isRequired,</div><div class="line">    <span class="attr">maxLength</span>: React.PropTypes.number.isRequired</div><div class="line">  &#125;;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span>();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES6+ 另外一种写法，可以留意一下，主要是看各团队喜好和规范，选择合适的方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="xml"><span class="tag">&lt;<span class="name">View</span> /&gt;</span></span></div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Todo.defaultProps = &#123;</div><div class="line">    checked: false,</div><div class="line">    maxLength: 10,</div><div class="line">&#125;;</div><div class="line">Todo.propTypes = &#123;</div><div class="line">    checked: React.PropTypes.bool.isRequired,</div><div class="line">    maxLength: React.PropTypes.number.isRequired,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="5-State"><a href="#5-State" class="headerlink" title="5. State"></a>5. State</h2><p>在 React 中 <code>Props</code> 和 <code>State</code> 是资料流传递的重要元素，不同的是 <code>state</code> 可更动，可以去执行一些运算。在 ES5 中我们使用 <code>getInitialState</code> 去初始化 <code>state</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Todo = React.createClass(&#123;</div><div class="line">    <span class="attr">getInitialState</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">maxLength</span>: <span class="keyword">this</span>.props.maxLength,</div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在 ES6+ 中我们初始化 <code>state</code> 有两种写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    state = &#123;</div><div class="line">        <span class="attr">maxLength</span>: <span class="keyword">this</span>.props.maxLength,</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外一种写法，使用在建构式初始化。比较推荐使用这种方式，方便做一些运算：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props)&#123;</div><div class="line">        <span class="keyword">super</span>(props);</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            <span class="attr">maxLength</span>: <span class="keyword">this</span>.props.maxLength,</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="6-Arrow-functions"><a href="#6-Arrow-functions" class="headerlink" title="6. Arrow functions"></a>6. Arrow functions</h2><p>在讲 <code>Arrow functions</code> 之前，我们先聊聊在 React 中 <code>this</code> 和它所代表的 <code>context</code>。在 ES5 中，我们使用 <code>React.createClass()</code> 来建立 Component，而在 <code>React.createClass()</code> 下，预设帮你绑定好 <code>method</code> 的 <code>this</code>，你毋须自行绑定。所以你可以看到像是下面的例子，<code>callback function</code> handleButtonClick 中的  <code>this</code> 是指到 component 的实例（instance），而非触发事件的物件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> TodoBtn = React.createClass(&#123;</div><div class="line">    <span class="attr">handleButtonClick</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="comment">// 此 this 指到 component 的实例（instance），而非 button</span></div><div class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">showOptionsModal</span>: <span class="literal">true</span>&#125;);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">                <span class="tag">&lt;<span class="name">Button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleButtonClick&#125;</span>&gt;</span>&#123;this.props.label&#125;<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        )</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>然而自动绑定这种方式反而会让人容易误解，所以在 ES6+ 推荐使用 <code>bind</code> 绑定 <code>this</code> 或使用 <code>Arrow functions</code>（它会绑定当前 <code>scope</code> 的 <code>this context</code>）两种方式，你可以参考下面例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoBtn</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span></div><div class="line">&#123;</div><div class="line">    handleButtonClick(e)&#123;</div><div class="line">        <span class="comment">// 确认绑定 this 指到 component instance</span></div><div class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">toggle</span>: <span class="literal">true</span>&#125;);</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        <span class="comment">// 这边可以用 this.handleButtonClick.bind(this) 手动绑定或是 Arrow functions () =&gt; &#123;&#125; 用法</span></div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">                <span class="tag">&lt;<span class="name">Button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleButtonClick.bind(this)&#125;</span> <span class="attr">onClick</span>=<span class="string">&#123;(e)</span>=&gt;</span> &#123;this.handleButtonClick(e)&#125; &#125;&gt;&#123;this.props.label&#125;<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        )</div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Arrow functions</code> 虽然一开始看起来有点怪异，但其实观念很简单：一个简化的函数。函数基本上就是参数（不一定要有参数）、表达式、回传值（也可能是回传 undefined）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// Arrow functions 的一些例子</div><div class="line">()=&gt;7</div><div class="line">e=&gt;e+2</div><div class="line">()=&gt;&#123;</div><div class="line">    alert(&apos;XD&apos;);</div><div class="line">&#125;</div><div class="line">(a,b)=&gt;a+b</div><div class="line">e=&gt;&#123;</div><div class="line">    if (e == 2)&#123;</div><div class="line">        return 2;</div><div class="line">    &#125;</div><div class="line">    return 100/e;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>不过要注意的是无论是 <code>bind</code> 或是 <code>Arrow functions</code>，每次执行回传都是指到一个新的函数，若需要再调用到这个函数，请记得先把它存起来：</p>
+<p>错误用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoBtn</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    componentWillMount()&#123;</div><div class="line">        Btn.addEventListener(<span class="string">'click'</span>, <span class="keyword">this</span>.handleButtonClick.bind(<span class="keyword">this</span>));</div><div class="line">    &#125;</div><div class="line">    componentDidmount()&#123;</div><div class="line">        Btn.removeEventListener(<span class="string">'click'</span>, <span class="keyword">this</span>.handleButtonClick.bind(<span class="keyword">this</span>));</div><div class="line">    &#125;</div><div class="line">    onAppPaused(event)&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正确用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoBtn</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props)&#123;</div><div class="line">        <span class="keyword">super</span>(props);</div><div class="line">        <span class="keyword">this</span>.handleButtonClick = <span class="keyword">this</span>.handleButtonClick.bind(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    componentWillMount()&#123;</div><div class="line">        Btn.addEventListener(<span class="string">'click'</span>, <span class="keyword">this</span>.handleButtonClick);</div><div class="line">    &#125;</div><div class="line">    componentDidMount()&#123;</div><div class="line">        Btn.removeEventListener(<span class="string">'click'</span>, <span class="keyword">this</span>.handleButtonClick);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>更多 Arrows and Lexical This 特性可以<a href="https://babeljs.io/docs/learn-es2015/#arrows" rel="external nofollow noopener noreferrer" target="_blank">参考这个文件</a>。</p>
+<h2 id="7-Dynamic-property-names-amp-template-strings"><a href="#7-Dynamic-property-names-amp-template-strings" class="headerlink" title="7. Dynamic property names &amp; template strings"></a>7. Dynamic property names &amp; template strings</h2><p>以前在 ES5 我们要动态设定属性名称时，往往需要多写几行程式码才能达到目标：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Todo = React.createClass(&#123;</div><div class="line">  <span class="attr">onChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">inputName, e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> stateToSet = &#123;&#125;;</div><div class="line">    stateToSet[inputName + <span class="string">'Value'</span>] = e.target.value;</div><div class="line">    <span class="keyword">this</span>.setState(stateToSet);</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>但在 ES6+中，透过 <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus" rel="external nofollow noopener noreferrer" target="_blank">enhancements to object literals</a> 和 <a href="https://babeljs.io/docs/learn-es2015/#template-strings" rel="external nofollow noopener noreferrer" target="_blank">template strings</a> 可以轻松完成动态设定属性名称的任务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Todo extends React.Component &#123;</div><div class="line">  onChange(inputName, e) &#123;</div><div class="line">    this.setState(&#123;</div><div class="line">      [`$&#123;inputName&#125;Value`]: e.target.value,</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Template Strings 是一种语法糖（syntactic sugar），方便我们组织字串（这边也用上 <code>let</code>、<code>const</code> 变数和常数宣告的方式，和 <code>var</code> 的 <code>function scope</code> 不同的是它们是属于 <code>block scope</code>，亦即生存域存在于 <code>{}</code> 间）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Interpolate variable bindings</span></div><div class="line"><span class="keyword">const</span> name = <span class="string">"Bob"</span>, <span class="keyword">let</span> = <span class="string">"today"</span>;</div><div class="line"><span class="string">`Hello <span class="subst">$&#123;name&#125;</span>, how are you <span class="subst">$&#123;time&#125;</span>?`</span> \\ Hello Bob, how are you today?</div></pre></td></tr></table></figure>
+<h2 id="8-Destructuring-amp-spread-attributes"><a href="#8-Destructuring-amp-spread-attributes" class="headerlink" title="8. Destructuring &amp; spread attributes"></a>8. Destructuring &amp; spread attributes</h2><p>在 React 的 Component 中，父组件利用 <code>props</code> 来传递资料到子组件是常见作法，然而我们有时会希望只传递部分资料，此时 ES6+ 中的 <a href="https://babeljs.io/docs/learn-es2015/#destructuring" rel="external nofollow noopener noreferrer" target="_blank">Destructuring</a> 和 <a href="https://facebook.github.io/react/docs/jsx-spread.html" rel="external nofollow noopener noreferrer" target="_blank">JSX 的 Spread Attributes
+</a> ，<code>...</code> Spread Attributes 主要是用来迭代物件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">var</span> &#123;</div><div class="line">      className,</div><div class="line">      ...others,  <span class="comment">// ...others 包含 this.props 除了 className 外所有值。this.props = &#123;value: 'true', title: 'header', className: 'content'&#125;</span></div><div class="line">    &#125; = <span class="keyword">this</span>.props;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;className&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">TodoList</span> &#123;<span class="attr">...others</span>&#125; /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleLoadMoreClick&#125;</span>&gt;</span>Load more<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但使用上要注意的是若是有重复的属性值则以后来覆蓋，下面的例子中若 <code>...this.props</code>，有 <code>className</code>，则被后来的 <code>main</code> 所覆蓋：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div &#123;...this.props&#125; className=<span class="string">"main"</span>&gt;</div><div class="line">  …</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
+<p>而 <code>Destructuring</code> 也可以用在简化 <code>Module</code> 的引入上，这边我们先用 ES5 中引入方式来看：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react-native'</span>);</div><div class="line"><span class="keyword">var</span> Component = React.component;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> HelloWorld;</div></pre></td></tr></table></figure>
+<p>以下 ES5 写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react-native&apos;);</div><div class="line">var View = React.View;</div></pre></td></tr></table></figure>
+<p>在 ES6+ 则可以直接使用 <code>Destructuring</code> 这种简化方式来引入模组中的组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 这边等于上面的写法</div><div class="line">var &#123; View &#125; = require(&apos;react-native&apos;);</div></pre></td></tr></table></figure>
+<p>更进一步可以使用 <code>import</code> 语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123;</div><div class="line">  View,</div><div class="line">  Component,</div><div class="line">  Text,</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> HelloWorld;</div></pre></td></tr></table></figure>
+<h2 id="9-Mixins"><a href="#9-Mixins" class="headerlink" title="9. Mixins"></a>9. Mixins</h2><p>在 ES5 中，我们可以使用 <code>Mixins</code> 的方式去让不同的 Component 共用相似的功能，重用我们的程式码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> PureRenderMixin = <span class="built_in">require</span>(<span class="string">'react-addons-pure-render-mixin'</span>);</div><div class="line">React.createClass(&#123;</div><div class="line">  <span class="attr">mixins</span>: [PureRenderMixin],</div><div class="line"></div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;this.props.className&#125;</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>但由于官方不打算在 ES6+ 中继续推行 <code>Mixins</code>，若还是希望使用，可以参考看看<a href="https://www.npmjs.com/package/es6-class-mixin" rel="external nofollow noopener noreferrer" target="_blank">第三方套件</a>或是<a href="https://gist.github.com/sebmarkbage/ef0bf1f338a7182b6775" rel="external nofollow noopener noreferrer" target="_blank">这个文件的用法</a>。</p>
+<h2 id="10-Default-Parameters"><a href="#10-Default-Parameters" class="headerlink" title="10. Default Parameters"></a>10. Default Parameters</h2><p>以前 ES5 我们函数要使用预设值需要这样使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> link = <span class="function"><span class="keyword">function</span> (<span class="params">height, color</span>) </span>&#123;  </div><div class="line">    <span class="keyword">var</span> height = height || <span class="number">50</span>;  </div><div class="line">    <span class="keyword">var</span> color = color || <span class="string">'red'</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在 ES6+ 的函数可以支援预设值，让程式码更为简洁：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> link = <span class="function"><span class="keyword">function</span>(<span class="params">height = <span class="number">50</span>, color = <span class="string">'red'</span></span>) </span>&#123;  </div><div class="line">  ...  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/框架/React/React项目开发一些摘要/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    React项目开发一些摘要
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/框架/React/深入理解React技术栈/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">深入理解React技术栈</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

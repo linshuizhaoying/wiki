@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>typescript 基础开发 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,代码标准">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="资料官方英文文档 官方中文文档 非官方文档 写d.ts参考 原始类型1234567891011121314151617181920212223242526272829// 原始值const isDone: boolean = false;const amount: number = 6;const address: string = &amp;apos;beijing&amp;apos;;const greeti">
+<meta name="keywords" content="前端,代码标准">
+<meta property="og:type" content="article">
+<meta property="og:title" content="typescript 基础开发">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/开发标准/TypeScript开发/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="资料官方英文文档 官方中文文档 非官方文档 写d.ts参考 原始类型1234567891011121314151617181920212223242526272829// 原始值const isDone: boolean = false;const amount: number = 6;const address: string = &amp;apos;beijing&amp;apos;;const greeti">
+<meta property="og:updated_time" content="2017-11-26T10:58:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="typescript 基础开发">
+<meta name="twitter:description" content="资料官方英文文档 官方中文文档 非官方文档 写d.ts参考 原始类型1234567891011121314151617181920212223242526272829// 原始值const isDone: boolean = false;const amount: number = 6;const address: string = &amp;apos;beijing&amp;apos;;const greeti">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/开发标准/TypeScript开发" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/开发标准/">开发标准</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/代码标准/">代码标准</a>, <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/开发标准/TypeScript开发/">
+            <time datetime="2017-09-05T09:49:39.000Z" itemprop="datePublished">2017-09-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/开发标准/TypeScript开发.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/开发标准/TypeScript开发.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/开发标准/TypeScript开发.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            typescript 基础开发
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#资料"><span class="toc-number">1.</span> <span class="toc-text">资料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原始类型"><span class="toc-number">1.0.1.</span> <span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#联合类型"><span class="toc-number">1.0.2.</span> <span class="toc-text">联合类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口"><span class="toc-number">1.0.3.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组的类型"><span class="toc-number">1.0.4.</span> <span class="toc-text">数组的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数"><span class="toc-number">1.0.5.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类型断言"><span class="toc-number">1.0.6.</span> <span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#声明文件"><span class="toc-number">1.0.7.</span> <span class="toc-text">声明文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类型别名"><span class="toc-number">1.0.8.</span> <span class="toc-text">类型别名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串字面量类型"><span class="toc-number">1.0.9.</span> <span class="toc-text">字符串字面量类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#元组"><span class="toc-number">1.0.10.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类"><span class="toc-number">1.0.11.</span> <span class="toc-text">类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript-中类的用法"><span class="toc-number">1.0.12.</span> <span class="toc-text">TypeScript 中类的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一个类可以实现多个接口："><span class="toc-number">1.0.13.</span> <span class="toc-text">一个类可以实现多个接口：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛型"><span class="toc-number">1.0.14.</span> <span class="toc-text">泛型</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a href="http://www.typescriptlang.org/docs/handbook/jsx.html" rel="external nofollow noopener noreferrer" target="_blank">官方英文文档</a></p>
+<p><a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tutorials/TypeScript%20in%205%20minutes.html" rel="external nofollow noopener noreferrer" target="_blank">官方中文文档</a></p>
+<p><a href="https://ts.xcatliu.com/basics/primitive-data-types.html" rel="external nofollow noopener noreferrer" target="_blank">非官方文档</a></p>
+<p><a href="http://definitelytyped.org/" rel="external nofollow noopener noreferrer" target="_blank">写d.ts参考</a></p>
+<h4 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 原始值</div><div class="line">const isDone: boolean = false;</div><div class="line">const amount: number = 6;</div><div class="line">const address: string = &apos;beijing&apos;;</div><div class="line">const greeting: string = `Hello World`;</div><div class="line">// 数组</div><div class="line">const list: number[] = [1, 2, 3];</div><div class="line">const list: Array&lt;number&gt; = [1, 2, 3];</div><div class="line">// 元组</div><div class="line">const name: [string, string] = [&apos;Sean&apos;, &apos;Sun&apos;];</div><div class="line">// 枚举</div><div class="line">enum Color &#123;</div><div class="line">    Red,</div><div class="line">    Green,</div><div class="line">    Blue</div><div class="line">&#125;;</div><div class="line">const c: Color = Color.Green;</div><div class="line">// 任意值：可以调用任意方法</div><div class="line">let anyTypes: any = 4;</div><div class="line">anyTypes = &apos;any&apos;;</div><div class="line">anyTypes = false</div><div class="line">// 空值</div><div class="line">function doSomething (): void &#123;</div><div class="line">    return undefined;</div><div class="line">&#125;</div><div class="line">// 类型断言</div><div class="line">let someValue: any = &quot;this is a string&quot;;</div><div class="line">let strLength: number = (someValue as string).length;</div></pre></td></tr></table></figure>
+<h4 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let myFavoriteNumber: string | number;</div><div class="line">myFavoriteNumber = &apos;seven&apos;;</div><div class="line">myFavoriteNumber = 7;</div></pre></td></tr></table></figure>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><blockquote>
+<p>接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implements）。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">interface Person &#123;</div><div class="line">  name: string;</div><div class="line">  age: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let xcatliu: Person = &#123;</div><div class="line">  name: &apos;Xcat Liu&apos;,</div><div class="line">  age: 25,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 可选属性,可选属性的含义是该属性可以不存在。</div><div class="line"></div><div class="line">interface Person &#123;</div><div class="line">  name: string;</div><div class="line">  age?: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let xcatliu: Person = &#123;</div><div class="line">  name: &apos;Xcat Liu&apos;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">// 任意属性 确定属性和可选属性都必须是它的子属性：</div><div class="line">interface Person &#123;</div><div class="line">  name: string;</div><div class="line">  age?: number;</div><div class="line">  [propName: string]: any;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let xcatliu: Person = &#123;</div><div class="line">  name: &apos;Xcat Liu&apos;,</div><div class="line">  website: &apos;http://xcatliu.com&apos;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">// 只读属性  readonly 定义只读属性</div><div class="line"></div><div class="line">interface Person &#123;</div><div class="line">  readonly id: number;</div><div class="line">  name: string;</div><div class="line">  age?: number;</div><div class="line">  [propName: string]: any;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let xcatliu: Person = &#123;</div><div class="line">  id: 89757,</div><div class="line">  name: &apos;Xcat Liu&apos;,</div><div class="line">  website: &apos;http://xcatliu.com&apos;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">xcatliu.id = 9527; // error</div></pre></td></tr></table></figure>
+<h4 id="数组的类型"><a href="#数组的类型" class="headerlink" title="数组的类型"></a>数组的类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let fibonacci: number[] = [1, 1, 2, 3, 5];</div><div class="line"></div><div class="line"></div><div class="line">interface NumberArray &#123;</div><div class="line">  [index: number]: number;</div><div class="line">&#125;</div><div class="line">let fibonacci: NumberArray = [1, 1, 2, 3, 5];</div><div class="line"></div><div class="line">let list: any[] = [&apos;Xcat Liu&apos;, 25, &#123; website: &apos;http://xcatliu.com&apos; &#125;];</div></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function sum(x: number, y: number): number &#123;</div><div class="line">  return x + y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">sum(1, 2, 3); //输入多余的（或者少于要求的）参数，是不被允许的：</div><div class="line"></div><div class="line">let mySum = function (x: number, y: number): number &#123;</div><div class="line">  return x + y;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//接口中函数的定义</div><div class="line"></div><div class="line">interface SearchFunc &#123;</div><div class="line">  (source: string, subString: string): boolean;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mySearch: SearchFunc;</div><div class="line">mySearch = function(source: string, subString: string) &#123;</div><div class="line">  return source.search(subString) !== -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 可选参数</div><div class="line"></div><div class="line">function buildName(firstName: string, lastName?: string) &#123; // 可选参数后面不允许再出现必须参数</div><div class="line">  if (lastName) &#123;</div><div class="line">    return firstName + &apos; &apos; + lastName;</div><div class="line">  &#125; else &#123;</div><div class="line">    return firstName;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">let xcatliu = buildName(&apos;Xcat&apos;, &apos;Liu&apos;);</div><div class="line">let xcat = buildName(&apos;Xcat&apos;);</div><div class="line"></div><div class="line">// 参数默认值</div><div class="line"></div><div class="line">function buildName(firstName: string, lastName: string = &apos;Liu&apos;) &#123;</div><div class="line">  return firstName + &apos; &apos; + lastName;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><p>&lt;类型&gt;值</p>
+<p>// 或</p>
+<p>值 as 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function getLength(something: string | number): number &#123;</div><div class="line">  if ((&lt;string&gt;something).length) &#123;</div><div class="line">    return (&lt;string&gt;something).length;</div><div class="line">  &#125; else &#123;</div><div class="line">    return something.toString().length;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="声明文件"><a href="#声明文件" class="headerlink" title="声明文件"></a>声明文件</h4><p>通常我们会把类型声明放到一个单独的文件中，这就是声明文件：</p>
+<p>// jQuery.d.ts</p>
+<p>declare var jQuery: (string) =&gt; any;<br>我们约定声明文件以 .d.ts 为后缀。</p>
+<p>然后在使用到的文件的开头，用「三斜线指令」表示引用了声明文件：</p>
+<p>/// <reference path="./jQuery.d.ts"></reference></p>
+<p>jQuery(‘#foo’);</p>
+<h4 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h4><blockquote>
+<p>类型别名用来给一个类型起个新名字。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">type Name = string;</div><div class="line">type NameResolver = () =&gt; string;</div><div class="line">type NameOrResolver = Name | NameResolver;</div><div class="line">function getName(n: NameOrResolver): Name &#123;</div><div class="line">  if (typeof n === &apos;string&apos;) &#123;</div><div class="line">    return n;</div><div class="line">  &#125;</div><div class="line">  else &#123;</div><div class="line">    return n();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="字符串字面量类型"><a href="#字符串字面量类型" class="headerlink" title="字符串字面量类型"></a>字符串字面量类型</h4><blockquote>
+<p>字符串字面量类型用来约束取值只能是某几个字符串中的一个。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">type EventNames = &apos;click&apos; | &apos;scroll&apos; | &apos;mousemove&apos;;</div><div class="line">function handleEvent(ele: Element, event: EventNames) &#123;</div><div class="line">  // do something</div><div class="line">&#125;</div><div class="line"></div><div class="line">handleEvent(document.getElementById(&apos;hello&apos;), &apos;scroll&apos;);  // 没问题</div><div class="line">handleEvent(document.getElementById(&apos;world&apos;), &apos;dbclick&apos;); // 报错，event 不能为 &apos;dbclick&apos;</div></pre></td></tr></table></figure>
+<h4 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h4><blockquote>
+<p>数组合并了相同类型的对象，而元组（Tuple）合并了不同类型的对象。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let xcatliu: [string, number] = [&apos;Xcat Liu&apos;, 25];</div><div class="line"></div><div class="line">let xcatliu: [string, number];</div><div class="line">xcatliu[0] = &apos;Xcat Liu&apos;;</div><div class="line">xcatliu[1] = 25;</div><div class="line"></div><div class="line">xcatliu[0].slice(1);</div><div class="line">xcatliu[1].toFixed(2);</div></pre></td></tr></table></figure>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><blockquote>
+<p>类(Class)：定义了一件事物的抽象特点，包含它的属性和方法<br>对象（Object）：类的实例，通过 new 生成<br>面向对象（OOP）的三大特性：封装、继承、多态</p>
+<p>封装（Encapsulation）：将对数据的操作细节隐藏起来，只暴露对外的接口。外界调用端不需要（也不可能）知道细节，就能通过对外提供的接口来访问该对象，同时也保证了外界无法任意更改对象内部的数据</p>
+<p>继承（Inheritance）：子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性</p>
+<p>多态（Polymorphism）：由继承而产生了相关的不同的类，对同一个方法可以有不同的响应。比如 Cat 和 Dog 都继承自 Animal，但是分别实现了自己的 eat 方法。此时针对某一个实例，我们无需了解它是 Cat 还是 Dog，就可以直接调用 eat 方法，程序会自动判断出来应该如何执行 eat<br>存取器（getter &amp; setter）：用以改变属性的读取和赋值行为</p>
+<p>修饰符（Modifiers）：修饰符是一些关键字，用于限定成员或类型的性质。比如 public 表示公有属性或方法</p>
+<p>抽象类（Abstract Class）：抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</p>
+<p>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">使用 class 定义类，使用 constructor 定义构造函数。</div><div class="line"></div><div class="line">通过 new 生成新实例的时候，会自动调用构造函数。</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">  sayHi() &#123;</div><div class="line">    return `My name is $&#123;this.name&#125;`;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let a = new Animal(&apos;Jack&apos;);</div><div class="line">console.log(a.sayHi()); // My name is Jack</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">类的继承</div><div class="line"></div><div class="line">使用 extends 关键字实现继承，子类中使用 super 关键字来调用父类的构造函数和方法。</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">  constructor(name) &#123;</div><div class="line">    super(name); // 调用父类的 constructor(name)</div><div class="line">    console.log(this.name);</div><div class="line">  &#125;</div><div class="line">  sayHi() &#123;</div><div class="line">    return &apos;Meow, &apos; + super.sayHi(); // 调用父类的 sayHi()</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let c = new Cat(&apos;Tom&apos;); // Tom</div><div class="line">console.log(c.sayHi()); // Meow, My name is Tom</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">存取器</div><div class="line"></div><div class="line">使用 getter 和 setter 可以改变属性的赋值和读取行为：</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">  get name() &#123;</div><div class="line">    return &apos;Jack&apos;;</div><div class="line">  &#125;</div><div class="line">  set name(value) &#123;</div><div class="line">    console.log(&apos;setter: &apos; + value);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let a = new Animal(&apos;Kitty&apos;); // setter: Kitty</div><div class="line">a.name = &apos;Tom&apos;; // setter: Tom</div><div class="line">console.log(a.name); // Jack</div><div class="line"></div><div class="line"></div><div class="line">静态方法</div><div class="line"></div><div class="line">使用 static 修饰符修饰的方法称为静态方法，它们不需要实例化，而是直接通过类来调用：</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  static isAnimal(a) &#123;</div><div class="line">    return a instanceof Animal;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let a = new Animal(&apos;Jack&apos;);</div><div class="line">Animal.isAnimal(a); // true</div><div class="line">a.isAnimal(a); // TypeError: a.isAnimal is not a function</div></pre></td></tr></table></figure>
+<h4 id="TypeScript-中类的用法"><a href="#TypeScript-中类的用法" class="headerlink" title="TypeScript 中类的用法"></a>TypeScript 中类的用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">TypeScript 可以使用三种访问修饰符（Access Modifiers），分别是 public、private 和 protected。</div><div class="line"></div><div class="line">public 修饰的属性或方法是公有的，可以在任何地方被访问到，默认所有的属性和方法都是 public 的</div><div class="line">private 修饰的属性或方法是私有的，不能在声明它的类的外部访问</div><div class="line">protected 修饰的属性或方法是受保护的，它和 private 类似，区别是它在子类中也是允许被访问的</div><div class="line">下面举一些例子：</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  public name;</div><div class="line">  public constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let a = new Animal(&apos;Jack&apos;);</div><div class="line">console.log(a.name); // Jack</div><div class="line">a.name = &apos;Tom&apos;;</div><div class="line">console.log(a.name); // Tom</div><div class="line">上面的例子中，name 被设置为了 public，所以直接访问实例的 name 属性是允许的。</div><div class="line"></div><div class="line">很多时候，我们希望有的属性是无法直接存取的，这时候就可以用 private 了：</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  private name;</div><div class="line">  public constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let a = new Animal(&apos;Jack&apos;);</div><div class="line">console.log(a.name); // Jack</div><div class="line">a.name = &apos;Tom&apos;;</div><div class="line"></div><div class="line">// index.ts(9,13): error TS2341: Property &apos;name&apos; is private and only accessible within class &apos;Animal&apos;.</div><div class="line">// index.ts(10,1): error TS2341: Property &apos;name&apos; is private and only accessible within class &apos;Animal&apos;.</div><div class="line">需要注意的是，TypeScript 编译之后的代码中，并没有限制 private 属性在外部的可访问性。</div><div class="line"></div><div class="line">上面的例子编译后的代码是：</div><div class="line"></div><div class="line">var Animal = (function () &#123;</div><div class="line">    function Animal(name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line">    return Animal;</div><div class="line">&#125;());</div><div class="line">var a = new Animal(&apos;Jack&apos;);</div><div class="line">console.log(a.name);</div><div class="line">a.name = &apos;Tom&apos;;</div><div class="line">使用 private 修饰的属性或方法，在子类中也是不允许访问的：</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  private name;</div><div class="line">  public constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">  constructor(name) &#123;</div><div class="line">    super(name);</div><div class="line">    console.log(this.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// index.ts(11,17): error TS2341: Property &apos;name&apos; is private and only accessible within class &apos;Animal&apos;.</div><div class="line">而如果是用 protected 修饰，则允许在子类中访问：</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">  protected name;</div><div class="line">  public constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">  constructor(name) &#123;</div><div class="line">    super(name);</div><div class="line">    console.log(this.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>抽象类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">abstract class Animal &#123;</div><div class="line">  public name;</div><div class="line">  public constructor(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">  public abstract sayHi();</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">  public sayHi() &#123;</div><div class="line">    console.log(`Meow, My name is $&#123;this.name&#125;`);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let cat = new Cat(&apos;Tom&apos;);</div></pre></td></tr></table></figure>
+<h4 id="一个类可以实现多个接口："><a href="#一个类可以实现多个接口：" class="headerlink" title="一个类可以实现多个接口："></a>一个类可以实现多个接口：</h4><blockquote>
+<p>一般来讲，一个类只能继承自另一个类，有时候不同类之间可以有一些共有的特性，这时候就可以把特性提取成接口（interfaces），用 implements 关键字来实现。这个特性大大提高了面向对象的灵活性。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">interface Alarm &#123;</div><div class="line">  alert();</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface Light &#123;</div><div class="line">  lightOn();</div><div class="line">  lightOff();</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Car implements Alarm, Light &#123;</div><div class="line">  alert() &#123;</div><div class="line">    console.log(&apos;Car alert&apos;);</div><div class="line">  &#125;</div><div class="line">  lightOn() &#123;</div><div class="line">    console.log(&apos;Car light on&apos;);</div><div class="line">  &#125;</div><div class="line">  lightOff() &#123;</div><div class="line">    console.log(&apos;Car light off&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h4><blockquote>
+<p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">实现一个函数 createArray，它可以创建一个指定长度的数组，同时将每一项都填充一个默认值：</div><div class="line"></div><div class="line">function createArray&lt;T&gt;(length: number, value: T): Array&lt;T&gt; &#123;</div><div class="line">  let result = [];</div><div class="line">  for (let i = 0; i &lt; length; i++) &#123;</div><div class="line">    result[i] = value;</div><div class="line">  &#125;</div><div class="line">  return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">createArray&lt;string&gt;(3, &apos;x&apos;); // [&apos;x&apos;, &apos;x&apos;, &apos;x&apos;]</div><div class="line"></div><div class="line"></div><div class="line">在函数名后添加了 &lt;T&gt;，其中 T 用来指代任意输入的类型，在后面的输入 value: T 和输出 Array&lt;T&gt; 中即可使用了</div></pre></td></tr></table></figure>
+<p><code>多个类型参数</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">定义泛型的时候，可以一次定义多个类型参数：</div><div class="line"></div><div class="line">function swap&lt;T, U&gt;(tuple: [T, U]): [U, T] &#123;</div><div class="line">  return [tuple[1], tuple[0]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">swap([7, &apos;seven&apos;]); // [&apos;seven&apos;, 7]</div><div class="line">上例中，我们定义了一个 swap 函数，用来交换输入的元组。</div></pre></td></tr></table></figure>
+<p><code>泛型约束</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">我们可以对泛型进行约束，只允许这个函数传入那些包含 length 属性的变量。这就是泛型约束：</div><div class="line"></div><div class="line">interface Lengthwise &#123;</div><div class="line">  length: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;</div><div class="line">  console.log(arg.length);</div><div class="line">  return arg;</div><div class="line">&#125;</div><div class="line"></div><div class="line">多个类型参数之间也可以互相约束：</div><div class="line"></div><div class="line">function copyFields&lt;T extends U, U&gt;(target: T, source: U): T &#123;</div><div class="line">  for (let id in source) &#123;</div><div class="line">    target[id] = (&lt;T&gt;source)[id];</div><div class="line">  &#125;</div><div class="line">  return target;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let x = &#123; a: 1, b: 2, c: 3, d: 4 &#125;;</div><div class="line"></div><div class="line">copyFields(x, &#123; b: 10, d: 20 &#125;);</div><div class="line">上例中，我们使用了两个类型参数，其中要求 T 继承 U，这样就保证了 U 上不会出现 T 中不存在的字段。</div></pre></td></tr></table></figure>
+<p><code>泛型接口</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">interface CreateArrayFunc &#123;</div><div class="line">  &lt;T&gt;(length: number, value: T): Array&lt;T&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let createArray: CreateArrayFunc;</div><div class="line">createArray = function&lt;T&gt;(length: number, value: T): Array&lt;T&gt; &#123;</div><div class="line">  let result = [];</div><div class="line">  for (let i = 0; i &lt; length; i++) &#123;</div><div class="line">    result[i] = value;</div><div class="line">  &#125;</div><div class="line">  return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">createArray(3, &apos;x&apos;); // [&apos;x&apos;, &apos;x&apos;, &apos;x&apos;]</div></pre></td></tr></table></figure>
+<p><code>泛型类</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class GenericNumber&lt;T&gt; &#123;</div><div class="line">    zeroValue: T;</div><div class="line">    add: (x: T, y: T) =&gt; T;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myGenericNumber = new GenericNumber&lt;number&gt;();</div><div class="line">myGenericNumber.zeroValue = 0;</div><div class="line">myGenericNumber.add = function(x, y) &#123; return x + y; &#125;;</div></pre></td></tr></table></figure>
+<p>命名空间</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/开发标准/开发配置/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    开发配置
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/开发标准/Airbnb React 标准/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">Airbnb React 代码风格标准</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

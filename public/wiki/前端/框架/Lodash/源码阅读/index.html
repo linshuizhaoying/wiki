@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>Lodash源码阅读 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,基础,Lodash">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前言以前读源码都虎头蛇尾，一心想着用什么工具提高效率啊，用什么方式读更容易啊，要不要先去看看别人的源码注解啊什么的。但是发现源码,Just read it. 正如每日坚持锻炼，去做就好了。先用最”笨”的方法去做。等以后读多了，找到规律了，效率自然上来了。 这次打算读Lodash，和以前的underscore类似，但是这是公司部门有一直使用的基础库，以前没用过，因此在我的计划中排队了好久，现在抽出时">
+<meta name="keywords" content="前端,基础,Lodash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lodash源码阅读">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/框架/Lodash/源码阅读/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="前言以前读源码都虎头蛇尾，一心想着用什么工具提高效率啊，用什么方式读更容易啊，要不要先去看看别人的源码注解啊什么的。但是发现源码,Just read it. 正如每日坚持锻炼，去做就好了。先用最”笨”的方法去做。等以后读多了，找到规律了，效率自然上来了。 这次打算读Lodash，和以前的underscore类似，但是这是公司部门有一直使用的基础库，以前没用过，因此在我的计划中排队了好久，现在抽出时">
+<meta property="og:updated_time" content="2017-10-31T02:09:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lodash源码阅读">
+<meta name="twitter:description" content="前言以前读源码都虎头蛇尾，一心想着用什么工具提高效率啊，用什么方式读更容易啊，要不要先去看看别人的源码注解啊什么的。但是发现源码,Just read it. 正如每日坚持锻炼，去做就好了。先用最”笨”的方法去做。等以后读多了，找到规律了，效率自然上来了。 这次打算读Lodash，和以前的underscore类似，但是这是公司部门有一直使用的基础库，以前没用过，因此在我的计划中排队了好久，现在抽出时">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/框架/Lodash/源码阅读" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/框架/">框架</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/框架/Lodash/">Lodash</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Lodash/">Lodash</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/基础/">基础</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/框架/Lodash/源码阅读/">
+            <time datetime="2017-10-14T14:27:13.000Z" itemprop="datePublished">2017-10-14</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/框架/Lodash/源码阅读.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/框架/Lodash/源码阅读.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/框架/Lodash/源码阅读.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Lodash源码阅读
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">1.1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chunk"><span class="toc-number">1.1.1.</span> <span class="toc-text">_.chunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#compact"><span class="toc-number">1.1.2.</span> <span class="toc-text">_.compact</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat"><span class="toc-number">1.1.3.</span> <span class="toc-text">_.concat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#difference"><span class="toc-number">1.1.4.</span> <span class="toc-text">_.difference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drop"><span class="toc-number">1.1.5.</span> <span class="toc-text">_.drop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dropRight"><span class="toc-number">1.1.6.</span> <span class="toc-text">_.dropRight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dropRightWhile"><span class="toc-number">1.1.7.</span> <span class="toc-text">_.dropRightWhile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dropWhile"><span class="toc-number">1.1.8.</span> <span class="toc-text">_.dropWhile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fill"><span class="toc-number">1.1.9.</span> <span class="toc-text">_.fill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findIndex"><span class="toc-number">1.1.10.</span> <span class="toc-text">_.findIndex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flatten"><span class="toc-number">1.1.11.</span> <span class="toc-text">_.flatten</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fromPairs"><span class="toc-number">1.1.12.</span> <span class="toc-text">_.fromPairs()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head"><span class="toc-number">1.1.13.</span> <span class="toc-text">_.head()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#indexOf"><span class="toc-number">1.1.14.</span> <span class="toc-text">_.indexOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#initial"><span class="toc-number">1.1.15.</span> <span class="toc-text">_.initial()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intersection"><span class="toc-number">1.1.16.</span> <span class="toc-text">_.intersection()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-number">1.1.17.</span> <span class="toc-text">_.join()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nth"><span class="toc-number">1.1.18.</span> <span class="toc-text">_.nth()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pull"><span class="toc-number">1.1.19.</span> <span class="toc-text">_.pull()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#remove"><span class="toc-number">1.1.20.</span> <span class="toc-text">_.remove()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reverse"><span class="toc-number">1.1.21.</span> <span class="toc-text">_.reverse()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sortedUniq"><span class="toc-number">1.1.22.</span> <span class="toc-text">_.sortedUniq()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#union"><span class="toc-number">1.1.23.</span> <span class="toc-text">_.union()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uniq"><span class="toc-number">1.1.24.</span> <span class="toc-text">_.uniq()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unzip"><span class="toc-number">1.1.25.</span> <span class="toc-text">_.unzip()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#without"><span class="toc-number">1.1.26.</span> <span class="toc-text">_.without()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xor"><span class="toc-number">1.1.27.</span> <span class="toc-text">_.xor()</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>以前读源码都虎头蛇尾，一心想着用什么工具提高效率啊，用什么方式读更容易啊，要不要先去看看别人的源码注解啊什么的。但是发现源码,Just read it.</p>
+<p>正如每日坚持锻炼，去做就好了。先用最”笨”的方法去做。等以后读多了，找到规律了，效率自然上来了。</p>
+<p>这次打算读Lodash，和以前的underscore类似，但是这是公司部门有一直使用的基础库，以前没用过，因此在我的计划中排队了好久，现在抽出时间，打算一点点啃完。</p>
+<p>Go~</p>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="chunk"><a href="#chunk" class="headerlink" title="_.chunk"></a>_.chunk</h3><blockquote>
+<p>_.chunk(array, [size=1])</p>
+</blockquote>
+<p>数组中的块函数，通过第二个参数传递将数组分割成指定数量的块，如果数组不够分，那么最后的块就打包剩余的元素。</p>
+<p>在看源码之前用以前历史公开课学到的<br>方法来思辨一下。就是代入自己，如果我说作者我需要怎么做，我需要考虑哪些。</p>
+<p>像这种成熟的库，一般都会类型检查。因此第一件事情我觉得是<br><code>isArray(arg1)</code></p>
+<p>然后是具体功能的解析，那就是如何将数组拆分。那么想到的就是原生的<code>slice</code>函数。</p>
+<p>接下来去看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function chunk(array, size) &#123;</div><div class="line">  size = Math.max(size, 0) // 判断了第二个参数非负数</div><div class="line">  </div><div class="line">  const length = array == null ? 0 : array.length // 判断非空</div><div class="line">  </div><div class="line">  if (!length || size &lt; 1) &#123;</div><div class="line">    return [] // 如果输入非法返回空</div><div class="line">  &#125;</div><div class="line">  let index = 0</div><div class="line">  let resIndex = 0</div><div class="line">  const result = new Array(Math.ceil(length / size)) // 创建最大数量的数组，ceil是向上求整数</div><div class="line"></div><div class="line">  while (index &lt; length) &#123; // 将字符按照size填充填充</div><div class="line">    result[resIndex++] = slice(array, index, (index += size))</div><div class="line">  &#125;</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中还引用了<code>slice方法</code>.</p>
+<p>这之前我就试过把字符串传进去，依旧被当做数组处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function slice(array, start, end) &#123;</div><div class="line">  let length = array == null ? 0 : array.length // 先判断是否为空,字符串会通过检测</div><div class="line">  if (!length) &#123;</div><div class="line">    return []</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  start = start == null ? 0 : start</div><div class="line">  end = end === undefined ? length : end</div><div class="line"></div><div class="line">  // 判断越界情况</div><div class="line">  if (start &lt; 0) &#123;</div><div class="line">    start = -start &gt; length ? 0 : (length + start)</div><div class="line">  &#125;</div><div class="line">  end = end &gt; length ? length : end</div><div class="line">  if (end &lt; 0) &#123;</div><div class="line">    end += length</div><div class="line">  &#125;</div><div class="line">  length = start &gt; end ? 0 : ((end - start) &gt;&gt;&gt; 0)</div><div class="line">  start &gt;&gt;&gt;= 0 //把num变成一个无符号的32位的整数,JavaScript的数组的最大长度是2^32-1，所以这样做也避免了数组的索引超出界限。</div><div class="line"></div><div class="line">  let index = -1</div><div class="line">  const result = new Array(length) // 重新生成一个数组</div><div class="line">  while (++index &lt; length) &#123;</div><div class="line">    result[index] = array[index + start]</div><div class="line">  &#125;</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里可以看到lodash自己封装了一个slice.网上查了下说是比原生快。顺便我做了个最新版本和原生的对比的例子<a href="https://jsperf.com/new-lodash-slice-vs-native-slice" rel="external nofollow noopener noreferrer" target="_blank">slice-vs-slice</a><br>测试后发现比原生的快60%</p>
+<p>有兴趣可以去看下原生slice的实现方法</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" rel="external nofollow noopener noreferrer" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a></p>
+</blockquote>
+<h3 id="compact"><a href="#compact" class="headerlink" title="_.compact"></a>_.compact</h3><blockquote>
+<p>_.compact(array)</p>
+</blockquote>
+<p>返回一个新数组，移除原先数组中无效的值：<code>false, null, 0, &quot;&quot;, undefined, and NaN</code></p>
+<p>我想的是直接一个循环过滤掉无效值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function compact(array) &#123;</div><div class="line">  let resIndex = 0</div><div class="line">  const result = []</div><div class="line"></div><div class="line">  if (array == null) &#123;</div><div class="line">    return result</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (const value of array) &#123;</div><div class="line">    if (value) &#123;</div><div class="line">      result[resIndex++] = value</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return result</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default compact</div></pre></td></tr></table></figure>
+<p>看源码是用for of取值，那么我想了下换成for循环会怎么样？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function compact2(array) &#123;</div><div class="line">  let resIndex = 0</div><div class="line">  const result = []</div><div class="line"></div><div class="line">  if (array == null) &#123;</div><div class="line">    return result</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (var i=0 , len &lt; array.length; i&lt; len;i++) &#123;</div><div class="line">    if (array[i]) &#123;</div><div class="line">      result[resIndex++] = array[i]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>是一样的结果。</p>
+<p>至于效率，看网上文章说居然还是 for 循环比较高…</p>
+<blockquote>
+<p><a href="https://dailc.github.io/2016/11/25/baseKnowlenge_javascript_jsarrayGoThrough.html" rel="external nofollow noopener noreferrer" target="_blank">数组遍历效率对比</a></p>
+</blockquote>
+<p>但是在这个例子中经过测试，却是<code>_.compact</code>更快，当然这肯定有chrome更新后对es6的优化有一定影响。</p>
+<blockquote>
+<p><a href="https://jsperf.com/forof-vs-for" rel="external nofollow noopener noreferrer" target="_blank">forof-vs-for</a></p>
+</blockquote>
+<h3 id="concat"><a href="#concat" class="headerlink" title="_.concat"></a>_.concat</h3><blockquote>
+<p>_.concat(array, [values])</p>
+</blockquote>
+<p>创建一个新数组，来连接旧数组和新数组或者新值。</p>
+<p>在实际例子中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var array = [1];</div><div class="line">var other = _.concat(array, 2, [3], [[4]]);</div><div class="line"> </div><div class="line">console.log(other);</div><div class="line">// =&gt; [1, 2, 3, [4]]</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [1]</div></pre></td></tr></table></figure>
+<p>可以看到它是不限制后面有多少个数据，如果是数组包含数组，它当做值处理。而且不改变传入的数组。</p>
+<p>这肯定需要做一个拷贝。而且需要对传入参数做一个遍历。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function concat() &#123;</div><div class="line">   var length = arguments.length;</div><div class="line">   if (!length) &#123;</div><div class="line">     return [];</div><div class="line">   &#125;</div><div class="line">   var args = Array(length - 1), //去掉第一个参数</div><div class="line">       array = arguments[0],</div><div class="line">       index = length;</div><div class="line"></div><div class="line">   while (index--) &#123;</div><div class="line">     args[index - 1] = arguments[index];</div><div class="line">   &#125;</div><div class="line">   return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>返回的时候有两个函数我们需要进一步看一下</p>
+<p><code>copyArray</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function copyArray(source, array) &#123;</div><div class="line">      var index = -1,</div><div class="line">          length = source.length;</div><div class="line"></div><div class="line">      array || (array = Array(length));</div><div class="line">      while (++index &lt; length) &#123;</div><div class="line">        array[index] = source[index];</div><div class="line">      &#125;</div><div class="line">      return array;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>是做了一个浅拷贝。</p>
+<p><code>baseFlatten(args, 1))</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseFlatten(array, depth, predicate, isStrict, result) &#123;</div><div class="line">     var index = -1,</div><div class="line">         length = array.length;</div><div class="line"></div><div class="line">     predicate || (predicate = isFlattenable);//如果没有传入判断方法，这判断方法为isFlattenable(只有可以执行扁平化就执行)</div><div class="line">     result || (result = []);</div><div class="line"></div><div class="line">     while (++index &lt; length) &#123;</div><div class="line">       var value = array[index];</div><div class="line">       if (depth &gt; 0 &amp;&amp; predicate(value)) &#123;</div><div class="line">         if (depth &gt; 1) &#123;//如果深度大于1（还需要扁平化），递归调用自身，并且depth-1,否则将这个元素值添加到结果数组</div><div class="line">           // Recursively flatten arrays (susceptible to call stack limits).</div><div class="line">           baseFlatten(value, depth - 1, predicate, isStrict, result);</div><div class="line">         &#125; else &#123;</div><div class="line">           arrayPush(result, value);</div><div class="line">         &#125;</div><div class="line">       &#125; else if (!isStrict) &#123;</div><div class="line">         result[result.length] = value;</div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">     return result;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>这就是数组包含数组扁平化的秘密。</p>
+<h3 id="difference"><a href="#difference" class="headerlink" title="_.difference"></a>_.difference</h3><blockquote>
+<p>_.difference(array, [values])</p>
+</blockquote>
+<p>创建并返回一个不包含在其他给定数组中的数组值的数组，以进行相似性比较。返回数组的顺序和值的引用都由第一个数组决定。</p>
+<p>example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.difference([2, 1], [2, 3]);</div><div class="line">// =&gt; [1]</div></pre></td></tr></table></figure>
+<p>感觉是取交集，然后从第一个数组中剔除。</p>
+<p>肯定会用两个循环，但是应该不是N^2的复杂度，不然会慢死。</p>
+<p>看源码的注释：<br><code>* @see union, unionBy, unionWith, without, xor, xorBy, xorWith,</code></p>
+<p>计算方式应该是类似的。</p>
+<p>通过源码，发现还是要看另一个base引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function difference(array, ...values) &#123;</div><div class="line">  return isArrayLikeObject(array)</div><div class="line">    ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true))</div><div class="line">    : []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>isArrayLikeObject</code> Returns <code>true</code> if <code>value</code> is an array-like object. 返回判断类数组对象。</p>
+<p>在这个函数的源码中可以看到非常直接的判断方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isArrayLikeObject(value) &#123;</div><div class="line">  return isObjectLike(value) &amp;&amp; isArrayLike(value)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>突然领悟到了颗粒化函数的优势，在命名非常直白的情况下，阅读源码和阅读注释都相差不大。</p>
+<p>判读对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isObjectLike(value) &#123;</div><div class="line">  return typeof value == &apos;object&apos; &amp;&amp; value !== null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>判断数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isArrayLike(value) &#123;</div><div class="line">  return value != null &amp;&amp; typeof value != &apos;function&apos; &amp;&amp; isLength(value.length)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>数组的特性是length字段。判断length是否存在的函数也挺有学习意义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isLength(value) &#123;</div><div class="line">  return typeof value == &apos;number&apos; &amp;&amp;</div><div class="line">    value &gt; -1 &amp;&amp; value % 1 == 0 &amp;&amp; value &lt;= MAX_SAFE_INTEGER</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我们再回过头来看<code>baseDifference</code></p>
+<p>这才是真正的处理函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseDifference(array, values, iteratee, comparator) &#123;</div><div class="line">  // arrayIncludes 是es6de includes的polyfill</div><div class="line">  let includes = arrayIncludes </div><div class="line">  </div><div class="line">  let isCommon = true</div><div class="line">  const result = []</div><div class="line">  const valuesLength = values.length</div><div class="line"></div><div class="line">  if (!array.length) &#123; //如果数组为空</div><div class="line">    return result </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  // 迭代，传进来的参数是 baseFlatten(values, 1, isArrayLikeObject, true)，扁平化后的数组</div><div class="line">  </div><div class="line">  // 如果有遍历器，先对过滤数组进行遍历操作</div><div class="line">  </div><div class="line">  if (iteratee) &#123; </div><div class="line">    values = map(values, (value) =&gt; iteratee(value))</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  // 如果有比较器，includes就引用arrayIncludesWith，并且不正常过滤</div><div class="line">  if (comparator) &#123;</div><div class="line">    includes = arrayIncludesWith</div><div class="line">    isCommon = false</div><div class="line">  &#125;</div><div class="line">  else if (values.length &gt;= LARGE_ARRAY_SIZE) &#123;</div><div class="line">    includes = cacheHas</div><div class="line">    isCommon = false</div><div class="line">    values = new SetCache(values) //过滤数组等于缓存之后的数组</div><div class="line">  &#125;</div><div class="line">  // 处理内容</div><div class="line">  outer:</div><div class="line">   // 每次遍历的原数组中的元素</div><div class="line">  for (let value of array) &#123;  </div><div class="line">  </div><div class="line">  //如果有遍历器，对该元素调用一次，得到计算后的cumputed，否则computed和value一样</div><div class="line">  </div><div class="line">    const computed = iteratee == null ? value : iteratee(value)</div><div class="line"></div><div class="line">    value = (comparator || value !== 0) ? value : 0</div><div class="line">    // 正常过滤并且computed不为NaN</div><div class="line">    if (isCommon &amp;&amp; computed === computed) &#123;</div><div class="line">      let valuesIndex = valuesLength</div><div class="line">      while (valuesIndex--) &#123;</div><div class="line">        // 如果这个元素在过滤数组中存在，跳过</div><div class="line">        if (values[valuesIndex] === computed) &#123;</div><div class="line">          continue outer</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      // 如果不存在，添加添加进结果数组中</div><div class="line">      result.push(value)</div><div class="line">    &#125;</div><div class="line">    // 非正常过滤，调用includes方法，如果通过比较器的规则不包含，将该元素添加进结果数组</div><div class="line">    else if (!includes(values, computed, comparator)) &#123;</div><div class="line">      result.push(value)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  // 返回结果</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>中间对<code>outer:</code>关键词有点疑问，查了一下，可使用一个标签来唯一标记一个循环，然后使用 break 或 continue 语句来指示程序是否中断循环或继续执行。在这里是 continue 之后跳回到上一层，继续下一步循环.</p>
+<blockquote>
+<p><a href="https://segmentfault.com/q/1010000002541243" rel="external nofollow noopener noreferrer" target="_blank">请问大家是如何在实践中使用label语句的</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/label" rel="external nofollow noopener noreferrer" target="_blank">label</a></p>
+</blockquote>
+<h3 id="drop"><a href="#drop" class="headerlink" title="_.drop"></a>_.drop</h3><blockquote>
+<p>_.drop(array, [n=1])</p>
+</blockquote>
+<p>创建一个数组，返回从头开始丢弃n个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.drop([1, 2, 3]);</div><div class="line">// =&gt; [2, 3]</div><div class="line"> </div><div class="line">_.drop([1, 2, 3], 2);</div><div class="line">// =&gt; [3]</div></pre></td></tr></table></figure>
+<p>这个常规想法也是<code>splice</code>。</p>
+<p>但是<code>splice</code>会改变原数组，如果用还需要做个拷贝。</p>
+<p>所以直接看源码是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function drop(array, n=1) &#123;</div><div class="line">  const length = array == null ? 0 : array.length</div><div class="line">  return length</div><div class="line">    ? slice(array, n &lt; 0 ? 0 : n, length)</div><div class="line">    : []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源码里调用了库自带的<code>slice</code></p>
+<h3 id="dropRight"><a href="#dropRight" class="headerlink" title="_.dropRight"></a>_.dropRight</h3><blockquote>
+<p>_.dropRight(array, [n=1])</p>
+</blockquote>
+<p>创建一个数组，返回从右边起开始丢弃n个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.dropRight([1, 2, 3]);</div><div class="line">// =&gt; [1, 2]</div><div class="line"> </div><div class="line">_.dropRight([1, 2, 3], 2);</div><div class="line">// =&gt; [1]</div></pre></td></tr></table></figure>
+<p>现在很多数组处理函数都配了从右开始处理数据，这种处理肯定不可能进行逆置后再处理，应该就是根据整个数组长度，然后从最后一位开始，根据<code>Array.length</code> 减去你要处理的长度。</p>
+<p>对区间进行修剪。</p>
+<p>一般来说如果是纯粹的循环，可以直接从末尾开始处理。</p>
+<p>我们来看下源码是怎么处理的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function dropRight(array, n=1) &#123;</div><div class="line">  const length = array == null ? 0 : array.length;</div><div class="line">  return length ? slice(array, 0, n &lt; 0 ? 0 : -n) : [];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看到依旧还是引用了内置的<code>slice</code> 只是传了一个<code>-n</code></p>
+<p>我们有必要来复习一下这个<code>slice</code>函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function slice(array, start, end) &#123;</div><div class="line">  let length = array == null ? 0 : array.length // 先判断是否为空,字符串会通过检测</div><div class="line">  if (!length) &#123;</div><div class="line">    return []</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  start = start == null ? 0 : start</div><div class="line">  end = end === undefined ? length : end</div><div class="line"></div><div class="line">  // 判断越界情况</div><div class="line">  if (start &lt; 0) &#123;</div><div class="line">    start = -start &gt; length ? 0 : (length + start)</div><div class="line">  &#125;</div><div class="line">  end = end &gt; length ? length : end</div><div class="line">  if (end &lt; 0) &#123;</div><div class="line">    end += length</div><div class="line">  &#125;</div><div class="line">  length = start &gt; end ? 0 : ((end - start) &gt;&gt;&gt; 0)</div><div class="line">  start &gt;&gt;&gt;= 0 //把num变成一个无符号的32位的整数,JavaScript的数组的最大长度是2^32-1，所以这样做也避免了数组的索引超出界限。</div><div class="line"></div><div class="line">  let index = -1</div><div class="line">  const result = new Array(length) // 重新生成一个数组</div><div class="line">  while (++index &lt; length) &#123;</div><div class="line">    result[index] = array[index + start]</div><div class="line">  &#125;</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if (end &lt; 0) &#123;</div><div class="line">  end += length</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>和预料的处理一致。</p>
+<h3 id="dropRightWhile"><a href="#dropRightWhile" class="headerlink" title="_.dropRightWhile"></a>_.dropRightWhile</h3><blockquote>
+<p><em>.dropRightWhile(array, [predicate=</em>.identity])</p>
+</blockquote>
+<p>从末尾对数组进行截取，从第一个不满足predicate 条件的元素开始截取数组。predicate接受三个参数（value,index,array）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: true &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.dropRightWhile(users, function(o) &#123; return !o.active; &#125;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;]</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.dropRightWhile(users, &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;, &apos;fred&apos;]</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.dropRightWhile(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; objects for [&apos;barney&apos;]</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.dropRightWhile(users, &apos;active&apos;);</div><div class="line">// =&gt; objects for [&apos;barney&apos;, &apos;fred&apos;, &apos;pebbles&apos;]</div></pre></td></tr></table></figure>
+<p>根据后置条件进行过滤剔除。</p>
+<p>而且很明显可以进行<code>function</code>判断和对象判断。</p>
+<p>因此肯定会先有一个类似 <code>for in</code>的循环对传进来的数组进行遍历。然后再分情况进行判断。</p>
+<p>找到源码，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function dropRightWhile(array, predicate) &#123;</div><div class="line">  return (array != null &amp;&amp; array.length)</div><div class="line">    ? baseWhile(array, predicate, true, true)</div><div class="line">    : []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对数组是否靠谱进行了验证之后就传到了 <code>baseWhile</code>这个函数进行处理。而且可以看到<code>predicate</code>将我们不定数的参数都包含了。</p>
+<p>来看看<code>baseWhile</code>的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseWhile(array, predicate, isDrop, fromRight) &#123;</div><div class="line">  const &#123; length &#125; = array</div><div class="line">  // 如果是从右开始删除，下标指向数组末尾，不然指向-1</div><div class="line">  let index = fromRight ? length : -1</div><div class="line"></div><div class="line">  // 根据drop的方向决定下标是增还是减.并且同时进行迭代条件判断。</div><div class="line">  while ((fromRight ? index-- : ++index &lt; length) &amp;&amp;</div><div class="line">    predicate(array[index], index, array)) &#123;&#125;</div><div class="line"></div><div class="line">//如果是删除元素，如果从末尾开始，调用</div><div class="line">Slice(0,index+1),否则调用Slice(index,length)</div><div class="line">  </div><div class="line">  //如果是获取元素，如果从末尾开始，调用</div><div class="line">  Slice(index+1,length),否则调用Slice(0,index)</div><div class="line"> </div><div class="line">  //最后返回切好的数组</div><div class="line">  </div><div class="line">  return isDrop</div><div class="line">    ? slice(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))</div><div class="line">    : slice(array, (fromRight ? index + 1 : 0), (fromRight ? length : index))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="dropWhile"><a href="#dropWhile" class="headerlink" title="_.dropWhile"></a>_.dropWhile</h3><blockquote>
+<p><em>.dropWhile(array, [predicate=</em>.identity])</p>
+</blockquote>
+<p>从开始对数组进行截取，从第一个不满足predicate 条件的元素开始截取数组。predicate接受三个参数（value,index,array）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function dropWhile(array, predicate) &#123;</div><div class="line">  return (array != null &amp;&amp; array.length)</div><div class="line">    ? baseWhile(array, predicate, true)</div><div class="line">    : []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>没有传递<code>dropRight</code>参数，因此直接从左到右。还是基于<code>baseWhile</code>就不重复了。</p>
+<h3 id="fill"><a href="#fill" class="headerlink" title="_.fill"></a>_.fill</h3><blockquote>
+<p>_.fill(array, value, [start=0], [end=array.length])</p>
+</blockquote>
+<p>使用 value 值来填充（也就是替换） array，从start位置开始, 到end位置结束（但不包含end位置）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var array = [1, 2, 3];</div><div class="line"> </div><div class="line">_.fill(array, &apos;a&apos;);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</div><div class="line"> </div><div class="line">_.fill(Array(3), 2);</div><div class="line">// =&gt; [2, 2, 2]</div><div class="line"> </div><div class="line">_.fill([4, 6, 8, 10], &apos;*&apos;, 1, 3);</div><div class="line">// =&gt; [4, &apos;*&apos;, &apos;*&apos;, 10]</div></pre></td></tr></table></figure>
+<p>填充函数，一看是对原数组进行改变。那么就需要先判断数组边界和开始结束的位置。然后遍历到指定位置就填充。</p>
+<p>来看下源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function fill(array, value, start, end) &#123;</div><div class="line">       var length = array == null ? 0 : array.length;</div><div class="line">       if (!length) &#123;</div><div class="line">         return [];</div><div class="line">       &#125;</div><div class="line">       if (start &amp;&amp; typeof start != &apos;number&apos; &amp;&amp; isIterateeCall(array, value, start)) &#123;</div><div class="line">         start = 0;</div><div class="line">         end = length;</div><div class="line">       &#125;</div><div class="line">       return baseFill(array, value, start, end);</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>这里我们看到判断start是否存在还有start是不是number，但后面还有一个<code>isIterateeCall</code>，这个看字面意思好像是判断迭代参数。<br>我们来看下源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isIterateeCall(value, index, object) &#123;</div><div class="line">        if (!isObject(object)) &#123;</div><div class="line">          return false;</div><div class="line">        &#125;</div><div class="line">        var type = typeof index;</div><div class="line">        if (type == &apos;number&apos;</div><div class="line">              ? (isArrayLike(object) &amp;&amp; isIndex(index, object.length))</div><div class="line">              : (type == &apos;string&apos; &amp;&amp; index in object)</div><div class="line">            ) &#123;</div><div class="line">          return eq(object[index], value);</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<p>它的作用是判断start是否为遍历器的参数。</p>
+<p>最后是用<code>baseFill</code>函数来完成功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseFill(array, value, start, end) &#123;</div><div class="line">       var length = array.length; </div><div class="line"> </div><div class="line">       start = toInteger(start); // 转为整数</div><div class="line">       </div><div class="line">       // 如果start小于0 当 -start的长度都大于数组长度，那么，就默认从数组第一个元素开始。不然就length + start</div><div class="line">       if (start &lt; 0) &#123;</div><div class="line">         start = -start &gt; length ? 0 : (length + start);</div><div class="line">       &#125;</div><div class="line">       // 如果没有指定end参数 或者end大于数组长度，就默认end为数组长度。不然的话就把end转成整型</div><div class="line">       </div><div class="line">       end = (end === undefined || end &gt; length) ? length : toInteger(end);</div><div class="line">       </div><div class="line">       if (end &lt; 0) &#123;</div><div class="line">         end += length;</div><div class="line">       &#125;</div><div class="line">       end = start &gt; end ? 0 : toLength(end);</div><div class="line">       // 用一个循环来搞定</div><div class="line">       while (start &lt; end) &#123;</div><div class="line">         array[start++] = value;</div><div class="line">       &#125;</div><div class="line">       return array;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>我们可以看到，一个比较简单填充方法，为了健壮性需要做很多事情。</p>
+<h3 id="findIndex"><a href="#findIndex" class="headerlink" title="_.findIndex"></a>_.findIndex</h3><blockquote>
+<p><em>.findIndex(array, [predicate=</em>.identity], [fromIndex=0])</p>
+</blockquote>
+<p>这个方法就像_.find，对数组从开始进行查找，该方法返回符合判断条件的第一个元素的索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var users = [</div><div class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</div><div class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: true &#125;</div><div class="line">];</div><div class="line"> </div><div class="line">_.findIndex(users, function(o) &#123; return o.user == &apos;barney&apos;; &#125;);</div><div class="line">// =&gt; 0</div><div class="line"> </div><div class="line">// The `_.matches` iteratee shorthand.</div><div class="line">_.findIndex(users, &#123; &apos;user&apos;: &apos;fred&apos;, &apos;active&apos;: false &#125;);</div><div class="line">// =&gt; 1</div><div class="line"> </div><div class="line">// The `_.matchesProperty` iteratee shorthand.</div><div class="line">_.findIndex(users, [&apos;active&apos;, false]);</div><div class="line">// =&gt; 0</div><div class="line"> </div><div class="line">// The `_.property` iteratee shorthand.</div><div class="line">_.findIndex(users, &apos;active&apos;);</div><div class="line">// =&gt; 2</div></pre></td></tr></table></figure>
+<p>一般来说，对数组查下标我们都是直接IndexOf，但是对对象进行查找。我们需要考虑是否是对象，需要做一些判断。对于对象的属性遍历用 for in。</p>
+<p>接下来看下源码是怎么实现的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function findIndex(array, predicate, fromIndex) &#123;</div><div class="line">  var length = array == null ? 0 : array.length;</div><div class="line">  // 数组不存在就返回-1</div><div class="line">  if (!length) &#123;</div><div class="line">    return -1;</div><div class="line">  &#125;</div><div class="line">  var index = fromIndex == null ? 0 : toInteger(fromIndex);</div><div class="line">  if (index &lt; 0) &#123;</div><div class="line">    index = nativeMax(length + index, 0);</div><div class="line">  &#125;</div><div class="line">  return baseFindIndex(array, getIteratee(predicate, 3), index);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>经过一系列判断，最终还是调用基础函数来实习功能，我们从最中心的<code>getIteratee</code>读起，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function getIteratee() &#123;</div><div class="line">  var result = lodash.iteratee || iteratee;</div><div class="line">  result = result === iteratee ? baseIteratee : result;</div><div class="line">  return arguments.length ? result(arguments[0], arguments[1]) : result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果lodash.iteratee被重新定义,则使用用户定义的iteratee，否则就用官方定义的baseIteratee。需要强调的是，result(arguments[0],arguments[1])是柯里化的函数返回，返回的仍旧是一个函数</p>
+<p>我们需要看看官方定义的baseIteratee的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseIteratee(value) &#123;</div><div class="line">   if (typeof value == &apos;function&apos;) &#123;</div><div class="line">         return value;</div><div class="line">       &#125;</div><div class="line">       if (value == null) &#123;</div><div class="line">         return identity;</div><div class="line">       &#125;</div><div class="line">       if (typeof value == &apos;object&apos;) &#123;</div><div class="line">         return isArray(value)</div><div class="line">           ? baseMatchesProperty(value[0], value[1])</div><div class="line">           : baseMatches(value);</div><div class="line">       &#125;</div><div class="line">       return property(value);</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>getIteratee(iteratee, 3)，给了两个参数，按照逻辑，最终返回的是一个baseIteratee，baseIteratee的第一个参数value就是iteratee,这是一个函数，所以，baseIteratee函数在第一个判断就返回了。</p>
+<p>这个判断到不是很理解，先放着。我们来看<br><code>baseFindIndex</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseFindIndex(array, predicate, fromIndex, fromRight) &#123;</div><div class="line">  var length = array.length,</div><div class="line">      index = fromIndex + (fromRight ? 1 : -1);</div><div class="line">  </div><div class="line">  while ((fromRight ? index-- : ++index &lt; length)) &#123;</div><div class="line">    if (predicate(array[index], index, array)) &#123;</div><div class="line">      return index;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return -1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>核心判断是<code>(predicate(array[index], index, array)</code></p>
+<p>而这里的<code>predicate</code>函数是之前传入的<code>getIteratee(predicate, 3)</code></p>
+<p>然后调用的是<code>baseIteratee</code>来判断。baseIteratee是封装好的遍历器（让遍历器不仅可以是函数，还可以是属性或者对象）。</p>
+<p>这样大体是了解了，对细节感兴趣需要跟踪仔细推敲。</p>
+<h3 id="flatten"><a href="#flatten" class="headerlink" title="_.flatten"></a>_.flatten</h3><blockquote>
+<p>_.flatten(array)</p>
+</blockquote>
+<p>对数组执行扁平化一级操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.flatten([1, [2, [3, [4]], 5]]);</div><div class="line">// =&gt; [1, 2, [3, [4]], 5]</div></pre></td></tr></table></figure>
+<p>对扁平化还是直接看核心函数<code>baseFlatten</code>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">   * @param &#123;Array&#125; array 需要处理的数组.</div><div class="line"> * @param &#123;number&#125; depth 扁平化的深度.</div><div class="line"> * @param &#123;boolean&#125; [predicate=isFlattenable] 判断是否执行扁平化操作，对每个元素进行调用.</div><div class="line"> * @param &#123;boolean&#125; [isStrict] 是否遵守predicate的检查.</div><div class="line"> * @param &#123;Array&#125; [result=[]] 初始化结果值.</div><div class="line"> * @returns &#123;Array&#125; 返回扁平化之后的数组.</div><div class="line"> </div><div class="line"> </div><div class="line">function baseFlatten(array, depth, predicate, isStrict, result) &#123;</div><div class="line">// 初始化下标从源头开始</div><div class="line">        var index = -1,</div><div class="line">            length = array.length;</div><div class="line">  </div><div class="line">        predicate || (predicate = isFlattenable); //如果没有传入判断方法，这判断方法为isFlattenable(只有可以执行扁平化就执行)</div><div class="line">        result || (result = []); // 如果没有传入的初始的结果数组，则结果为空数组</div><div class="line">  ////遍历数组中的每个元素</div><div class="line">        while (++index &lt; length) &#123;</div><div class="line">          var value = array[index];</div><div class="line">          if (depth &gt; 0 &amp;&amp; predicate(value)) &#123; // //如果深度大于0并且通过了检查</div><div class="line">            if (depth &gt; 1) &#123;</div><div class="line">              // //如果深度大于1（还需要扁平化），递归调用自身，并且depth-1,否则将这个元素值添加到结果数组</div><div class="line">              baseFlatten(value, depth - 1, predicate, isStrict, result);</div><div class="line">            &#125; else &#123;</div><div class="line">              arrayPush(result, value);</div><div class="line">            &#125;</div><div class="line">            // //如果不需要遵守判断规则，直接将value添加到结果中</div><div class="line">          &#125; else if (!isStrict) &#123;</div><div class="line">            result[result.length] = value;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<h3 id="fromPairs"><a href="#fromPairs" class="headerlink" title="_.fromPairs()"></a>_.fromPairs()</h3><blockquote>
+<p>_.fromPairs(pairs)</p>
+</blockquote>
+<p>此方法返回由键值对组成的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.fromPairs([[&apos;a&apos;, 1], [&apos;b&apos;, 2]]);</div><div class="line">// =&gt; &#123; &apos;a&apos;: 1, &apos;b&apos;: 2 &#125;</div></pre></td></tr></table></figure>
+<p>这个看例子是直接生成一个对象，把参数迭代加进去。</p>
+<p>来看源码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function fromPairs(pairs) &#123;</div><div class="line">        var index = -1,</div><div class="line">            length = pairs == null ? 0 : pairs.length,</div><div class="line">            result = &#123;&#125;;</div><div class="line">  </div><div class="line">        while (++index &lt; length) &#123;</div><div class="line">          var pair = pairs[index];</div><div class="line">          result[pair[0]] = pair[1];</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<p>和预计一样。</p>
+<h3 id="head"><a href="#head" class="headerlink" title="_.head()"></a>_.head()</h3><blockquote>
+<p>_.head(array)</p>
+</blockquote>
+<p>返回数组第一个元素</p>
+<p>这个没啥好说，直接取第一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function head(array) &#123;</div><div class="line">     return (array &amp;&amp; array.length) ? array[0] : undefined;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="indexOf"><a href="#indexOf" class="headerlink" title="_.indexOf()"></a>_.indexOf()</h3><blockquote>
+<p>_.indexOf(array, value, [fromIndex=0])</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.indexOf([1, 2, 1, 2], 2);</div><div class="line">// =&gt; 1</div><div class="line"> </div><div class="line">// Search from the `fromIndex`.</div><div class="line">_.indexOf([1, 2, 1, 2], 2, 2);</div><div class="line">// =&gt; 3</div></pre></td></tr></table></figure>
+<p>在数组中找到第一次出现值的索引，用于等式比较。<br>如果fromIndex为负数，则将其用作从数组结尾的偏移量。</p>
+<p>功能很简单，主要是这个偏移量<code>fromIndex</code></p>
+<p>从示例中可以看到，不仅是从偏移量开始找，而且最终结果也是计算了偏移量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function indexOf(array, value, fromIndex) &#123;</div><div class="line">       var length = array == null ? 0 : array.length;</div><div class="line">       if (!length) &#123;</div><div class="line">         return -1;</div><div class="line">       &#125;</div><div class="line">       var index = fromIndex == null ? 0 : toInteger(fromIndex);</div><div class="line">       if (index &lt; 0) &#123; // 如果偏移量小于0</div><div class="line">         // 如果在length以内，则右偏移，不然从0开始</div><div class="line">         index = nativeMax(length + index, 0);</div><div class="line">         </div><div class="line">       &#125;</div><div class="line">       return baseIndexOf(array, value, index);</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<p>查看<code>baseIndexOf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseIndexOf(array, value, fromIndex) &#123;</div><div class="line">    return value === value</div><div class="line">      ? strictIndexOf(array, value, fromIndex)</div><div class="line">      : baseFindIndex(array, baseIsNaN, fromIndex);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>跟着发现最后实习功能是<code>baseFindIndex</code></p>
+<p>调用<code>baseFindIndex(array, baseIsNaN, fromIndex)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseFindIndex(array, predicate, fromIndex, fromRight) &#123;</div><div class="line">     var length = array.length,</div><div class="line">         index = fromIndex + (fromRight ? 1 : -1);</div><div class="line"> // 循环，对每个元素调用判断方法，如果结果为true,返回对应的index</div><div class="line">     while ((fromRight ? index-- : ++index &lt; length)) &#123;</div><div class="line">     // </div><div class="line">       if (predicate(array[index], index, array)) &#123;</div><div class="line">         return index;</div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">     return -1;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="initial"><a href="#initial" class="headerlink" title="_.initial()"></a>_.initial()</h3><blockquote>
+<p>_.initial(array)</p>
+</blockquote>
+<p>获取数组的最后一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function initial(array) &#123;</div><div class="line">     var length = array == null ? 0 : array.length;</div><div class="line">     return length ? baseSlice(array, 0, -1) : [];</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>直接切了最后一个元素然后返回切割后的数组。</p>
+<h3 id="intersection"><a href="#intersection" class="headerlink" title="_.intersection()"></a>_.intersection()</h3><blockquote>
+<p>_.intersection([arrays])</p>
+</blockquote>
+<p>创建包含在所有给定数组中的唯一值数组，以进行相似性比较。<br>结果值的顺序和引用由第一个数组决定。</p>
+<p>取出各数组中都有的元素，使用 SameValueZero方式比较（===）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.intersection([2, 1], [2, 3]);</div><div class="line">// =&gt; [2]</div></pre></td></tr></table></figure>
+<p>这把两个数组的交集求了出来。如果是我可能两重循环解决。</p>
+<p>来看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 创建具备rest参数的方法</div><div class="line">     var intersection = baseRest(function(arrays) &#123;</div><div class="line">        var mapped = arrayMap(arrays, castArrayLikeObject); // 将所有数组转化为类似数组的对象</div><div class="line">        return (mapped.length &amp;&amp; mapped[0] === arrays[0]) // //如果传入的数组个数不为0,并且第一个参数为数组，调用baseIntersection方法传入mapped，并将结果作为返回值返回，否则返回空数组</div><div class="line">          ? baseIntersection(mapped)</div><div class="line">          : [];</div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
+<p>这个<code>baseIntersection</code>看上去就比较复杂了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> /**</div><div class="line"> * _.intersection的基本实现, 不支持遍历器的简写.</div><div class="line"> *</div><div class="line"> * @private</div><div class="line"> * @param &#123;Array&#125; arrays 需要处理的数组.</div><div class="line"> * @param &#123;Function&#125; [iteratee] 遍历器,作用于每个元素.</div><div class="line"> * @param &#123;Function&#125; [comparator] 比较器，作用于每个元素.</div><div class="line"> * @returns &#123;Array&#125; 返回一个数组包含给定所有数组中共有的元素.</div><div class="line"> */</div><div class="line">function baseIntersection(arrays, iteratee, comparator) &#123;</div><div class="line">  var includes = comparator ? arrayIncludesWith : arrayIncludes,//如果有比较器，为arrayIncludesWith,否则为arrayIncludes</div><div class="line">      length = arrays[0].length,//第一个数组的长度</div><div class="line">      othLength = arrays.length,//给定的所有数组的长度</div><div class="line">      othIndex = othLength,//给定所有数组的索引</div><div class="line">      caches = Array(othLength),//创建一个缓存给定数组个数的数组</div><div class="line">      maxLength = Infinity,//最大长度</div><div class="line">      result = [];//返回结果</div><div class="line">  //遍历给定的数组</div><div class="line">  while (othIndex--) &#123;</div><div class="line">    var array = arrays[othIndex];//当前数组</div><div class="line">    if (othIndex &amp;&amp; iteratee) &#123;//如果不是第一个数组，并且有遍历器，对当前数组调用遍历器遍历每个元素</div><div class="line">      array = arrayMap(array, baseUnary(iteratee));//当前数组为调用之后的数组</div><div class="line">    &#125;</div><div class="line">    maxLength = nativeMin(array.length, maxLength);//数组的最大长度</div><div class="line">    //如果该数组长度超过120就创建Set缓存数组中并添加到caches中（用于优化）</div><div class="line">    caches[othIndex] = !comparator &amp;&amp; (iteratee || (length &gt;= 120 &amp;&amp; array.length &gt;= 120))</div><div class="line">      ? new SetCache(othIndex &amp;&amp; array)</div><div class="line">      : undefined;</div><div class="line">  &#125;</div><div class="line">  array = arrays[0];//给定所有数组中的第一个</div><div class="line"></div><div class="line">  var index = -1,//数组索引</div><div class="line">      seen = caches[0];//第一个缓存数组，初始为undefined或者new SetCache(0)</div><div class="line"></div><div class="line">  outer:</div><div class="line">  //遍历第一个数组</div><div class="line">  while (++index &lt; length &amp;&amp; result.length &lt; maxLength) &#123;</div><div class="line">    var value = array[index],//数组元素</div><div class="line">        computed = iteratee ? iteratee(value) : value;//如果有遍历器，对改元素调用,得到计算后的值</div><div class="line"></div><div class="line">    value = (comparator || value !== 0) ? value : 0;//如果有比较器或者value不为0，value为value，否则为0</div><div class="line">    if (!(seen//如果seen有值了，判断是否含有computed，否则判断结果中是否含有computed，如果都没有computed</div><div class="line">          ? cacheHas(seen, computed)</div><div class="line">          : includes(result, computed, comparator)</div><div class="line">        )) &#123;</div><div class="line">      othIndex = othLength;//其他数组的索引，初始为给定数组的长度</div><div class="line">      //遍历给定的数组，除了第一个</div><div class="line">      while (--othIndex) &#123;</div><div class="line">        var cache = caches[othIndex];//缓存数组中的值</div><div class="line">        //太长的数组就是cache,短的就是arrays[index],判断是否含有computed，如果没有，跳过此次循环</div><div class="line">        if (!(cache</div><div class="line">              ? cacheHas(cache, computed)</div><div class="line">              : includes(arrays[othIndex], computed, comparator))</div><div class="line">            ) &#123;</div><div class="line">          continue outer;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      if (seen) &#123;//如果缓存存在，将computed添加到缓存中</div><div class="line">        seen.push(computed);</div><div class="line">      &#125;</div><div class="line">      result.push(value);//将value添加到结果数组中</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return result;//返回结果数组</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="join"><a href="#join" class="headerlink" title="_.join()"></a>_.join()</h3><blockquote>
+<p>_.join(array, [separator=’,’])</p>
+</blockquote>
+<p>将数组中的所有元素转换为由分隔符分隔的字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.join([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], &apos;~&apos;);</div><div class="line">// =&gt; &apos;a~b~c&apos;</div></pre></td></tr></table></figure>
+<p>讲道理这种插入式的我觉得遍历加入就挺直接的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function join(array, separator) &#123;</div><div class="line">      return array == null ? &apos;&apos; : nativeJoin.call(array, separator);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>然后这个直接用的原生<code>join</code>… 是[Native Code]</p>
+<p>有兴趣可以看看<a href="http://yincheng.site/chrome-js-array" rel="external nofollow noopener noreferrer" target="_blank">实现方式</a></p>
+<h3 id="nth"><a href="#nth" class="headerlink" title="_.nth()"></a>_.nth()</h3><blockquote>
+<p>_.nth(array, [n=0])</p>
+</blockquote>
+<p>获取数组的索引n处的元素。<br>如果n为负，则返回从结尾处的第n个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</div><div class="line"> </div><div class="line">_.nth(array, 1);</div><div class="line">// =&gt; &apos;b&apos;</div><div class="line"> </div><div class="line">_.nth(array, -2);</div><div class="line">// =&gt; &apos;c&apos;;</div></pre></td></tr></table></figure>
+<p>感觉只需要判断一下索引正负，然后根据判断是否加上数组长度。<br>然后直接按下标取值就行了。</p>
+<p>来看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function nthArg(n) &#123;</div><div class="line">        n = toInteger(n);</div><div class="line">        return baseRest(function(args) &#123;</div><div class="line">          return baseNth(args, n);</div><div class="line">        &#125;);</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseNth(array, n) &#123;</div><div class="line">   var length = array.length;</div><div class="line">   if (!length) &#123;</div><div class="line">     return;</div><div class="line">   &#125;</div><div class="line">   n += n &lt; 0 ? length : 0;</div><div class="line">   return isIndex(n, length) ? array[n] : undefined;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isIndex(value, length) &#123;</div><div class="line">     length = length == null ? MAX_SAFE_INTEGER : length;</div><div class="line">     return !!length &amp;&amp;</div><div class="line">       (typeof value == &apos;number&apos; || reIsUint.test(value)) &amp;&amp;</div><div class="line">       (value &gt; -1 &amp;&amp; value % 1 == 0 &amp;&amp; value &lt; length);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>可以看到思路是一样的，不过做了两个处理一个是对参数进行处理转为数组。一个是对下标进行验证。</p>
+<h3 id="pull"><a href="#pull" class="headerlink" title="_.pull()"></a>_.pull()</h3><blockquote>
+<p>_.pull(array, [values])</p>
+</blockquote>
+<p>使用SameValueZero（===）从数组中删除所有给定的值以进行相等的比较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</div><div class="line"> </div><div class="line">_.pull(array, &apos;a&apos;, &apos;c&apos;);</div><div class="line">console.log(array);</div><div class="line">// =&gt; [&apos;b&apos;, &apos;b&apos;]</div></pre></td></tr></table></figure>
+<p>这个和filter类似，不过可以传入多个值。如果是filter来做，应该是做连续判断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function pullAll(array, values) &#123;</div><div class="line">       return (array &amp;&amp; array.length &amp;&amp; values &amp;&amp; values.length)</div><div class="line">         ? basePullAll(array, values)</div><div class="line">         : array;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function basePullAll(array, values, iteratee, comparator) &#123;</div><div class="line">        var indexOf = comparator ? baseIndexOfWith : baseIndexOf, // //选择indexOf方法，如果传入比较器为baseIndexOfWith,否则为baseIndexOf</div><div class="line">            index = -1,</div><div class="line">            length = values.length,</div><div class="line">            seen = array;</div><div class="line">  </div><div class="line">        if (array === values) &#123; //如果需要移除的元素和需要修改的数组一样，拷贝一份values</div><div class="line">          values = copyArray(values);</div><div class="line">        &#125;</div><div class="line">        if (iteratee) &#123; // 如果存在遍历器，对数组进行遍历操作</div><div class="line">          seen = arrayMap(array, baseUnary(iteratee));</div><div class="line">        &#125;</div><div class="line">        while (++index &lt; length) &#123;</div><div class="line">          var fromIndex = 0,</div><div class="line">              value = values[index],</div><div class="line">              computed = iteratee ? iteratee(value) : value;//如果有遍历器对value进行调用，得到 计算后的value(也就是computed)</div><div class="line">  </div><div class="line">    //循环执行indexOf方法，如果seen中，直到找不到computed为止</div><div class="line">          while ((fromIndex = indexOf(seen, computed, fromIndex, comparator)) &gt; -1) &#123;</div><div class="line">            if (seen !== array) &#123;</div><div class="line">              splice.call(seen, fromIndex, 1);  ///seen和array不相等即存在遍历器,对seen执行splice方法移除fromIndex的元素</div><div class="line">            &#125;</div><div class="line">            splice.call(array, fromIndex, 1);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        return array;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<p>也是在循环里剔除。</p>
+<h3 id="remove"><a href="#remove" class="headerlink" title="_.remove()"></a>_.remove()</h3><blockquote>
+<p><em>.remove(array, [predicate=</em>.identity])</p>
+</blockquote>
+<p>从数组中删除谓词返回真值的所有元素，并返回已删除元素的数组。<br>谓词被调用三个参数：（value，index，array）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var array = [1, 2, 3, 4];</div><div class="line">var evens = _.remove(array, function(n) &#123;</div><div class="line">  return n % 2 == 0;</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [1, 3]</div><div class="line"> </div><div class="line">console.log(evens);</div><div class="line">// =&gt; [2, 4]</div></pre></td></tr></table></figure>
+<p>直接对原数组做操作。感觉用Map可以做到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function remove(array, predicate) &#123;</div><div class="line">				  // 判断合法数组</div><div class="line">        var result = [];</div><div class="line">        if (!(array &amp;&amp; array.length)) &#123; </div><div class="line">          return result;</div><div class="line">        &#125;</div><div class="line">        var index = -1,</div><div class="line">            indexes = [],</div><div class="line">            length = array.length;</div><div class="line">  			 // 将判断条件封装，支持简写</div><div class="line">        predicate = getIteratee(predicate, 3);</div><div class="line">        while (++index &lt; length) &#123;</div><div class="line">          var value = array[index];</div><div class="line">          // //调用判断方法返回true,将这个元素加入到结果中，将当前索引值加到indexes中</div><div class="line">          if (predicate(value, index, array)) &#123;</div><div class="line">            result.push(value);</div><div class="line">            indexes.push(index);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        basePullAt(array, indexes); ////调用basePullAt方法移除indexes中的元素</div><div class="line">        return result;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="_.reverse()"></a>_.reverse()</h3><blockquote>
+<p>_.reverse(array)</p>
+</blockquote>
+<p>反转阵列，使第一个元素成为最后一个元素，第二个元素成为第二个元素，等等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var array = [1, 2, 3];</div><div class="line"> </div><div class="line">_.reverse(array);</div><div class="line">// =&gt; [3, 2, 1]</div><div class="line"> </div><div class="line">console.log(array);</div><div class="line">// =&gt; [3, 2, 1]</div></pre></td></tr></table></figure>
+<p>用逆置数组算法完成是第一个想到的解决方法。</p>
+<p>看源码是怎么解决的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function reverse(array) &#123;</div><div class="line">     return array == null ? array : nativeReverse.call(array);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">nativeReverse = arrayProto.reverse;</div></pre></td></tr></table></figure>
+<p>用原生，差点忘记原生还有这种操作。</p>
+<h3 id="sortedUniq"><a href="#sortedUniq" class="headerlink" title="_.sortedUniq()"></a>_.sortedUniq()</h3><blockquote>
+<p>_.sortedUniq(array)</p>
+</blockquote>
+<p>这个方法就像_.uniq，除了它为排序的数组设计和优化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.sortedUniq([1, 1, 2]);</div><div class="line">// =&gt; [1, 2]</div></pre></td></tr></table></figure>
+<p>排序的同时还进行了排重</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseSortedUniq(array, iteratee) &#123;</div><div class="line">       var index = -1,</div><div class="line">           length = array.length,</div><div class="line">           resIndex = 0,</div><div class="line">           result = [];</div><div class="line"> </div><div class="line">       while (++index &lt; length) &#123;</div><div class="line">         var value = array[index],</div><div class="line">         // 计算遍历器后的值</div><div class="line">             computed = iteratee ? iteratee(value) : value;</div><div class="line">             </div><div class="line"> //如果index为0或者computed和seen不相等</div><div class="line">         if (!index || !eq(computed, seen)) &#123;</div><div class="line">           var seen = computed;</div><div class="line">           result[resIndex++] = value === 0 ? 0 : value;</div><div class="line">         &#125;</div><div class="line">       &#125;</div><div class="line">       return result;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<h3 id="union"><a href="#union" class="headerlink" title="_.union()"></a>_.union()</h3><blockquote>
+<p>_.union([arrays])</p>
+</blockquote>
+<p>使用SameValueZero从所有给定的数组中按顺序创建一组唯一的值，以进行相似性比较。</p>
+<p>创建一个数组，包含给出的所有数组的值的唯一值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.union([2], [1, 2]);</div><div class="line">// =&gt; [2, 1]</div></pre></td></tr></table></figure>
+<p>直接看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var union = baseRest(function(arrays) &#123;</div><div class="line">    //先将给出的数组扁平化一级之后再调用baseUniq方法，并将结果作为返回值返回。</div><div class="line">  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>再来看 <code>baseUniq</code>做了什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseUniq(array, iteratee, comparator) &#123;</div><div class="line">        var index = -1,</div><div class="line">            includes = arrayIncludes,</div><div class="line">            length = array.length,</div><div class="line">            isCommon = true,</div><div class="line">            result = [],</div><div class="line">            seen = result; // //返回结果的引用（保存被遍历器调用过的值）</div><div class="line">  </div><div class="line">        if (comparator) &#123; //如果有比较器,不是常规比较，并且比较方法为arrayIncludesWith</div><div class="line">          isCommon = false;</div><div class="line">          includes = arrayIncludesWith;</div><div class="line">        &#125;</div><div class="line">        else if (length &gt;= LARGE_ARRAY_SIZE) &#123; //如果数组过长</div><div class="line">          var set = iteratee ? null : createSet(array);</div><div class="line">          if (set) &#123; //如果没有传遍历器,只用转为Set对象，再转为数组,并将这个数组返回</div><div class="line">            return setToArray(set);</div><div class="line">          &#125;</div><div class="line">          isCommon = false;</div><div class="line">          includes = cacheHas;</div><div class="line">          seen = new SetCache;</div><div class="line">        &#125;</div><div class="line">        else &#123;</div><div class="line">          seen = iteratee ? [] : result;//如果有遍历器，seen为空数组，否则为result的引用</div><div class="line">        &#125;</div><div class="line">        outer: //遍历数组</div><div class="line">        while (++index &lt; length) &#123;</div><div class="line">          var value = array[index],</div><div class="line">              computed = iteratee ? iteratee(value) : value;</div><div class="line">  </div><div class="line">          value = (comparator || value !== 0) ? value : 0;</div><div class="line">          if (isCommon &amp;&amp; computed === computed) &#123;</div><div class="line">            var seenIndex = seen.length;</div><div class="line">            while (seenIndex--) &#123;</div><div class="line">              if (seen[seenIndex] === computed) &#123;</div><div class="line">                continue outer;</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">            if (iteratee) &#123;</div><div class="line">              seen.push(computed);</div><div class="line">            &#125;</div><div class="line">            result.push(value);</div><div class="line">          &#125;</div><div class="line">          else if (!includes(seen, computed, comparator)) &#123;</div><div class="line">            if (seen !== result) &#123;</div><div class="line">              seen.push(computed);</div><div class="line">            &#125;</div><div class="line">            result.push(value);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<p>我们可以看到没有遍历器的情况下，是创建了<code>set</code>对象来去重，不然要计算遍历结果然后再遍历剔除。</p>
+<h3 id="uniq"><a href="#uniq" class="headerlink" title="_.uniq()"></a>_.uniq()</h3><blockquote>
+<p>_.uniq(array)</p>
+</blockquote>
+<p>创建一个无重复的数组版本，使用SameValueZero进行相等的比较，其中只保留每个元素的第一次出现。<br>结果值的顺序由它们在数组中出现的顺序决定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.uniq([2, 1, 2]);</div><div class="line">// =&gt; [2, 1]</div></pre></td></tr></table></figure>
+<p>去重。按照之前读的源码尿性，应该是做了一个缓存组，然后判断有没有迭代器，然后再循环判断有么有重复。</p>
+<p>来看核心实现:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baseUniq</span>(<span class="params">array, iteratee, comparator</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> index = <span class="number">-1</span></div><div class="line">  <span class="keyword">let</span> includes = arrayIncludes</div><div class="line">  <span class="keyword">let</span> isCommon = <span class="literal">true</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> &#123; length &#125; = array</div><div class="line">  <span class="keyword">const</span> result = []</div><div class="line">  <span class="keyword">let</span> seen = result  <span class="comment">// 返回结果的引用（保存被遍历器调用过的值</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (comparator) &#123;</div><div class="line">    isCommon = <span class="literal">false</span></div><div class="line">    includes = arrayIncludesWith</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (length &gt;= LARGE_ARRAY_SIZE) &#123;</div><div class="line">    <span class="keyword">const</span> set = iteratee ? <span class="literal">null</span> : createSet(array)</div><div class="line">    <span class="keyword">if</span> (set) &#123;</div><div class="line">      <span class="keyword">return</span> setToArray(set)</div><div class="line">    &#125;</div><div class="line">    isCommon = <span class="literal">false</span></div><div class="line">    includes = cacheHas</div><div class="line">    seen = <span class="keyword">new</span> SetCache  <span class="comment">//创建一个缓存数组</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">else</span> &#123;</div><div class="line">    seen = iteratee ? [] : result <span class="comment">//如果有遍历器，seen为空数组，否则为result的引用</span></div><div class="line">  &#125;</div><div class="line">  outer:</div><div class="line">  </div><div class="line">    <span class="comment">// 遍历数组</span></div><div class="line">  <span class="keyword">while</span> (++index &lt; length) &#123;</div><div class="line">    <span class="keyword">let</span> value = array[index]</div><div class="line">    <span class="keyword">const</span> computed = iteratee ? iteratee(value) : value</div><div class="line"></div><div class="line">    value = (comparator || value !== <span class="number">0</span>) ? value : <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> (isCommon &amp;&amp; computed === computed) &#123;</div><div class="line">      <span class="keyword">let</span> seenIndex = seen.length</div><div class="line">      <span class="keyword">while</span> (seenIndex--) &#123;</div><div class="line">        <span class="keyword">if</span> (seen[seenIndex] === computed) &#123;</div><div class="line">          <span class="keyword">continue</span> outer</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (iteratee) &#123;</div><div class="line">        seen.push(computed)</div><div class="line">      &#125;</div><div class="line">      result.push(value)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!includes(seen, computed, comparator)) &#123;</div><div class="line">      <span class="keyword">if</span> (seen !== result) &#123; </div><div class="line">        seen.push(computed)</div><div class="line">      &#125;</div><div class="line">      result.push(value)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>和之前的看到的很类似。</p>
+<h3 id="unzip"><a href="#unzip" class="headerlink" title="_.unzip()"></a>_.unzip()</h3><blockquote>
+<p>_.unzip(array)</p>
+</blockquote>
+<p>该方法类似于_.zip，除了它接受一个分组元素的数组，并创建一个将元素重新分组到其预压缩配置的数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var zipped = _.zip([&apos;a&apos;, &apos;b&apos;], [1, 2], [true, false]);</div><div class="line">// =&gt; [[&apos;a&apos;, 1, true], [&apos;b&apos;, 2, false]]</div><div class="line"> </div><div class="line">_.unzip(zipped);</div><div class="line">// =&gt; [[&apos;a&apos;, &apos;b&apos;], [1, 2], [true, false]]</div></pre></td></tr></table></figure>
+<p>我们来看实现代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function unzip(array) &#123;</div><div class="line">  if (!(array != null &amp;&amp; array.length)) &#123;</div><div class="line">    return []</div><div class="line">  &#125;</div><div class="line">  let length = 0</div><div class="line">  // 返回array中，所有是数组的元素，并且取得length为最大的数组的长度</div><div class="line">  array = filter(array, (group) =&gt; &#123;</div><div class="line">    if (isArrayLikeObject(group)) &#123;</div><div class="line">      length = Math.max(group.length, length)</div><div class="line">      return true</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  let index = -1</div><div class="line">  const result = new Array(length)</div><div class="line">  while (++index &lt; length) &#123;</div><div class="line">  // //调用length次方法，每次再调用map获得array中每个元素对应index位置的值得数组，然后将包含这些这些数组的数组返回。</div><div class="line">    result[index] = map(array, baseProperty(index))</div><div class="line">  &#125;</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="without"><a href="#without" class="headerlink" title="_.without()"></a>_.without()</h3><blockquote>
+<p>_.without(array, [values])</p>
+</blockquote>
+<p>使用SameValueZero创建一个排除所有给定值的数组，以进行相等比较。<br>注意：与_.pull不同，此方法返回一个新数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.without([2, 1, 2, 3], 1, 2);</div><div class="line">// =&gt; [3]</div></pre></td></tr></table></figure>
+<p>排除元素。优先遍历。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function without(array, ...values) &#123;</div><div class="line">  return isArrayLikeObject(array) ? baseDifference(array, values) : []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>之前的<code>Difference</code>来完成。</p>
+<h3 id="xor"><a href="#xor" class="headerlink" title="_.xor()"></a>_.xor()</h3><blockquote>
+<p>_.xor([arrays])</p>
+</blockquote>
+<p>创建一个唯一值的数组，它是给定数组的对称差异。<br>结果值的顺序由它们在数组中出现的顺序决定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">_.xor([2, 1], [2, 3]);</div><div class="line">// =&gt; [1, 3]</div></pre></td></tr></table></figure>
+<p>取交集。之前也找过类似的功能。它的写法是做双重遍历。但那很明显很低效。</p>
+<p>来看核心实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function baseXor(arrays, iteratee, comparator) &#123;</div><div class="line">  const length = arrays.length</div><div class="line">  if (length &lt; 2) &#123;</div><div class="line">    return length ? baseUniq(arrays[0]) : []</div><div class="line">  &#125;</div><div class="line">  let index = -1</div><div class="line">  const result = new Array(length)</div><div class="line"></div><div class="line">  while (++index &lt; length) &#123;</div><div class="line">    const array = arrays[index]</div><div class="line">    let othIndex = -1</div><div class="line"></div><div class="line">    while (++othIndex &lt; length) &#123;</div><div class="line">      if (othIndex != index) &#123; ////如果比较的数组和当前数组不是同一个数组，调用baseDifference方法取得array中不同于当前用于比较的数组的值</div><div class="line">        result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return baseUniq(baseFlatten(result, 1), iteratee, comparator)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>很明显，还是需要双重遍历~</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/阅读/明朝那些事儿-上/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    明朝那些事儿-上
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">《大秦帝国》  《千面英雄》</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

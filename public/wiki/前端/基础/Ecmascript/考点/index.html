@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>考点 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,考点,Javascript">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="如果需要手动写动画，你认为最小时间间隔是多久，为什么 多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms  点击a标签发生了啥 触发a的click事件  读取href属性的值  如果是URI则跳转   如果是javascript代码则执行该代码  websocket相关，轮询，polling 传统轮询 通常采取setInterval或者se">
+<meta name="keywords" content="前端,考点,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="考点">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/基础/Ecmascript/考点/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="如果需要手动写动画，你认为最小时间间隔是多久，为什么 多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms  点击a标签发生了啥 触发a的click事件  读取href属性的值  如果是URI则跳转   如果是javascript代码则执行该代码  websocket相关，轮询，polling 传统轮询 通常采取setInterval或者se">
+<meta property="og:updated_time" content="2017-07-12T12:32:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="考点">
+<meta name="twitter:description" content="如果需要手动写动画，你认为最小时间间隔是多久，为什么 多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms  点击a标签发生了啥 触发a的click事件  读取href属性的值  如果是URI则跳转   如果是javascript代码则执行该代码  websocket相关，轮询，polling 传统轮询 通常采取setInterval或者se">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/基础/Ecmascript/考点" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/">基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/Ecmascript/">Ecmascript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Javascript/">Javascript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/考点/">考点</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/基础/Ecmascript/考点/">
+            <time datetime="2017-07-12T02:58:50.000Z" itemprop="datePublished">2017-07-12</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/基础/Ecmascript/考点.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/基础/Ecmascript/考点.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/基础/Ecmascript/考点.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            考点
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如果需要手动写动画，你认为最小时间间隔是多久，为什么"><span class="toc-number">1.</span> <span class="toc-text">如果需要手动写动画，你认为最小时间间隔是多久，为什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#点击a标签发生了啥"><span class="toc-number">2.</span> <span class="toc-text">点击a标签发生了啥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#websocket相关，轮询，polling"><span class="toc-number">3.</span> <span class="toc-text">websocket相关，轮询，polling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-JS对DOM渲染的影响"><span class="toc-number">4.</span> <span class="toc-text">CSS/JS对DOM渲染的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端页面有哪三层构成-分别是什么-作用是什么"><span class="toc-number">5.</span> <span class="toc-text">前端页面有哪三层构成,分别是什么?作用是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么叫优雅降级和渐进增强"><span class="toc-number">6.</span> <span class="toc-text">什么叫优雅降级和渐进增强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载均衡你了解吗？"><span class="toc-number">7.</span> <span class="toc-text">负载均衡你了解吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS负载均衡"><span class="toc-number">7.1.</span> <span class="toc-text">DNS负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP负载均衡（-）"><span class="toc-number">7.2.</span> <span class="toc-text">HTTP负载均衡（?）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webapp和native-app的优缺点"><span class="toc-number">8.</span> <span class="toc-text">webapp和native app的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Native-App"><span class="toc-number">8.1.</span> <span class="toc-text">Native App</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-App"><span class="toc-number">8.2.</span> <span class="toc-text">Web App</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块化，组件化"><span class="toc-number">9.</span> <span class="toc-text">模块化，组件化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模块"><span class="toc-number">9.1.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件"><span class="toc-number">9.2.</span> <span class="toc-text">组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单向数据流-和-双向数据流"><span class="toc-number">10.</span> <span class="toc-text">单向数据流 和 双向数据流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和-的区别"><span class="toc-number">11.</span> <span class="toc-text">.和[]的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符加法"><span class="toc-number">12.</span> <span class="toc-text">运算符加法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑与-amp-amp"><span class="toc-number">13.</span> <span class="toc-text">逻辑与&&</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript垃圾回收"><span class="toc-number">14.</span> <span class="toc-text">javascript垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引用计数垃圾收集"><span class="toc-number">14.1.</span> <span class="toc-text">引用计数垃圾收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-清除算法"><span class="toc-number">14.2.</span> <span class="toc-text">标记-清除算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new关键字的过程"><span class="toc-number">15.</span> <span class="toc-text">new关键字的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数节流"><span class="toc-number">16.</span> <span class="toc-text">函数节流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数防抖"><span class="toc-number">17.</span> <span class="toc-text">函数防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式-自定义事件"><span class="toc-number">18.</span> <span class="toc-text">观察者模式(自定义事件)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数curry化"><span class="toc-number">19.</span> <span class="toc-text">函数curry化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么判断属性来自对象自身还是原型链"><span class="toc-number">20.</span> <span class="toc-text">怎么判断属性来自对象自身还是原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数声明和和函数表达式的区别"><span class="toc-number">21.</span> <span class="toc-text">函数声明和和函数表达式的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js延迟加载的方式有哪些"><span class="toc-number">22.</span> <span class="toc-text">js延迟加载的方式有哪些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie跨域请求能不能带上"><span class="toc-number">23.</span> <span class="toc-text">Cookie跨域请求能不能带上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setTimeout和setInterval区别"><span class="toc-number">24.</span> <span class="toc-text">setTimeout和setInterval区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区别浏览器和版本"><span class="toc-number">25.</span> <span class="toc-text">区别浏览器和版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-create-的具体用处"><span class="toc-number">26.</span> <span class="toc-text">Object.create 的具体用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是浅复制和深复制，有什么区别"><span class="toc-number">27.</span> <span class="toc-text">什么是浅复制和深复制，有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浅复制：浅拷贝就是复制一份引用，所有引用对象都指向一份数据，并且都可以修改这份数据"><span class="toc-number">27.1.</span> <span class="toc-text">浅复制：浅拷贝就是复制一份引用，所有引用对象都指向一份数据，并且都可以修改这份数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深复制：深拷贝则是复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制"><span class="toc-number">27.2.</span> <span class="toc-text">深复制：深拷贝则是复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端异常监测如何实现"><span class="toc-number">28.</span> <span class="toc-text">前端异常监测如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPA如何管理内存"><span class="toc-number">29.</span> <span class="toc-text">SPA如何管理内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手机webApp如何与原生App通信"><span class="toc-number">30.</span> <span class="toc-text">手机webApp如何与原生App通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器发送Cookie服务器接收不到什么原因"><span class="toc-number">31.</span> <span class="toc-text">浏览器发送Cookie服务器接收不到什么原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack-怎么实现不同模块规范的互转"><span class="toc-number">32.</span> <span class="toc-text">Webpack 怎么实现不同模块规范的互转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session-的实现原理"><span class="toc-number">33.</span> <span class="toc-text">Session 的实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对前后端同构化的了解"><span class="toc-number">34.</span> <span class="toc-text">对前后端同构化的了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么解决-SEO-问题"><span class="toc-number">35.</span> <span class="toc-text">怎么解决 SEO 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二维码扫描登录的实现，包括业务以及技术实现"><span class="toc-number">36.</span> <span class="toc-text">二维码扫描登录的实现，包括业务以及技术实现(?)</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="如果需要手动写动画，你认为最小时间间隔是多久，为什么"><a href="#如果需要手动写动画，你认为最小时间间隔是多久，为什么" class="headerlink" title="如果需要手动写动画，你认为最小时间间隔是多久，为什么"></a>如果需要手动写动画，你认为最小时间间隔是多久，为什么</h2><blockquote>
+<p>多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms</p>
+</blockquote>
+<h2 id="点击a标签发生了啥"><a href="#点击a标签发生了啥" class="headerlink" title="点击a标签发生了啥"></a>点击a标签发生了啥</h2><ol>
+<li>触发a的click事件 </li>
+<li>读取href属性的值 </li>
+<li>如果是URI则跳转  </li>
+<li>如果是javascript代码则执行该代码</li>
+</ol>
+<h2 id="websocket相关，轮询，polling"><a href="#websocket相关，轮询，polling" class="headerlink" title="websocket相关，轮询，polling"></a>websocket相关，轮询，polling</h2><ul>
+<li>传统轮询<ul>
+<li>通常采取setInterval或者setTimeout实现，循环ajax获取</li>
+<li>程序在每次请求时都会新建一个HTTP请求，然而并不是每次都能返回所需的新数据。当同时发起的请求达到一定数目时，会对服务器造成较大负担</li>
+</ul>
+</li>
+<li>长轮询(Long Polling)<ul>
+<li>Server接收到Client的请求之后，如果没有数据更新，则连接保持一段时间，直到有数据更新或者连接超时，这样可以减少无效的Client与Server之间的交互</li>
+<li>服务器发送事件(Server-Sent Event)<ul>
+<li>服务器发送事件（以下简称SSE）是HTML 5规范的一个组成部分，可以实现服务器到客户端的单向数据通信。通过SSE，客户端可以自动获取数据更新，而不用重复发送HTTP请求。一旦连接建立，“事件”便会自动被推送到客户端</li>
+</ul>
+</li>
+<li>WebSocket<ul>
+<li>其本质是先通过HTTP/HTTPS协议进行握手后创建一个用于交换数据的TCP连接，此后服务端与客户端通过此TCP连接进行实时通信</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSS-JS对DOM渲染的影响"><a href="#CSS-JS对DOM渲染的影响" class="headerlink" title="CSS/JS对DOM渲染的影响"></a>CSS/JS对DOM渲染的影响</h2><blockquote>
+<p>CSS（外链或内联）会阻塞整个DOM的渲染（Rendering），然而DOM解析（Parsing）会正常进行<br>很多浏览器中，CSS会延迟脚本执行和DOMContentLoaded事件 JS（外链或内联）会阻塞后续DOM的解析（Parsing），后续DOM的渲染（Rendering）也将被阻塞 JS前的DOM可以正常解析（Parsing）和渲染（Rendering）</p>
+</blockquote>
+<h2 id="前端页面有哪三层构成-分别是什么-作用是什么"><a href="#前端页面有哪三层构成-分别是什么-作用是什么" class="headerlink" title="前端页面有哪三层构成,分别是什么?作用是什么"></a>前端页面有哪三层构成,分别是什么?作用是什么</h2><ul>
+<li><p>结构层: 结构层(structural layer)由 HTML 或 XHTML之类的标记语言负责创建。  </p>
+</li>
+<li><p>表示层: 表示层(presentation layer)由 CSS 负责创建。 CSS对“如何显示有关内容”的问题做出了回答  </p>
+</li>
+<li><p>行为层: 行为层(behaviorlayer)负责回答“内容应该如何对事件做出反应”这一问题。这是 Javascript 语言和 DOM主宰的领域</p>
+</li>
+</ul>
+<h2 id="什么叫优雅降级和渐进增强"><a href="#什么叫优雅降级和渐进增强" class="headerlink" title="什么叫优雅降级和渐进增强"></a>什么叫优雅降级和渐进增强</h2><blockquote>
+<p>优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会针对旧版本的IE进行降级处理了,使之在旧式浏览器上以某种形式降级体验却不至于完全不能用。 如：border-shadow  </p>
+<p>渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新版本浏览器才支持的功能,向页面增加不影响基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。 如：默认使用flash上传，但如果浏览器支持 HTML5 的文件上传功能，则使用HTML5实现更好的体验；</p>
+</blockquote>
+<h2 id="负载均衡你了解吗？"><a href="#负载均衡你了解吗？" class="headerlink" title="负载均衡你了解吗？"></a>负载均衡你了解吗？</h2><blockquote>
+<p>负载平衡（Load balancing）是一种计算机网络技术，用来在多个计算机（计算机集群）、网络连接、CPU、磁盘驱动器或其他资源中分配负载，以达到最佳化资源使用、最大化吞吐率、最小化响应时间、同时避免过载的目的。</p>
+</blockquote>
+<ol>
+<li>解决并发压力，提高应用处理性能（增加吞吐量，加强网络处理能力）； </li>
+<li>提供故障转移，实现高可用； </li>
+<li>通过添加或减少服务器数量，提供网站伸缩性（扩展性）； </li>
+<li>安全防护；（负载均衡设备上做一些过滤，黑白名单等处理）</li>
+</ol>
+<h3 id="DNS负载均衡"><a href="#DNS负载均衡" class="headerlink" title="DNS负载均衡"></a>DNS负载均衡</h3><ul>
+<li>利用域名解析实现负载均衡，在DNS服务器，配置多个A记录，这些A记录对应的服务器构成集群</li>
+<li>可以支持基于地址的域名解析，解析成距离用户最近的服务器地址，可以加快访问速度</li>
+</ul>
+<h3 id="HTTP负载均衡（-）"><a href="#HTTP负载均衡（-）" class="headerlink" title="HTTP负载均衡（?）"></a>HTTP负载均衡（?）</h3><h2 id="webapp和native-app的优缺点"><a href="#webapp和native-app的优缺点" class="headerlink" title="webapp和native app的优缺点"></a>webapp和native app的优缺点</h2><h3 id="Native-App"><a href="#Native-App" class="headerlink" title="Native App"></a>Native App</h3><ul>
+<li>优点<ul>
+<li>能够访问手机的所有功能（GPS，相机等）<br>更好的运行速度、性能和总体的用户体验<br>支持离线工作（因为是在设备上运行而非Web）<br>支持丰富的图形和动画</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>开发成本较高<br>范围限制较多（只能访问在特定操作系统上运行的设备）<br>未知的部署时间（应用商店审批程序）<br>内容限制（应用商店限制）<br>用户必须手动下载更新最新版本</li>
+</ul>
+</li>
+</ul>
+<h3 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h3><ul>
+<li>优点<ul>
+<li>适用范围广（覆盖所有智能手机）<br>开发成本较低<br>方便、快捷地部署（无需提交到应用商店）<br>无内容限制<br>用户总能访问到最新版本（没有手动更新需求）</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>较差的和较慢的性能体验（大部分需要链接互联网）<br>用户体验较差*<br>支持图形和动画效果较差<br>无法离线使用<br>限制用户使用功能（比如，相机、GPS等）</li>
+</ul>
+</li>
+</ul>
+<h2 id="模块化，组件化"><a href="#模块化，组件化" class="headerlink" title="模块化，组件化"></a>模块化，组件化</h2><h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><ul>
+<li>编程语言所提供的代码组织机制，利用此机制可将程序拆解为独立且通用的代码单元。模块”指代码单元，其意义偏向静态的代码结构</li>
+<li>在ES6之前，并没有语言内置的模块机制，但我们用一些方式自制了某种模块机制，像CommonJS / AMD甚至建立了普遍接受的社区标准。虽然它们都是模块机制，但会有一些重大或微妙的差异。故当我们提到JS模块时，如果没有足够的上下文，有时需要明确是CommonJS module或AMD module或ES6 module。</li>
+<li>JS实现的算法和数据单元，封装的是算法和数据，暴露的是接口</li>
+</ul>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>组件指功能单元，其意义偏向运行时的结构，并有更复杂的控制（如组件实例的生命周期管理）</p>
+<h2 id="单向数据流-和-双向数据流"><a href="#单向数据流-和-双向数据流" class="headerlink" title="单向数据流 和 双向数据流"></a>单向数据流 和 双向数据流</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">单向数据流:</div><div class="line">事件分发器 (dispatcher),开发者必须显式地通过这个统一的事件机制做数据变更通知</div><div class="line">这样做的好处是所有状态变化都可以被记录、跟踪，状态变化通过手动调用通知，源头易追溯，使得程序更直观更容易理解,有利于应用的可维护性。缺点则是代码量会相应的上升</div><div class="line"></div><div class="line">单向数据绑定的实现思路: 所有数据只有一份一旦数据变化,就去更新页面(data-页面)如果用户在页面上做了变动,那么就手动收集起来(双向是自动),合并到原有的数据中.</div></pre></td></tr></table></figure>
+<p><code>双向绑定在一些需要实时反应用户输入的场合会非常方便</code></p>
+<p>表单交互较多的场景下，会简化大量业务无关的代码</p>
+<p>缺点</p>
+<ol>
+<li><p>无法追踪局部状态的变化；  </p>
+</li>
+<li><p>“暗箱操作”，增加了出错时 debug 的难度；  </p>
+</li>
+<li><p>由于组件数据变化来源入口变得可能不止一个，数据流转方向易紊乱，若再缺乏“管制”手段，血崩。</p>
+</li>
+</ol>
+<p>优点</p>
+<ol>
+<li><p>用户在视图上的修改会自动同步到数据模型中去，数据模型中值的变化也会立刻同步到视图中去；  </p>
+</li>
+<li><p>无需进行和单向数据绑定的那些CRUD（Create，Retrieve，Update，Delete）操作；  </p>
+</li>
+<li><p>在表单交互较多的场景下，会简化大量业务无关的代码。</p>
+</li>
+</ol>
+<h2 id="和-的区别"><a href="#和-的区别" class="headerlink" title=".和[]的区别"></a>.和[]的区别</h2><blockquote>
+<p>一般情况下我们使用点调用属性的方式，但是当obj的某个属性是一个变量时(比如一个字符串)，这种点调用的方式就行不通了，想想看obj.’property’这样的方式不对； 所以，如果对象内的属性是一个变量，只能使用[]调用<br> 。只适合访问的属性名是合法的标识符，需要知道访问属性的名字。如果属性名称是保留字或包含空格和标点符号，必须用方括号。</p>
+</blockquote>
+<h2 id="运算符加法"><a href="#运算符加法" class="headerlink" title="运算符加法"></a>运算符加法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1 + &#123;&#125; // 1[object Object]</div><div class="line"></div><div class="line">true + true // 2</div><div class="line"></div><div class="line">2 + null //2 null转为0</div><div class="line"></div><div class="line">2 + undefined // NAN undefined转为NAN后做加法</div></pre></td></tr></table></figure>
+<h2 id="逻辑与-amp-amp"><a href="#逻辑与-amp-amp" class="headerlink" title="逻辑与&amp;&amp;"></a>逻辑与&amp;&amp;</h2><blockquote>
+<p>首先计算左操作数的值，计算&amp;&amp;左侧表达式，如果为假，整个表达式为假，直接返回假，不对右操作数计算.如果为真，以右表达式真值为主</p>
+</blockquote>
+<h2 id="javascript垃圾回收"><a href="#javascript垃圾回收" class="headerlink" title="javascript垃圾回收"></a>javascript垃圾回收</h2><h3 id="引用计数垃圾收集"><a href="#引用计数垃圾收集" class="headerlink" title="引用计数垃圾收集"></a>引用计数垃圾收集</h3><blockquote>
+<p>对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。引用计数的含义是跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1。当这个引用次数变成0时，则说明没有办法再访问这个值了，因而就可以将其所占的内存空间给收回来。这样，垃圾收集器下次再运行时，它就会释放那些引用次数为0的值所占的内存</p>
+</blockquote>
+<h3 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h3><blockquote>
+<p>这是javascript中最常用的垃圾回收方式。当变量进入执行环境是，就标记这个变量为“进入环境”。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到他们。当变量离开环境时，则将其标记为“离开环境”。垃圾收集器在运行的时候会给存储在内存中的所有变量都加上标记。然后，它会去掉环境中的变量以及被环境中的变量引用的标记。而在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。最后。垃圾收集器完成内存清除工作，销毁那些带标记的值，并回收他们所占用的内存空间。</p>
+</blockquote>
+<h2 id="new关键字的过程"><a href="#new关键字的过程" class="headerlink" title="new关键字的过程"></a>new关键字的过程</h2><blockquote>
+<p>创建一个新的对象，这个对象的类型是object；</p>
+<p>设置这个新的对象的内部、可访问性和[[prototype]]属性为构造函数（指prototype.construtor所指向的构造函数）中设置的；<br>执行构造函数，当this关键字被提及的时候，使用新创建的对象的属性；<br>返回新创建的对象（除非构造方法中返回的是‘无原型’）。 </p>
+<p>在创建新对象成功之后，如果调用一个新对象没有的属性的时候，JavaScript会延原型链向止逐层查找对应的内容。这类似于传统的‘类继承’。<br>(1)创建一个空对象，并且 this变量引用该对象，同时还继承了该函数的原型。<br>(2)属性和方法被加入到 this引用的对象中。<br>(3)新创建的对象由 this所引用，并且最后隐式的返回 this。</p>
+</blockquote>
+<h2 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h2><blockquote>
+<p>某些代码不可以在没有间断的情况连续重复执行，第一次调用函数创建一个计时器，第二次调用会清除第一次设置的并设置另外一个。目的是为了让执行函数的请求过了一段时间才执行。节流函数，只允许一个函数在 X 毫秒内执行一次</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 简单的节流函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait, mustRun</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> timeout,</div><div class="line">        startTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>,</div><div class="line">            args = <span class="built_in">arguments</span>,</div><div class="line">            curTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line">        clearTimeout(timeout);</div><div class="line">        <span class="comment">// 如果达到了规定的触发时间间隔，触发 handler</span></div><div class="line">        <span class="keyword">if</span>(curTime - startTime &gt;= mustRun)&#123;</div><div class="line">            func.apply(context,args);</div><div class="line">            startTime = curTime;</div><div class="line">        <span class="comment">// 没达到触发间隔，重新设定定时器</span></div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            timeout = setTimeout(func, wait);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 实际想绑定在 scroll 事件上的 handler</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">realFunc</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Success"</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 采用了节流函数</span></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>,throttle(realFunc,<span class="number">500</span>,<span class="number">1000</span>));</div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h2><blockquote>
+<p>防抖技术即是可以把多个顺序地调用合并成一次，也就是在一定时间内，规定事件被触发的次数。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 防抖动函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> timeout;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>, args = <span class="built_in">arguments</span>;</div><div class="line">        <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            timeout = <span class="literal">null</span>;</div><div class="line">            <span class="keyword">if</span> (!immediate) func.apply(context, args);</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">var</span> callNow = immediate &amp; !timeout;</div><div class="line">        clearTimeout(timeout);</div><div class="line">        timeout = setTimeout(later, wait);</div><div class="line">        <span class="keyword">if</span> (callNow) func.apply(context, args);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myEfficientFn = debounce(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 滚动中的真正的操作</span></div><div class="line">&#125;, <span class="number">250</span>);</div><div class="line"></div><div class="line"><span class="comment">// 绑定监听</span></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, myEfficientFn);</div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="观察者模式-自定义事件"><a href="#观察者模式-自定义事件" class="headerlink" title="观察者模式(自定义事件)"></a>观察者模式(自定义事件)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">EventTarget</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.handlers = &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">EventTarget.prototype = &#123;</div><div class="line">    <span class="attr">constructor</span>: EventTarget,</div><div class="line">    <span class="attr">addHandler</span>: <span class="function"><span class="keyword">function</span>(<span class="params">type, handler</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.handlers[type] == <span class="string">"undefined"</span>) &#123;</div><div class="line">            <span class="keyword">this</span>.handlers[type] = []</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.handlers[type].push(handler)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">fire</span>: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!event.target) &#123;</div><div class="line">            event.target = <span class="keyword">this</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.handlers[event.type] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">            <span class="keyword">var</span> handlers = <span class="keyword">this</span>.handlers[event.type]</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = handlers.length; i&lt; len; i++) &#123;</div><div class="line">                handlers[i](event)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">removeHandler</span>: <span class="function"><span class="keyword">function</span>(<span class="params">type, handler</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.handlers[type] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">            <span class="keyword">var</span> handlers = <span class="keyword">this</span>.handlers[type]</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = handlers.length; i&lt; len; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (handlers[i] === handler) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            handlers.splice(i, <span class="number">1</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handledMessage</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(event.message)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> target = <span class="keyword">new</span> EventTarget()</div><div class="line">target.addHandler(<span class="string">"message"</span>, handledMessage)</div><div class="line"></div><div class="line">target.fire(&#123; <span class="attr">type</span>: <span class="string">"message"</span>, <span class="attr">message</span>: <span class="string">"Hi,2333"</span> &#125;)</div><div class="line"></div><div class="line">target.removeHandler(<span class="string">"message"</span>, handledMessage)</div><div class="line"></div><div class="line">target.fire(&#123; <span class="attr">type</span>: <span class="string">"message"</span>, <span class="attr">message</span>: <span class="string">"Hi,2333"</span> &#125;)</div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="函数curry化"><a href="#函数curry化" class="headerlink" title="函数curry化"></a>函数curry化</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>,<span class="number">1</span>)</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> inner = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)</div><div class="line">        <span class="keyword">var</span> final = args.concat(inner)</div><div class="line">        <span class="keyword">return</span> fn.apply(<span class="literal">null</span>,final)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1,n2</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> n1+n2</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> c = curry(add,<span class="number">5</span>)</div><div class="line"><span class="built_in">console</span>.log(c(<span class="number">3</span>))<span class="comment">// 8</span></div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="怎么判断属性来自对象自身还是原型链"><a href="#怎么判断属性来自对象自身还是原型链" class="headerlink" title="怎么判断属性来自对象自身还是原型链"></a>怎么判断属性来自对象自身还是原型链</h2><blockquote>
+<p>hasOwnProperty()方法会返回一个布尔值，其用来判断某个对象是否含有指定的属性。如果在原型链上返回false,不存在也false</p>
+</blockquote>
+<h2 id="函数声明和和函数表达式的区别"><a href="#函数声明和和函数表达式的区别" class="headerlink" title="函数声明和和函数表达式的区别"></a>函数声明和和函数表达式的区别</h2><blockquote>
+<p>变量声明被提升（hoisting）的机制，也就是说变量（函数）的声明会被提升到作用域的最前面，即使写代码的时候是写在最后面，也还是会被提升至最前面。<code>函数表达式</code>则不会被提升。<br>函数优先提升，然后才是变量<br>var声明一个变量时，创建的这个属性是不可配置的，变量无法通过delete删除</p>
+</blockquote>
+<h2 id="js延迟加载的方式有哪些"><a href="#js延迟加载的方式有哪些" class="headerlink" title="js延迟加载的方式有哪些"></a>js延迟加载的方式有哪些</h2><p>直接将script节点放置在之前，这样js脚本就会在页面显示出来之后再加载</p>
+<p>defer和async<br>defer属性为延迟加载，是在页面渲染完成之后再进行加载的，而async属性则是和文档并行加载</p>
+<p>defer和async的相同和区别</p>
+<p>相同<br>加载文件时不阻塞页面渲染<br>如果一个script加了defer属性，即使放在head里面，它也会在html页面解析完毕之后再去执行，也就是类似于把这个script放在了页面底部</p>
+<p>区别<br>async:遇到async，开始下载脚本，并继续解析。脚本文件下载完毕，立即执行onload处理函数，不按顺序执行，谁先下载完执行谁。<br>defer:遇到defer之后，停止解析等待下载。脚本文件下载完毕后，并不立即执行该脚本文件的onload处理函数，而是等页面全部加载之后才按顺序执行。<br>脚本文件的onload处理函数在浏览器的onload处理之前执行，因为它们属于外部文件下载，属于整个页面加载工作中的一部分</p>
+<h2 id="Cookie跨域请求能不能带上"><a href="#Cookie跨域请求能不能带上" class="headerlink" title="Cookie跨域请求能不能带上"></a>Cookie跨域请求能不能带上</h2><blockquote>
+<p>cookie一般情况下是没法跨域的，甚至POST请求一般情况下都是无法跨域的。但经过特殊处理后就可以了，这个处理需要客户端服务器的配合。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">解决方案</div><div class="line">              客户端请求的时候带上withCredentials参数</div><div class="line">               $.ajax(&#123; type: &quot;POST&quot;, url: &quot;http://xxx.com/api/test&quot;, dataType: &apos;jsonp&apos;, xhrFields: &#123; withCredentials: true &#125;, crossDomain: true, success:function()&#123;&#125;, error:function()&#123;&#125; &#125;)</div><div class="line">              xhr.withCredentials = true; //支持跨域发送cookies</div></pre></td></tr></table></figure>
+<h2 id="setTimeout和setInterval区别"><a href="#setTimeout和setInterval区别" class="headerlink" title="setTimeout和setInterval区别"></a>setTimeout和setInterval区别</h2><p>setTimeout (表达式,延时时间) </p>
+<p>setInterval(表达式,交互时间) 延时时间/交互时间是以豪秒为单位的(1000ms=1s) setTimeout 在执行时,是在载入后延迟指定时间后,去执行一次表达式,仅执行一次 setInterval 在执行时,它从载入后,每隔指定的时间就执行一次表达式</p>
+<p>setTimeout可以传入第三个参数、第四个参数….，它们表示神马呢？其实是用来表示第一个参数（回调函数）传入的参数</p>
+<p>setTimeout(function(a, b){ console.log(a); // 3 console.log(b); // 4 },0, 3, 4);</p>
+<h2 id="区别浏览器和版本"><a href="#区别浏览器和版本" class="headerlink" title="区别浏览器和版本"></a>区别浏览器和版本</h2><p> 通过分析浏览器的userAgent属性来判断 navigator.userAgent</p>
+<h2 id="Object-create-的具体用处"><a href="#Object-create-的具体用处" class="headerlink" title="Object.create 的具体用处"></a>Object.create 的具体用处</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Object.create(proto [, propertiesObject ]) 是E5中提出的一种新的对象创建方式，第一个参数是要继承的原型，如果不是一个子函数，可以传一个null，第二个参数是对象的属性描述符，这个参数是可选的。 Object.create() 方法创建一个拥有指定原型和若干个指定属性的对象。 Object.create(Object.prototype, &#123; a: &#123; value: 1, writable: true, configurable: true &#125; &#125;); 创建一个继承自Object.prototype的对象，有一个属性a，其可写，可配置，不可枚举，值为1</div></pre></td></tr></table></figure>
+<h2 id="什么是浅复制和深复制，有什么区别"><a href="#什么是浅复制和深复制，有什么区别" class="headerlink" title="什么是浅复制和深复制，有什么区别"></a>什么是浅复制和深复制，有什么区别</h2><h3 id="浅复制：浅拷贝就是复制一份引用，所有引用对象都指向一份数据，并且都可以修改这份数据"><a href="#浅复制：浅拷贝就是复制一份引用，所有引用对象都指向一份数据，并且都可以修改这份数据" class="headerlink" title="浅复制：浅拷贝就是复制一份引用，所有引用对象都指向一份数据，并且都可以修改这份数据"></a>浅复制：浅拷贝就是复制一份引用，所有引用对象都指向一份数据，并且都可以修改这份数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">object.assign()</div><div class="line">var newobj = Object.assign(&#123;&#125;,myObject)</div></pre></td></tr></table></figure>
+<h3 id="深复制：深拷贝则是复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制"><a href="#深复制：深拷贝则是复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制" class="headerlink" title="深复制：深拷贝则是复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制"></a>深复制：深拷贝则是复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> 使用JSON.parse()方法</div><div class="line"> </div><div class="line">function deepClone(initalObj) &#123; var obj = &#123;&#125;; try &#123; obj = JSON.parse(JSON.stringify(initalObj)); &#125; return obj; &#125;</div><div class="line"> function deepClone(initalObj, finalObj) &#123;</div><div class="line">    var obj = finalObj || &#123;&#125;;</div><div class="line">    for (var i in initalObj) &#123;</div><div class="line">        var prop = initalObj[i];</div><div class="line"></div><div class="line">        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况</div><div class="line">        if(prop === obj) &#123;</div><div class="line">            continue;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if (typeof prop === &apos;object&apos;) &#123;</div><div class="line">            obj[i] = (prop.constructor === Array) ? [] : &#123;&#125;;</div><div class="line">            arguments.callee(prop, obj[i]);</div><div class="line">        &#125; else &#123;</div><div class="line">            obj[i] = prop;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">  使用Object.create()方法</div></pre></td></tr></table></figure>
+<h2 id="前端异常监测如何实现"><a href="#前端异常监测如何实现" class="headerlink" title="前端异常监测如何实现"></a>前端异常监测如何实现</h2><p>前端SDK需要实现，主要是错误拦截，代理监控，上报策略，API设计，以及日志接口。<br>上报的日志实现实时查询。<br>监控日志可视化管理后台的开发。<br>压缩后的单行文件如何定位源码错误。</p>
+<p>window.onerror的方案有如下特点：</p>
+<ol>
+<li>可以捕捉语法错误，也可以捕捉运行时错误；</li>
+<li>可以拿到出错的信息，堆栈，出错的文件、行号、列号；</li>
+<li>只要在当前页面执行的js脚本出错都会捕捉到，例如：浏览器插件的javascript、或者flash抛出的异常等。</li>
+<li>跨域的资源需要特殊头部支持。</li>
+</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/26085642" rel="external nofollow noopener noreferrer" target="_blank">link</a></p>
+<h2 id="SPA如何管理内存"><a href="#SPA如何管理内存" class="headerlink" title="SPA如何管理内存"></a>SPA如何管理内存</h2><p>优化代码 事件绑定不用要取消。</p>
+<h2 id="手机webApp如何与原生App通信"><a href="#手机webApp如何与原生App通信" class="headerlink" title="手机webApp如何与原生App通信"></a>手机webApp如何与原生App通信</h2><blockquote>
+<p>H5与Native交互的桥梁为Webview，“联系”的方式以url schema的方式，在用户安装app后，app可以自定义url schema，并且把自定义的url注册在调度中心。<br>App调用H5:将一组API绑定在webView的window对象上，App通过iOS原生方法调用window对象中的js方法。<br>H5与App通信：App实现对Webview URL的观察者模式，H5 通过改变URL的哈希值，通过解析哈希值的变化执行相应的操作。</p>
+<p>JSBridge技术实现</p>
+<p>重写WebView中WebChromeClient类的onJsPrompt()方法来进行js和java的通信。</p>
+</blockquote>
+<h2 id="浏览器发送Cookie服务器接收不到什么原因"><a href="#浏览器发送Cookie服务器接收不到什么原因" class="headerlink" title="浏览器发送Cookie服务器接收不到什么原因"></a>浏览器发送Cookie服务器接收不到什么原因</h2><p>跨域，不是cookie指定域<br>cookie过长，超过限制</p>
+<p>cookie设置了secure为true，服务器不是https协议的</p>
+<h2 id="Webpack-怎么实现不同模块规范的互转"><a href="#Webpack-怎么实现不同模块规范的互转" class="headerlink" title="Webpack 怎么实现不同模块规范的互转"></a>Webpack 怎么实现不同模块规范的互转</h2><ul>
+<li><p>webpack有多种加载器Loader,可以处理各种需要被处理的静态文件</p>
+</li>
+<li><p>智能解析器 可以解析任何第三方库 无论他们的模块形式是CommonJS AMD还是原生的JS模块</p>
+</li>
+</ul>
+<h2 id="Session-的实现原理"><a href="#Session-的实现原理" class="headerlink" title="Session 的实现原理"></a>Session 的实现原理</h2><blockquote>
+<p>session机制是一种服务器端的机制，服务器使用一种类似于散列表的结构(也可能就是使用散列表)来保存信息。</p>
+<p>但程序需要为某个客户端的请求创建一个session的时候，服务器首先检查这个客户端的请求里是否包含了一个session标识－称为session id,如果已经包含一个session id则说明以前已经为此客户创建过session，服务器就按照session id把这个session检索出来使用(如果检索不到，可能会新建一个，这种情况可能出现在服务端已经删除了该用户对应的session对象，但用户人为地在请求的URL后面附加上一个JSESSION的参数)。</p>
+<p>如果客户请求不包含session id，则为此客户创建一个session并且生成一个与此session相关联的session id，这个session id将在本次响应中返回给客户端保存。</p>
+</blockquote>
+<h2 id="对前后端同构化的了解"><a href="#对前后端同构化的了解" class="headerlink" title="对前后端同构化的了解"></a>对前后端同构化的了解</h2><p>对于以后的Web来说，不需要分离，而是需要合并的。这种趋势在Nodejs出来后显得越来越显著。目前已经有很多Nodejs的库是前后端共通的，也就是所谓的前后端统一或者同构（即英文里的isomorphic js）。</p>
+<p>当有象JS这种前后端两栖的语言出现时就促成了前后端的同构。</p>
+<p>Web Assembly将会进一步促进前后端同构</p>
+<p>由于新技术Web Assembly的推出，未来会有更多的语言可以在浏览器端执行，所以支持前后端同构的方案与语言将会越来越丰富。</p>
+<p>面向Web的二进制格式。该格式名为WebAssembly，可以作为任何编程语言的编译目标，使应用程序可以运行在浏览器或其它代理中。</p>
+<h2 id="怎么解决-SEO-问题"><a href="#怎么解决-SEO-问题" class="headerlink" title="怎么解决 SEO 问题"></a>怎么解决 SEO 问题</h2><p>前后端同构方案，即一套代码在浏览器端和node端都可以运行，从而可以先在node端请求数据渲染模板，然后将渲染结果返回给浏览器最终呈现，是目前最完美的前后端分离+SEO解决方案，目测没有之一。</p>
+<p>后端渲染服务</p>
+<h2 id="二维码扫描登录的实现，包括业务以及技术实现"><a href="#二维码扫描登录的实现，包括业务以及技术实现" class="headerlink" title="二维码扫描登录的实现，包括业务以及技术实现(?)"></a>二维码扫描登录的实现，包括业务以及技术实现(?)</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    JS代码片段
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/基础/Ecmascript/跨域/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">跨域</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

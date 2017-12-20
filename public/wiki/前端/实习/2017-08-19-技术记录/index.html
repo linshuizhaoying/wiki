@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>在CVTE实习的那些天(技术篇) | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,实习,CVTE,技术篇">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前言因为技术这块需要严谨一点，因此把自己每天的日报贴上来。 第一个部门实习日志–钱育辉[2017-07-24]今日实习内容及完成情况完成了前端基本开发环境的搭建确认了基本的技术选型。我们小组选择了React 全家桶原因有以下几点：1.公司内部大部分业务是用react，有问题我们可以获得非常给力的技术支援。2.小组成员有大部分由react开发经验，上手较快，而且小组有准备进行技术文档的编写，能够方便">
+<meta name="keywords" content="前端,实习,CVTE,技术篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在CVTE实习的那些天(技术篇)">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/实习/2017-08-19-技术记录/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="前言因为技术这块需要严谨一点，因此把自己每天的日报贴上来。 第一个部门实习日志–钱育辉[2017-07-24]今日实习内容及完成情况完成了前端基本开发环境的搭建确认了基本的技术选型。我们小组选择了React 全家桶原因有以下几点：1.公司内部大部分业务是用react，有问题我们可以获得非常给力的技术支援。2.小组成员有大部分由react开发经验，上手较快，而且小组有准备进行技术文档的编写，能够方便">
+<meta property="og:updated_time" content="2017-08-22T01:56:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在CVTE实习的那些天(技术篇)">
+<meta name="twitter:description" content="前言因为技术这块需要严谨一点，因此把自己每天的日报贴上来。 第一个部门实习日志–钱育辉[2017-07-24]今日实习内容及完成情况完成了前端基本开发环境的搭建确认了基本的技术选型。我们小组选择了React 全家桶原因有以下几点：1.公司内部大部分业务是用react，有问题我们可以获得非常给力的技术支援。2.小组成员有大部分由react开发经验，上手较快，而且小组有准备进行技术文档的编写，能够方便">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/实习/2017-08-19-技术记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/实习/">实习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CVTE/">CVTE</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/实习/">实习</a>, <a class="tag-link" href="/tags/技术篇/">技术篇</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/实习/2017-08-19-技术记录/">
+            <time datetime="2017-07-12T11:24:10.000Z" itemprop="datePublished">2017-07-12</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/实习/2017-08-19-技术记录.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/实习/2017-08-19-技术记录.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/实习/2017-08-19-技术记录.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            在CVTE实习的那些天(技术篇)
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个部门"><span class="toc-number">2.</span> <span class="toc-text">第一个部门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-24"><span class="toc-number">2.1.</span> <span class="toc-text">实习日志–钱育辉[2017-07-24]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况"><span class="toc-number">2.1.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日"><span class="toc-number">2.1.2.</span> <span class="toc-text">明日</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想"><span class="toc-number">2.1.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-25"><span class="toc-number">2.2.</span> <span class="toc-text">实习日志–钱育辉[2017-07-25]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划"><span class="toc-number">2.2.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-1"><span class="toc-number">2.2.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-26"><span class="toc-number">2.3.</span> <span class="toc-text">实习日志–钱育辉[2017-07-26]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-27"><span class="toc-number">2.4.</span> <span class="toc-text">实习日志–钱育辉[2017-07-27]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-2"><span class="toc-number">2.4.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-2"><span class="toc-number">2.4.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-3"><span class="toc-number">2.4.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-28"><span class="toc-number">2.5.</span> <span class="toc-text">实习日志–钱育辉[2017-07-28]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-3"><span class="toc-number">2.5.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-3"><span class="toc-number">2.5.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-4"><span class="toc-number">2.5.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-29"><span class="toc-number">2.6.</span> <span class="toc-text">实习日志–钱育辉[2017-07-29]</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#今日实习内容及完成情况-4"><span class="toc-number">2.6.0.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-4"><span class="toc-number">2.6.1.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-5"><span class="toc-number">2.6.2.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-07-31"><span class="toc-number">2.7.</span> <span class="toc-text">实习日志–钱育辉[2017-07-31]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-5"><span class="toc-number">2.7.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-5"><span class="toc-number">2.7.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-6"><span class="toc-number">2.7.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-08-01"><span class="toc-number">2.8.</span> <span class="toc-text">实习日志–钱育辉[2017-08-01]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-6"><span class="toc-number">2.8.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-6"><span class="toc-number">2.8.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-7"><span class="toc-number">2.8.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-08-01-1"><span class="toc-number">2.9.</span> <span class="toc-text">实习日志–钱育辉[2017-08-01]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-7"><span class="toc-number">2.9.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-7"><span class="toc-number">2.9.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-8"><span class="toc-number">2.9.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-08-02"><span class="toc-number">2.10.</span> <span class="toc-text">实习日志–钱育辉[2017-08-02]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-8"><span class="toc-number">2.10.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-8"><span class="toc-number">2.10.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-9"><span class="toc-number">2.10.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实习日志–钱育辉-2017-08-03"><span class="toc-number">2.11.</span> <span class="toc-text">实习日志–钱育辉[2017-08-03]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-9"><span class="toc-number">2.11.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-9"><span class="toc-number">2.11.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-10"><span class="toc-number">2.11.3.</span> <span class="toc-text">感想</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#第一个部门总结"><span class="toc-number">3.</span> <span class="toc-text">第一个部门总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二个部门"><span class="toc-number">4.</span> <span class="toc-text">第二个部门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-14"><span class="toc-number">4.1.</span> <span class="toc-text">8-14</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-10"><span class="toc-number">4.1.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-10"><span class="toc-number">4.1.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-11"><span class="toc-number">4.1.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-15"><span class="toc-number">4.2.</span> <span class="toc-text">8-15</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-11"><span class="toc-number">4.2.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-11"><span class="toc-number">4.2.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-12"><span class="toc-number">4.2.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-16"><span class="toc-number">4.3.</span> <span class="toc-text">8-16</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-12"><span class="toc-number">4.3.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-12"><span class="toc-number">4.3.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-13"><span class="toc-number">4.3.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-17"><span class="toc-number">4.4.</span> <span class="toc-text">8-17</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-13"><span class="toc-number">4.4.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-13"><span class="toc-number">4.4.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-14"><span class="toc-number">4.4.3.</span> <span class="toc-text">感想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-18"><span class="toc-number">4.5.</span> <span class="toc-text">8-18</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#今日实习内容及完成情况-14"><span class="toc-number">4.5.1.</span> <span class="toc-text">今日实习内容及完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#明日计划-14"><span class="toc-number">4.5.2.</span> <span class="toc-text">明日计划</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#感想-15"><span class="toc-number">4.5.3.</span> <span class="toc-text">感想</span></a></li></ol></li></ol></li>
+                </div>
+            
+        
+        
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为技术这块需要严谨一点，因此把自己每天的日报贴上来。</p>
+<h2 id="第一个部门"><a href="#第一个部门" class="headerlink" title="第一个部门"></a>第一个部门</h2><h3 id="实习日志–钱育辉-2017-07-24"><a href="#实习日志–钱育辉-2017-07-24" class="headerlink" title="实习日志–钱育辉[2017-07-24]"></a>实习日志–钱育辉[2017-07-24]</h3><h4 id="今日实习内容及完成情况"><a href="#今日实习内容及完成情况" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>完成了前端基本开发环境的搭建<br>确认了基本的技术选型。<br>我们小组选择了React 全家桶<br>原因有以下几点：<br>1.公司内部大部分业务是用react，有问题我们可以获得非常给力的技术支援。<br>2.小组成员有大部分由react开发经验，上手较快，而且小组有准备进行技术文档的编写，能够方便统一风格。<br>3.考虑到项目是跳蚤市场这种交互性比较强的，我们可以用react写交互也比较方便。<br>4.react全家桶方便我们调试测试。而且react相关的技术文档也比较好找。<br>小组准备尝试用worktile来管理项目进程。<br>之后我们全组包括后台进行了简单的需求分析，前端这边将业务用maxhubs进行了首页草稿设计，大家进行探讨，因为有了这种会议级的设备，我们草稿迭代的很快。并且根据我们的项目特点，我们参考了掘金，淘宝等网站的设计。<br>我们将所有需求点列举出来，先不分工，先头脑风暴列举，然后合并，并且具体化了明日的安排。<br>今天主要的是将前后端的职责先大体确定了，我们在没有数据的情况下，将先进行数据mock，后端们将努力攻克比较复杂的算法，前端们将把流程 给确定下来。利用思维导图我们先确定了整个项目大致需要12个页面。我们讨论了最终大部分按组件方式进行分工，在开发前组件划分还需要更细致的约定与讨 论。<br>根据小组讨论我们确定了大部分技术难点:<br>关键点：<br>微信支付<br>下拉刷新<br>图片上传<br>web安全<br>移动端<br>性能</p>
+<p>将在未来一步步分工合作完成。</p>
+<h4 id="明日"><a href="#明日" class="headerlink" title="明日"></a>明日</h4><p>上午:<br>前端选型确定 最终成果 可直接进行开发的环境。（包括单元测试）<br>技术文档编写 -&gt;<br>         组件划分<br>         数据请求模块 async promise…<br>         路由调用 路由传参</p>
+<p>单元测试确定<br>测试文档编写 -&gt;<br>       普通模块 TRUE FALSE<br>       react测试普遍写法</p>
+<p>确定人员分工 页面组件分配 对接说明<br>技术文档编写 -&gt;<br>   变量命名约定</p>
+<p>MOCK数据（包括基本的数据格式）<br>下午：<br>与后台确定数据字段 （包括大分类 需要的内容）<br>出流程图</p>
+<p>确定后天的任务</p>
+<h4 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h4><pre><code>今天进行项目分组的时候，从一开始的前后端分离大概念，然后逐步进行细化，因为前端小组一致认为不要先讨论过于细节化的东西，因此讨论中如果有一些细节争议，我们将其先放置一边，然后继续讨论。
+</code></pre><p>在前端流程讨论中，大伙都很活跃，我觉得还是挺有效率的完成了讨论。而且个人觉得在开发前我们需要一个统一的开发环境（包括redux的一些 demo,router的一些demo,单元测试的一些demo） 在后来就有了一个技术文档的概念，大家约定一些函数的代码的写法，比如ajax获取，以及路由跳转等等，然后确定开发的变量命名，以及一些抽象的函数说 明，这样大家在写东西的时候就比较协调。更细节的还没有讨论，我们觉得将其放在实际开发中慢慢迭代更加有效率。<br>因为之前我自己写小项目的时候也有过琢磨项目工程的一些小想法，在这次团队中我会将其进行测试验证。<br>今天下午的web安全基础分享挺有收获，让我对web安全有了一个大致的总结，在这个项目中我们将会使用进去。<br>因为我对react没有项目开发经验（只看过两个星期的文档），但是因为有两个小伙伴有经验，我认为我可以借鉴在vue开发项目经验，然后通过demo，技术文档以及小伙伴们在项目中的代码，完成属于自己的那部分开发任务。<br>因为大家内心都想做一个靠谱的东西。</p>
+<h3 id="实习日志–钱育辉-2017-07-25"><a href="#实习日志–钱育辉-2017-07-25" class="headerlink" title="实习日志–钱育辉[2017-07-25]"></a>实习日志–钱育辉[2017-07-25]</h3><h4 id="今日实习内容及完成情况-1"><a href="#今日实习内容及完成情况-1" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天早上按照昨天的计划，分配到的是react测试的研究。<br>一开始考虑用enzyme做单元测试。<br>测试学习后发现项目以redux架构后，只能对组件进行测试，然后就很难对一些具体的函数进行测试。<br>因此经过和导师讨论公司内部单元测试主要是在nodejs端进行，因此考虑到react部分单元测试比较复杂，而且在没有具体的组件时，不好做组件这块的测试。<br>暂时先将组件的单元测试放置。<br>但是也同时看到有对reducer和action进行单元测试的内容。因此最终决定还是先做action和reducer的单元测试。最后将其集成到前端的技术文档里面。<br>中午在看文档的时候，有人提醒把需求文档写完。一开始其实我们罗列需求的时候只是将一些点写下来，然后接口原先打算跟着设计稿和后台一起对一 下，但是经过提醒发现因为没有产品经理和设计师的存在，我们需要有一些文档来帮助我们将流程，进度给书面化，让大家都知道要做什么，以及对时间的安排。经 过探讨，最终决定还是划分三周的大任务，每天都划分一些任务。然后对最近两天的工作安排具体量化安排。<br>午休的时候首先把需求文档先写了一个初始版本，然后和两个小伙伴将其细化。<br>并且花时间完成了项目进度文档。<br>等导师来的时候，和导师一起对着流程图和需求分析进行探讨。<br>对页面的布局想的不够多，经过导师指出，将其进行修改。<br>在思考购物车模块的时候，导师举了购物快照的概念，这是在之前思考的时候没有想到的，在和后台讨论接口的时候提出了这个设想并且列入需求之中。<br>和后台讨论接口完毕后，将笔记整理成接口表格。大致确定了前端需要提交什么内容，后端返回哪种格式的数据，确认了权限验证。<br>下午在对页面进行划分的时候，将原先12个页面扩展到18个页面。对具体需求也有了更明确的认识，比如购物车在未登陆情况下也应该能使用，一开始设想是购物车未登录直接跳转到登陆页面。。。</p>
+<p>然后和小伙伴们一起确认了明天要开始正式编码，并且将开发文档进行了一个整合。</p>
+<h4 id="明日计划"><a href="#明日计划" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>前端开发页面草稿，
+</code></pre><p>前端需要规范页面尺寸。<br>前端开发组件。<br>早上初步合作写页面，下午正式写页面。<br>我们小组将先把首页的静态版本完成（最终目标）。期间进行组件的划分，因为有了代码命名 规范，团队将对着这份进行统一风格的开发。然后进行git代码提交的正式磨合。先确定大体该怎么开发后，再具体慢慢磨合确定该如何开发。因为我们的项目跳 蚤市场首页是比较复杂的，我们需要考虑组件划分之后该如何进行配合。</p>
+<h4 id="感想-1"><a href="#感想-1" class="headerlink" title="感想"></a>感想</h4><pre><code>今天早上感觉花费了挺长时间在react的单元测试上，但是在本地测试组件的时候，发现引入了4个包，代码写起来也很复杂，因此思考在我们这 个萌新小组中有没有必要一开始就写那么复杂的单元测试。后来和导师沟通后决定放弃不写组件的测试，改为对action和reducer的测试。
+</code></pre><p>之后中午原本是打算按照计划来完成。但中午有前辈过来进行了指导，指出了小组现阶段的不足，我们一开始考虑的是如何把需求都完成，也有完成流 程图之类帮助理解的内容，但是没有需求文档，并没有把自己现有的已经讨论过的内容将其书面化，然后我们也没有将接口细化，没有一个比较成熟的开发思想。然 后在指导之下，明白了当前应该把需要书面化的内容全部书面化。并且该找导师的时候一定要找导师把关，因为一开始我都是遇到技术难题的时候去问，后来经过提 点，才知道导师还可以帮我们把关。</p>
+<h3 id="实习日志–钱育辉-2017-07-26"><a href="#实习日志–钱育辉-2017-07-26" class="headerlink" title="实习日志–钱育辉[2017-07-26]"></a>实习日志–钱育辉[2017-07-26]</h3><p>####今日实习内容及完成情况</p>
+<p>今天主要是切图，将跳蚤市场的静态首页完成。<br>因为之前有讨论如何进行分工，在今天早上大家把环境统一之后，发现组件划分还有点问题，因此先让一个同学完善，之后和另外一个小伙伴分工，一个负责主要的搜索组件，我负责切首页的图。<br>因为是草稿，一开始打算先借鉴一点antidesign的组件，但是没有特别合适的，因此，先划分了整体结构，然后从header开始写，在写之前负责命名规范的小伙伴先讲解了命名规则，在开发过程中有一些更特别的例子先进行小组讨论，确定后再继续。<br>因此一开始早上的效率不算高，在统一的组件结构确定后，明确了解该在哪部分写页面，哪部分写组件之后，我切图的时候提前将位置用色块留出。之后的复杂组件的小伙伴写完就可以直接套进去。<br>下午将首页动态化，以及配合ant desgin将原先和草稿比较相似的首页进行布局调整，样式修改。<br>因为不是特别确定组件该如何套用，因此在首页静态页面完成后，我对其中一个产品列表组件进行拆分，编码。然后再套回之前的页面。对于整个静态页面设计和路由切换比较熟悉后。之后就是对各个页面快速切图。<br>下午团队再将代码合并，然后看了一下整体效果，再微调。</p>
+<p>晚上和后台先确定了一下首页的接口对接。</p>
+<h4 id="明日计划-1"><a href="#明日计划-1" class="headerlink" title="明日计划"></a>明日计划</h4><p>前端开发页面，前端进行流程调试。<br>早上 出购物车和商品详情页草稿。<br>进行一次接口评审。和后端把首页的接口正式确定下来。<br>将开发的页面和导师再次确定需求。<br>进行一次code review<br>Mock首页所需数据。<br>确定API调用方式。</p>
+<h4 id="感想-2"><a href="#感想-2" class="headerlink" title="感想"></a>感想</h4><p>因为今天工作是将设计稿页面化，因此更多的是css的编写，重新温习了一下各种布局，最后大部分页面采用flex布局。<br>因为对react开发项目不怎么熟悉，有些地方引用文件报错，比如如何引用内部的图片。之后查了资料，将问题解决。<br>今天花了一些时间将首页的动画效果完成，关于页面切换的效果还未完成。因为今天是第一天正式编码，团队还在磨合。今天把git冲突的解决方案团队小伙伴直接手把手教学，还有其他的一些技术问题都直接上手帮助解决。<br>关于团队进度问题，主要是这周如果想把所有静态页面切出来还是比较赶的，主要原因是一些复杂交互的页面没有设计稿，因此安排一个擅长做草稿的 小伙伴将设计稿先做出几张，然后另一个对react开发比较熟悉的小伙伴去将接口对接以及对react中数据流的抽象完成一个简单的demo。之后我将尽 力把大部分的静态页面先切出来，然后将流程打通。尽量能够完成之前规划的第一周的目标。<br>关于单元测试我的想法是将其延后，之后需要对api的单元测试，因为还没正式牵扯到数据这块，这两天先不考虑。<br>今天的收获还是很大的，团队分工逐渐明确，大家完成各自的模块后都能抽空帮助解决其它人的一些疑问。</p>
+<h3 id="实习日志–钱育辉-2017-07-27"><a href="#实习日志–钱育辉-2017-07-27" class="headerlink" title="实习日志–钱育辉[2017-07-27]"></a>实习日志–钱育辉[2017-07-27]</h3><h4 id="今日实习内容及完成情况-2"><a href="#今日实习内容及完成情况-2" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天完成了购物车功能的开发。<br>并完成了订单详情页面的开发。<br>完成了类型选择页面的开发。<br>修改了一些bug。<br>和后台将首页字段确定后，小伙伴将首页数据mock完成。差不多明天能够进行基本流程的编写。<br>开发购物车的时候遇到了不少问题，主要是在react的state的改变以及数据异步的情况。因为设计到多处地方需要修改总金额这个变量。以 及购物车删除列表内容的时候，在ant desgin的插件中需要重新对数据进行一个编号的查询。后来经过调试和查资料，对照react官方文档的API文档，将问题解决。然后为了后面方便对接 数据，将所有写死的内容都抽象出来，以对象属性的方式进行赋值。并且模拟了最终提交过程的输出。</p>
+<h4 id="明日计划-2"><a href="#明日计划-2" class="headerlink" title="明日计划"></a>明日计划</h4><p>继续开发，完成大部分的静态页面。<br>完成我的订单页面。<br>完成 注册-&gt;登陆-&gt;发布信息 的流程<br>完成 点击详情 -&gt; 添加到购物车的 流程<br>完成 搜索 -&gt; 显示搜索结果的流程<br>完成 点击分类 -&gt; 显示分类结果(可能需要新的页面，有分页)的流程</p>
+<p>前端小组总结。</p>
+<h4 id="感想-3"><a href="#感想-3" class="headerlink" title="感想"></a>感想</h4><p>今天花了一天时间在切图上面，然而离目标的静态图片还有很多。比如关于管理员后台这些页面一个也没动。因此这周大概只能尽力将首页的功能尽可能的流程打通，就如明天的计划，前端组需要开始将整个应用的状态梳理出来，对接mock数据，并且有余力继续切图0-0<br>今天晚上前端沙龙，希望能把各个能给的源码给出来带回去学习0-0 关于那个mock系统很感兴趣它的具体实现</p>
+<h3 id="实习日志–钱育辉-2017-07-28"><a href="#实习日志–钱育辉-2017-07-28" class="headerlink" title="实习日志–钱育辉[2017-07-28]"></a>实习日志–钱育辉[2017-07-28]</h3><h4 id="今日实习内容及完成情况-3"><a href="#今日实习内容及完成情况-3" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天的进展有点慢，昨天的目标是首页各个部分进行流程的确定，但是中间出现了一些问题，首先早上将昨天规定的页面进行开发完成，然后是在进行调试的时候发现引用的组件有一些问题，花了一些时间去解决，但是后来发现这个其实完全可以拖到后期去做。<br>然后和后端确定了一下关于登陆后权限如何处理的问题。<br>之后将自己负责的页面进行了mock数据的构造。<br>因为对redux的不熟悉，花了一些时间去构思购物车在未登录和已登陆的状态下数据的存放以及流程。<br>下午小组因为引入了一个css module的问题，花费了很长的时间去尝试配置，然后发觉这样做的意义不大，在进度未完成的情况下，去尝试这样的重构是不科学的，花了比较多的时间也没完成，后来立刻决定先放下，先将进度去完成。</p>
+<h4 id="明日计划-3"><a href="#明日计划-3" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>将首页各个部分接口继续完善。
+</code></pre><p>将能首页各个部分的数据全都mock。</p>
+<h4 id="感想-4"><a href="#感想-4" class="headerlink" title="感想"></a>感想</h4><pre><code>今天感觉虽然走了不少弯路，但是收获还是蛮大的。一个是在一些技术问题上跟导师沟通后，发现其实是自己钻了牛角尖，有些问题不应该先去考虑框架是怎么样的，而且要先将解决思路先列出来，之后再进行拆解。
+</code></pre><p>关于现在的技术栈我最大的疑惑就是我写的东西应该放哪QAQ<br>感觉需要大量成熟的react项目源码来帮助我构建整个流程。<br>之后就是团队应该以完成功能优先，在开发前期不应该过多的考虑重构和优化，因为这会延误项目开发周期。<br>今天下午后期的时候，阿里的rap还突然挂了一下，正在写功能的表示一脸懵逼。。。在开发过程中一些重要的服务我觉得还是本地的比较靠谱</p>
+<h3 id="实习日志–钱育辉-2017-07-29"><a href="#实习日志–钱育辉-2017-07-29" class="headerlink" title="实习日志–钱育辉[2017-07-29]"></a>实习日志–钱育辉[2017-07-29]</h3><h5 id="今日实习内容及完成情况-4"><a href="#今日实习内容及完成情况-4" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h5><p>过去一周，花了两天需求分析，环境搭配，技术文档编写。最终三天用来开发。<br>不过项目进度有点缓慢，主要是花了时间去做切图和功能模块编写，团队配合还有点生疏，有不少地方因为需要多次确定也浪费了不少的时间。<br>不过基本上把首页的逻辑做完，因为一开始没想到登陆状态的重要性，导致大家一开始想着先做未登录的需求，等这些需求完成后发现，有部分功能点需要配合登陆状态一起实现，这样就导致了一些返工。<br>还有一些时间有点浪费在css 重构上。<br>在进度控制上就有点延后。<br>因此在下周我们将尽力赶上进度，主要体现在一个是流程的打通。以及所有基本功能的实现。剩下时间和后台调联。</p>
+<h4 id="明日计划-4"><a href="#明日计划-4" class="headerlink" title="明日计划"></a>明日计划</h4><p>将管理员的后台页面切完。<br>整理一下现在的代码，梳理一下整体架构。并且画一下思维导图。<br>将下周的开发进度进行细化。争取周三前有个比较好的展示。</p>
+<h4 id="感想-5"><a href="#感想-5" class="headerlink" title="感想"></a>感想</h4><pre><code>今天和导师讨论的如何关于进度的分配和关键点的切割。
+</code></pre><p>之前我的考虑是大家分工将组件/页面开发，然后有个总协调的人开发整体架构。之后进行填充，这样能提升效率。<br>但是因为一个登陆状态的缺少，的确影响到了团队的开发进度。<br>这让我引起一个思考，就是在项目开发中关于最小流程的切割。<br>导师给的意见是在开发的时候不要先考虑那么多，应该迭代出一个最基础的核心逻辑流程。<br>比如在我们的项目中最核心的就是 登陆/注册 -&gt; 用户浏览商品 -&gt;添加到购物车 -&gt; 支付<br>按道理应该是将登陆注册这个逻辑完成后再基于此进行延伸，但是因为我们需求分析后是以完成需求点为中心，因此将整个项目先进行了一次切割，这样就造成了连贯性不足，到后期组合的时候发现缺少了一些关键点。<br>感觉从这块学到了不少。</p>
+<p>之后就是对react框架的熟悉度不够，我还纠结了一会，不过昨天经过提醒我先把功能逻辑写出来，写完后发现把整个流程定下来之后代码逻辑还 是很清楚的，虽然不符合react的action和reduce的那种写法，然后今天考虑将其拆分后写入，因为导师也给了分析了一下写法，应该能把购物车 给彻底搞定。</p>
+<h3 id="实习日志–钱育辉-2017-07-31"><a href="#实习日志–钱育辉-2017-07-31" class="headerlink" title="实习日志–钱育辉[2017-07-31]"></a>实习日志–钱育辉[2017-07-31]</h3><h4 id="今日实习内容及完成情况-5"><a href="#今日实习内容及完成情况-5" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>因为昨天把管理员后台的所有页面写完了<br>今天切图的压力就少了很多。<br>今天完成了四个页面，并且把接口模拟了。<br>不过今天和后台确定支付的时候还需要增加一个支付确定的页面。</p>
+<p>下午进行对接后台数据，但是中间出现不少问题。一个是后台定义的数据层级和之前约定的不符合。<br>还有就是进行发布信息接口对接的时候，后台返回的状态不对。还有不少问题。<br>在登陆这块和后台联调也卡了很久，主要是购物车数据返回这块。<br>前端现阶段主要是将后台的接口给对接完，但是现阶段是卡在了前期比较关键的地方，比如发布商品这块。等后台解决后应该可以正常走流程。</p>
+<h4 id="明日计划-5"><a href="#明日计划-5" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>负责将发布商品页面重构。
+</code></pre><p>继续和后台对接。</p>
+<h4 id="感想-6"><a href="#感想-6" class="headerlink" title="感想"></a>感想</h4><p>今天对接的时候遇到不少奇怪的问题，服务器的，后端逻辑的，前端发送数据没带上header,cookie引发的。<br>磨合了蛮久。<br>不过前端这块基本上页面完成了。<br>不过因为之前尽快的赶出页面，没有对团队的页面进行仔细的查收，在测试的时候浪费了一些时间。对数据没有进行验证。需要重构一些地方。<br>在和后台对接的时候经常性的发现和之前约定的一些没有遵守，主要是一开始也没有将每个字段定下来。然后还有一些需求逻辑当初讲的不够细致。比 如支付这块，前端这块做得是直接购物车然后发起支付。后台需要订单状态的更改，因此后台需要的是发布订单，订单未支付，支付订单，订单已支付。因此再次确 定的时候把这几个需求加进去了。<br>不过这两天学到了不少redux的使用技巧和关于学习的一些方法。</p>
+<h3 id="实习日志–钱育辉-2017-08-01"><a href="#实习日志–钱育辉-2017-08-01" class="headerlink" title="实习日志–钱育辉[2017-08-01]"></a>实习日志–钱育辉[2017-08-01]</h3><h4 id="今日实习内容及完成情况-6"><a href="#今日实习内容及完成情况-6" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天主要做的事情是把用户发布商品，用户查看自己发布的商品，用户修改商品的组件给完善。<br>之前做的发布功能，是将上传和提交信息分开。因此，而且我们上传后接口是返回一个字符串，因此提交的时候要收集用户上传图片的内容作为传递参数。<br>但是有个需求就是用户可以在发布商品的时候自定义删除图片，因此还需要对上传组件做一个动作判断。ant desgin给的删除回调函数会和上传的handle函数进行冲突，因此上传一个图片会触发多次onchange,以及删除动作也会触发 onchange,因此加一个局部的删除标志，当删除的时候，上传回调函数默认不处理。<br>之后是将上传的内容进行收集，一开始是收集每个控件内容。但是后来因为需要复用，当获取参数的时候这个发布页面可以获取产品内容，将内容自动赋值。<br>因此又改版了，获取参数用state状态来维护。<br>用户商品修改页面因为需要自动载入该商品的图片，而上传图片显示的控件是作为一个发布页面子组件存在。因此判断参数的时候还需要父组件将判断页面是否是从修改商品页面转来的判断参数一并传过去。<br>之后是删除接口对接完毕。<br>然后发现需要将用户发布的商品数据缓存到store上，因为table数据获取多页的时候，再浏览器后退，会只缓存了一页，因此需要做一个本地的数据维护。</p>
+<h4 id="明日计划-6"><a href="#明日计划-6" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>继续对接口，前端调整页面。
+</code></pre><h4 id="感想-7"><a href="#感想-7" class="headerlink" title="感想"></a>感想</h4><pre><code>今天在一个父子组件的重构中收获很多，一个是需要对接受的组件先进行一些修改，然后先完成和后端数据的对接，让后台能够顺利进行下一步调试。 然后前端再进行细致化的页面修改。再进行逻辑的修改。从一个单纯的发布页面，能够变成接受参数，自动载入用户的数据，并且能够任意修改商品数据，再正确对 接接口。
+</code></pre><p>期间遇到一些ant desgin的组件的问题，比如textare它是很难获取数据，最后写原生的textare，然后样式模仿。数据用state来维护。</p>
+<h3 id="实习日志–钱育辉-2017-08-01-1"><a href="#实习日志–钱育辉-2017-08-01-1" class="headerlink" title="实习日志–钱育辉[2017-08-01]"></a>实习日志–钱育辉[2017-08-01]</h3><h4 id="今日实习内容及完成情况-7"><a href="#今日实习内容及完成情况-7" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天主要做的事情是把用户发布商品，用户查看自己发布的商品，用户修改商品的组件给完善。<br>之前做的发布功能，是将上传和提交信息分开。因此，而且我们上传后接口是返回一个字符串，因此提交的时候要收集用户上传图片的内容作为传递参数。<br>但是有个需求就是用户可以在发布商品的时候自定义删除图片，因此还需要对上传组件做一个动作判断。ant desgin给的删除回调函数会和上传的handle函数进行冲突，因此上传一个图片会触发多次onchange,以及删除动作也会触发 onchange,因此加一个局部的删除标志，当删除的时候，上传回调函数默认不处理。<br>之后是将上传的内容进行收集，一开始是收集每个控件内容。但是后来因为需要复用，当获取参数的时候这个发布页面可以获取产品内容，将内容自动赋值。<br>因此又改版了，获取参数用state状态来维护。<br>用户商品修改页面因为需要自动载入该商品的图片，而上传图片显示的控件是作为一个发布页面子组件存在。因此判断参数的时候还需要父组件将判断页面是否是从修改商品页面转来的判断参数一并传过去。<br>之后是删除接口对接完毕。<br>然后发现需要将用户发布的商品数据缓存到store上，因为table数据获取多页的时候，再浏览器后退，会只缓存了一页，因此需要做一个本地的数据维护。</p>
+<h4 id="明日计划-7"><a href="#明日计划-7" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>继续对接口，前端调整页面。
+</code></pre><h4 id="感想-8"><a href="#感想-8" class="headerlink" title="感想"></a>感想</h4><pre><code>今天在一个父子组件的重构中收获很多，一个是需要对接受的组件先进行一些修改，然后先完成和后端数据的对接，让后台能够顺利进行下一步调试。 然后前端再进行细致化的页面修改。再进行逻辑的修改。从一个单纯的发布页面，能够变成接受参数，自动载入用户的数据，并且能够任意修改商品数据，再正确对 接接口。
+</code></pre><p>期间遇到一些ant desgin的组件的问题，比如textare它是很难获取数据，最后写原生的textare，然后样式模仿。数据用state来维护。</p>
+<h3 id="实习日志–钱育辉-2017-08-02"><a href="#实习日志–钱育辉-2017-08-02" class="headerlink" title="实习日志–钱育辉[2017-08-02]"></a>实习日志–钱育辉[2017-08-02]</h3><h4 id="今日实习内容及完成情况-8"><a href="#今日实习内容及完成情况-8" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>将个人发布功能模块数据存到store中，完成了接口的对接。<br>修复了一些页面逻辑的小问题，将路由跳转进行了校验。<br>完成了管理员页面的一些交互动作，对数量比较多的管理员查看页面进行了数据缓存。<br>下午完成了个人信息获取的接口对接。更新接口因为木有只能等待。<br>对一些未授权直接访问地址的页面做了处理，判断传入的userId是否存在，不存在直接跳转到首页。</p>
+<h4 id="明日计划-8"><a href="#明日计划-8" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>打算完成订单结算并到支付后的流程。
+</code></pre><p>接口等待后台给。</p>
+<h4 id="感想-9"><a href="#感想-9" class="headerlink" title="感想"></a>感想</h4><pre><code>很多时候在对接口的时候才发现一些问题。有时候也是因为字段的命名问题，造成接入数据不显示等问题。因此造成排错时间增加
+</code></pre><h3 id="实习日志–钱育辉-2017-08-03"><a href="#实习日志–钱育辉-2017-08-03" class="headerlink" title="实习日志–钱育辉[2017-08-03]"></a>实习日志–钱育辉[2017-08-03]</h3><h4 id="今日实习内容及完成情况-9"><a href="#今日实习内容及完成情况-9" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天早上主要把个人信息更改接口对接了。<br>然后做了个人信息页面访问限制，当通过记住url路径来直接访问的时候判断，跳回首页。<br>之后因为当前接口对接差不多，剩下的订单模块还没完成，因此我就先对整个流程和功能页面进行了测试，并找出一些bug，进行修改。<br>首先是点击左上角首页，应该能恢复到最初状态。（现在如果点分页，再点首页，是不会出现变化的。） 还有切换首页更多的状态没有动作。<br>这是因为当初开发的时候只有静态页，其它功能组件未确定，因此留下来这种点击的动作没有连接。</p>
+<p>比如 添加用户商品之后，回到商品列表是往本地数据库加了一个包括商品信息的一条，但没有商品ID，如果用户这个时候去点修改，是查不到商品信息的，因此向后台 反馈，发布商品返回一个商品ID。然后前端这边进行缓存加入商品ID，这样，不需要重新获取整个列表，就能针对单个商品进行修改操作。<br>当用户没有上传图片的时候，应该显示默认图片。这里对几个展示了图片的组件做了一个判断。<br>商品详情页，购物车可以无限添加，而且结算的页面没有进行校验。原本是打算在详情页做一个校验，判断当前添加的数量，但是发现如果切换 页面重新添加，商品数量还是会超过库存。因此在购物车详情页做了一个库存的判断，如果数量大于库存，那么就减少到库存的数量。<br>因此今天主要做了一下排查的工作。</p>
+<h4 id="明日计划-9"><a href="#明日计划-9" class="headerlink" title="明日计划"></a>明日计划</h4><pre><code>因为商品订单完成之后可能需要再加一个商品被购买的展示。因此可能会根据订单完成后一些需求再开发。
+</code></pre><h4 id="感想-10"><a href="#感想-10" class="headerlink" title="感想"></a>感想</h4><pre><code>项目在开发的时候有时候为了尽快赶出功能，会有一些逻辑不严谨的判断，而且在开发的时候会无意识的忽略。因此多次回走流程进行排查，站在用户角度上使用，发现一些问题，比如输入过滤不严谨，跳转出现一些问题。
+</code></pre><p>今天在对接口的时候，因为我对需要分页的批量数据做了本地化的存储，因此修改动作发生后我提交接口，然后本地是直接对单条数据进行修改，于是 在显示中我修改数据后可以直接显示数据修改成功。但是进行再次测试的时候我进行了一个对比，发现刷新重新获取后台后，获取的列表数据并没有更新，但是对单 条数据进行查询的时候数据已经更新了。后台反应是缓存问题。因此大概了解了后台给的数据也不一定可信的，进行数据校验需要再耐心对比。<br>这几天对接数据的时候因为多个接口都对接，因此后台那边处理一些特定的异常需要debug，造成其它接口访问有些影响。不过今天另一个后台回来开了第二个访问接口，减小了影响。<br>还有就是接口字段的问题，对接的时候有时候一不小心就会有一些问题。这让我思考，之前和别人聊天说node中间件来对后台的数据进行转发。我 觉得如果有个前后端同时协作的接口平台，在上面 前后端都能修改接口规范，字段，结构。然后前端能对接出模拟的数据，后端需要将接口地址接入平台，然后平台能够校验后端接口返回的数据是否和规定的字段相 同，这样就不会有很多对接上的错误了。前端后后台可以同时一边开发一边修改验证。因为修改都是实时通知的。然后有修改接口日志，能够时刻告知双方哪块字段 更改了名称。我觉得能把这个想法接入mock系统。</p>
+<h2 id="第一个部门总结"><a href="#第一个部门总结" class="headerlink" title="第一个部门总结"></a>第一个部门总结</h2><p>技术栈从vue全家桶换成react全家桶，一开始三大疑惑，我的代码写好了放哪，action怎么写，reducer怎么写。幸好团队里有个react很熟练的<br>小伙伴先把脚手架搭起来，然后demo写好，在不断询问中渐渐掌握了react开发的整体流程，在三周之中把技术栈彻底换成了react。但是期间也有一些问题，比如一开始技术栈磨合花去不少时间，因为项目经验相对来说还算多，对整体的流程有个熟悉，但是一开始没有把需求分析文档化，直到第三天才弄完，然后一开始接口文档没有彻底细化，造成后来前后端的一些对接问题，然后后台数据库老崩，前端核心流程没有一开始就走通，等等很多通病，都在整个开发流程中体现了出来。然后后来HR压力面的时候就说我做的慢，作为项目总体负责这个锅我背了。然后是说技术和部门要求不匹配，于是调岗到另一个部门。对我来说部门好像都不怎么介意，毕竟在哪写代码不是写。。。</p>
+<h2 id="第二个部门"><a href="#第二个部门" class="headerlink" title="第二个部门"></a>第二个部门</h2><p>第二个部门虽然只实习了短短一周，但是我验证了之前三周所学，和自家琢磨的一些东西，然后和第二个技术导师在同一个办公室，周围有经验丰富的前端开发，因此问问题，解决问题效率也很快。</p>
+<p>第二周实习日报我是直接邮件传给导师，因此从邮件里抄录。。</p>
+<h3 id="8-14"><a href="#8-14" class="headerlink" title="8-14"></a>8-14</h3><h4 id="今日实习内容及完成情况-10"><a href="#今日实习内容及完成情况-10" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>根据项目内容先进行了需求分析。将其书面化整理。<br>然后通过思维导图将任务拆分。<br>然后梳理前后端交互逻辑图。确定数据库字段。<br>然后根据查找的接口文档规范以markdown完成接口字段文档。在完成接口文档的同时，将前后端路由修正为一致。<br>然后将API提取出来，保持一致。<br>下午完成了用户的数据表建立。<br>完成了登录注册登出逻辑。包括后台生成token，前端以Localstroge保持，完成在单页面应用中登录状态的持久化。<br>完成了react基础模块的编写。</p>
+<p>下午因为已经有配置好的环境，因此直接先进行核心流程的开发。注册-&gt;登录-&gt;登出。<br>然后考虑到密码明文的不安全，前端传输加了md5的加密模块。<br>然后在github上搜集了关于websocket的一些资料，准备以socket.io为基础进行开发。</p>
+<h4 id="明日计划-10"><a href="#明日计划-10" class="headerlink" title="明日计划"></a>明日计划</h4><p>打算早上把页面模块划分完，交互完成。<br>下午将模拟一些操作。然后完成简单的消息推送。<br>再完成任务中的基本要求。</p>
+<h4 id="感想-11"><a href="#感想-11" class="headerlink" title="感想"></a>感想</h4><p>需求分析时觉得应该再做一层好友，对在线用户聊天后成为好友，有了这层关系，数据库比较好设计。<br>然后是开发的时候遇到在router render前想以token模拟登陆，发现页面闪跳。而且react 的router的组件生命周期是和react相同的，原本想引入await等请求完毕后再让router判断。后来跳出这个思维，多进行一次简单的判定解决跳转问题。<br>websocket从来没用过，因此今天查资料的时候核心就是代码需要在自己本机上运行，跑通之后对整个代码进行分析，将其划分思想，构建的内容借鉴到自己的项目里。<br>比如jwt的使用。<br>因为之前实习因为react的不熟悉和项目控制的一些误区导致开发缓慢。这次感觉应该能快不少。</p>
+<h3 id="8-15"><a href="#8-15" class="headerlink" title="8-15"></a>8-15</h3><h4 id="今日实习内容及完成情况-11"><a href="#今日实习内容及完成情况-11" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>今天整体完成了聊天的数据库版本。</p>
+<p>早上完成了静态界面以及一些交互，逻辑分为选择用户会判断这个用户是否在好友表，如果不在就给提示让用户添加。添加成功，获取两个用户之间的聊天记录。<br>然后一边写界面一遍把接口数据完成。一开始是让后台对应的接口按照接口文档格式模拟数据，然后把token验证加上去，然后加上数据库操作。<br>一共对接完成获取在线人数，添加好友，获取好友列表，获取用户之间聊天历史记录，一对一聊天添加记录。</p>
+<p>晚上把整个流程走通，虽然还有一些交互上的问题。会在明天解决。</p>
+<p>昨天的目标是今天最好对接一下简单的socket，但是没有达到。只能在明天把东西全部完成。</p>
+<h4 id="明日计划-11"><a href="#明日计划-11" class="headerlink" title="明日计划"></a>明日计划</h4><p>先对接socket.io，然后再将修改聊天和撤销聊天功能接口完成。<br>之后是修改一些交互的Bug，然后进行一些容错的处理。<br>再然后是进行一些新功能的添加。以及一些极端情况下的考虑。</p>
+<h4 id="感想-12"><a href="#感想-12" class="headerlink" title="感想"></a>感想</h4><p>今天早上能把图切完主要是放弃了对细节的一些考虑，然而下午还是一头扎进了如何让react 中 指定元素的scroll自动滑到底端。然而研究半天没有找到合适方案，因此把这个交互需求先放着，完成接口的编写。</p>
+<p>之后是数据库版的聊天室中Mongoose有个问题，官方给的例子中设计schema的时候会有个默认值写法。default固定值或者函数名， 写成 new Date()在服务器启动的时候就会把执行结果当做默认值。因此造成我两个间隔聊天的记录时间戳居然是相同的，然后返回数据的排列是乱的。后来查资料定位到这里的问题，修改成<br>Date.now…大概官方玄学。</p>
+<h3 id="8-16"><a href="#8-16" class="headerlink" title="8-16"></a>8-16</h3><h4 id="今日实习内容及完成情况-12"><a href="#今日实习内容及完成情况-12" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>总体上来说基本需求完成，继续改Bug.<br>下面比较长：</p>
+<p>接入socket.io,完成基本功能。然后修复交互的问题。</p>
+<p>接入之前的思考：</p>
+<p>socket接口需要将之前的哪些接口进行替换，哪些数据需要socket接口来进行二次处理。</p>
+<p>在基于现有数据库聊天，首先需要</p>
+<p>1.完成socket接入到Koa和react，然后模拟一个通信，了解整个流程以及数据处理。</p>
+<p>2.登录注册，携带token登录成功后，都需要发起一<br>个给socket服务一个消息告知用户登录。</p>
+<p>socket服务维护一个登录对象数组</p>
+<p>// socket -&gt; onlineUserList</p>
+<p>[{</p>
+<p>  userId:’’,</p>
+<p>  userName:’’,</p>
+<p>  state:’’,</p>
+<p>}]</p>
+<p>之所以加一个state是因为好友列表需要显示所有好友，因此状态必须加上，在线用户前端获取的时候无视就好了，反正退出的时候会自动从数组中删去。</p>
+<p>获取好友列表<br>socket -&gt; myFriendsList</p>
+<p>因为从数据库中取出来的时候都加了一个state，因此需要做一个循环判断在在线用户组中是否存在，存在的话更改state状态 0是已登录，1是未登录。</p>
+<p>[{</p>
+<p>  userId:’’,</p>
+<p>  userName:’’,</p>
+<p>  state:’’,</p>
+<p>}]</p>
+<p>消息推送这块还需要研究一下怎么针对某个用户进行分发。(ok，已经全部解决)</p>
+<p>已经完成了基本需求，接下来需要对一些交互做一些更改。</p>
+<p>今天遇到的几个问题，一个是昨天研究的聊天信息自动跳到底部，当1V1聊天完成之后有了灵感，解决了这个问题，然后顺便完成了查看历史消息(置顶),查看最新消息(置底)</p>
+<p>并且遇到了一些问题，比如在开发的时候，一开始合并获取在线用户列表，然后发现好友列表也可以一起合并返回,不需要再emit新的请求，因为一次校验成功就能说明权限通过审核。<br>之后更新好友上下线状态的时候一开始打算单独写一个好友下线的动作然后跟着刷新列表，但是写着写着发现不对，因为需要多次对数据库操作。想了一下换了一下逻辑，一开始我两个查询内容都给，好友我只给离线状态的所有成员，然后让前端自己在获取数据的时候循环遍历在线的userId,并自己更改好友状态，这样后台压力减小，前端只需要根据state状态排序，就可以让登录的好友在列表里置顶。<br>一开始我获取列表的接口是传递一个本地token去验证，然后我在react里写一个socket中间件去拦截action，loginwithtoken没问题，因为登录后localstroge已经存在本地，后来发现如果是登录和注册就不行了，因为动作拦截的时候登录状态并没有保存下来，因此动作拦截我就不做登录和注册，因为思考了流程里</p>
+<p>一开始我以为维护一个在线人数列表就行了，但是后来发现一对一用户需要将socket给保存下来，直接加入到在线的数组是不靠谱的，因此又维护一个socket数组来保存用户socket连接。</p>
+<p>因为一开始的接口文档设计的比较好，接入socket没费多大力气，消息的接受者ID和发起者ID都直接有数据传入，进行一个socket查找，然后再指定发送就行了。<br>然后通过timeago做了一下时间的处理。<br>优化了一下界面。<br>之后是打算先解决一些bug，完成消息撤销和修改。然后往加入图片上传和表情发送的功能。</p>
+<h4 id="明日计划-12"><a href="#明日计划-12" class="headerlink" title="明日计划"></a>明日计划</h4><p>完成消息撤销和修改。然后往加入图片上传和表情发送的功能。然后再优化整体，再调整一下交互。然后再加新功能。</p>
+<h4 id="感想-13"><a href="#感想-13" class="headerlink" title="感想"></a>感想</h4><p>写完socket对接感觉很棒，玄学问题没出现感觉更棒。<br>之前写的数据库版本给了很大的帮助，对接没多花心思在数据是否出错，是否需要调整等等，数据库设计的比较简单，加快了开发效率。<br>然后是真正意义上学习websocket和socket文档还是周一的早上和对接口的今天下午。感觉搜索资料经验积攒了不少。第一次发现学习效率那么高2333<br>剩下没啥感想，就想先把要求的先全完成，然后我再看看有没有时间加点别的~</p>
+<h3 id="8-17"><a href="#8-17" class="headerlink" title="8-17"></a>8-17</h3><h4 id="今日实习内容及完成情况-13"><a href="#今日实习内容及完成情况-13" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>完成更多的功能，基本实现大部分需求。<br>下面比较长：</p>
+<p>今天的任务是先完成<br>消息的60秒内撤销和修改<br>之前已经有了update_time<br>现在需要是˜把消息撤销接口完善（后来去看接口文档发现已经有了。。。），以及和socket直接通讯，因为不是发送所以可以直接让socket服务处理请求。前端 action 里面也需要加一个动作 editChat修改本地的消息内容</p>
+<p>然后是完成聊天中emoji和Img的发送</p>
+<p>emoji一开始知道有种方式就是字符串对应emoji，然后发送字符串，显示emoji。但是想试试在发送框里也是emoji。然后发现输入法自带的emoji能直接发送。。。<br>先考虑图片上传吧</p>
+<p>图片上传我想了三种方法：<br>1.用封装好的模块<br>2.用node.js自己写一个上传<br>3.利用第三方图床</p>
+<p>三种方法有利有弊，为了稳定开发我打算用第一种方式。</p>
+<p>然后一个下午都在调试Bug,主要问题是数据socket发过来了<br>但是在reduce里面<br>对于对象数组只更新某个属性，它是判断为相等</p>
+<p>比如<br>[{}.{}]<br>这种结构，我记得下午在写后台接口的时候成功过，然后更新到github，后来修改的时候发现用Object.assign一直不更新页面，有时候是数据没更新过来。<br>后来定位到reducer里面的代码，想了很多种方法，最后把更改属性的函数提取到外部执行再返回。成功。</p>
+<p>完成了图片上传，前端图片验证</p>
+<h4 id="明日计划-13"><a href="#明日计划-13" class="headerlink" title="明日计划"></a>明日计划</h4><p>准备先把后端的图片的逻辑验证了，然后开始修改优化。做PPT</p>
+<h4 id="感想-14"><a href="#感想-14" class="headerlink" title="感想"></a>感想</h4><p>遇到玄学BUG，改了一下午，改完~</p>
+<h3 id="8-18"><a href="#8-18" class="headerlink" title="8-18"></a>8-18</h3><h4 id="今日实习内容及完成情况-14"><a href="#今日实习内容及完成情况-14" class="headerlink" title="今日实习内容及完成情况"></a>今日实习内容及完成情况</h4><p>完成图片上传后端的验证逻辑</p>
+<p>添加服务器错误 0 2的统一错误处理</p>
+<p>前端添加对应的提示信息</p>
+<p>然后优化代码：</p>
+<p>1.去除多余</p>
+<p>2.格式化</p>
+<p>3.整理流程</p>
+<p>做PPT</p>
+<h4 id="明日计划-14"><a href="#明日计划-14" class="headerlink" title="明日计划"></a>明日计划</h4><p>心跳检测<br>前后端service层建立 socket中间件<br>红点标记，未读聊天</p>
+<h4 id="感想-15"><a href="#感想-15" class="headerlink" title="感想"></a>感想</h4><p>需要学习的地方还很多。</p>
+<p>session管理方案，以及在业务中一般是如何考量，然后一般用什么方法。 session-stroge cookie</p>
+<p>统一权限管理 socket 中间件</p>
+<p>airbnb 规范 service 方法抽象</p>
+<p>继续学习。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    在CVTE实习的那些天(生活篇)
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/框架/React/基础/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">基础</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

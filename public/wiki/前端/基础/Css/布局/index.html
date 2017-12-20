@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>布局 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,Css,布局">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前置知识浮动 浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。   设置了浮动的元素仍旧处于标准文档流中。会占据标准文档流空间，对其他元素有影响。  使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的文本依然会为这个元素让出位置，环绕在周围    clear语法：clear : none | left | right | both取值： none :">
+<meta name="keywords" content="前端,Css,布局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="布局">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/基础/Css/布局/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="前置知识浮动 浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。   设置了浮动的元素仍旧处于标准文档流中。会占据标准文档流空间，对其他元素有影响。  使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的文本依然会为这个元素让出位置，环绕在周围    clear语法：clear : none | left | right | both取值： none :">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/EA69DDBE-6A61-46D8-8EFC-2B48ABE36693.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/738CD293-7F8B-4530-A53D-F9A98C9785AF.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/73289818-470F-4849-87D5-E8D8B57948F1.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/7A4B6FAD-8E0D-49D4-9290-75D44E2C8ED3.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/A2E28B29-8660-4F7E-9FDA-C9E625F17B82.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/40783FD5-8AAF-48A4-9241-17A0DCFE5A9E.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/62FB2027-C3B7-419F-B44D-29BF60E77C1B.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/9C41A983-5F58-4CFD-8E93-54500DCCF5F7.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/38C1BFD2-F5F8-452A-8FB1-7D96E19D8640.png">
+<meta property="og:updated_time" content="2017-07-11T12:45:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="布局">
+<meta name="twitter:description" content="前置知识浮动 浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。   设置了浮动的元素仍旧处于标准文档流中。会占据标准文档流空间，对其他元素有影响。  使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的文本依然会为这个元素让出位置，环绕在周围    clear语法：clear : none | left | right | both取值： none :">
+<meta name="twitter:image" content="http://haoqiao.qiniudn.com/EA69DDBE-6A61-46D8-8EFC-2B48ABE36693.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构与算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/链表/">链表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/数据结构与算法/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/基础/Css/布局" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/">基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/Css/">Css</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Css/">Css</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/布局/">布局</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/基础/Css/布局/">
+            <time datetime="2017-07-11T06:46:00.000Z" itemprop="datePublished">2017-07-11</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/前端/基础/Css/布局.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/前端/基础/Css/布局.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/前端/基础/Css/布局.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            布局
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮动"><span class="toc-number">1.1.</span> <span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清楚浮动"><span class="toc-number">1.2.</span> <span class="toc-text">清楚浮动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin负值作用"><span class="toc-number">1.3.</span> <span class="toc-text">margin负值作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#居中"><span class="toc-number">1.4.</span> <span class="toc-text">居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#居中对齐"><span class="toc-number">1.4.1.</span> <span class="toc-text">居中对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中元素"><span class="toc-number">1.4.2.</span> <span class="toc-text">水平居中元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中对齐"><span class="toc-number">1.4.3.</span> <span class="toc-text">垂直居中对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列自适应布局"><span class="toc-number">1.4.4.</span> <span class="toc-text">两列自适应布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三栏布局"><span class="toc-number">1.4.5.</span> <span class="toc-text">三栏布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多栏布局"><span class="toc-number">1.4.6.</span> <span class="toc-text">多栏布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多列等高"><span class="toc-number">1.4.7.</span> <span class="toc-text">多列等高</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#流式布局"><span class="toc-number">1.4.7.1.</span> <span class="toc-text">流式布局</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flex"><span class="toc-number">1.5.</span> <span class="toc-text">Flex</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><ul>
+<li><p>浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。 </p>
+</li>
+<li><p>设置了浮动的元素仍旧处于标准文档流中。会占据标准文档流空间，对其他元素有影响。</p>
+</li>
+<li><p>使用float脱离文档流时，其他盒子会无视这个元素，但其他盒子内的文本依然会为这个元素让出位置，环绕在周围</p>
+</li>
+</ul>
+<blockquote>
+<p>clear语法：<br>clear : none | left | right | both<br>取值： none : 默认值。允许两边都可以有浮动对象</p>
+<p>left : 不允许左边有浮动对象 </p>
+<p>right : 不允许右边有浮动对象 </p>
+<p>both : 不允许有浮动对象</p>
+</blockquote>
+<h2 id="清楚浮动"><a href="#清楚浮动" class="headerlink" title="清楚浮动"></a>清楚浮动</h2><ul>
+<li>浮动元素脱离文档流（out of normal flow）之后，其他的元素在定位的时候会当做没看见它，两者位置重叠都是可以的 引起的问题</li>
+</ul>
+<ul>
+<li>（1）父元素的高度无法被撑开，影响与父元素同级的元素 </li>
+<li>（2）与浮动元素同级的非浮动元素（内联元素）会跟随其后 （</li>
+<li>(3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构</li>
+</ul>
+<blockquote>
+<p>清除浮动其实就一个目的，就是解决高度塌陷的问题</p>
+<p>塌陷原因是：元素含有浮动属性 – 破坏inline box – 破坏line box高度 – 没有高度 – 塌陷</p>
+<p>1.额外标签法，在浮动元素后使用一个空元素如《div style=”clear:both;”》《/div》（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。） </p>
+<p>2.使用after伪类 给浮动元素的容器添加一个clearfix的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。 .clearfix:after{ content:”.”; height:0; visibility:hidden; display:block; clear:both; } </p>
+<p>3.浮动外部元素：给浮动元素的容器也添加上浮动属性即可清理内部浮动。同overflow法一样无须添加额外的class，使用方便但是会对下面的文档造成影响。</p>
+<p>闭合浮动</p>
+<p>如果“闭合浮动”指的是避免“float无法撑高父容器的默认行为”的话，</p>
+<p>只要触发了BFC的属性值都可以闭合浮动</p>
+<p>通过设置父元素 overflow 或者display：table 属性来闭合浮动</p>
+</blockquote>
+<h2 id="margin负值作用"><a href="#margin负值作用" class="headerlink" title="margin负值作用"></a>margin负值作用</h2><blockquote>
+<p>当元素margin的top和left是负值时会引起元素的向上或向左位置移动。<br>而当元素margin的bottom和right是负值时会影响右边和下边相邻元素的参考线,即其右边和下边的相邻元素会进入覆盖它的一部分</p>
+</blockquote>
+<ul>
+<li><p>如果没有设定width属性，设定负margin-left/right会将元素拖向对应的方向，并增加宽度</p>
+</li>
+<li><p>margin-top为负值不会增加高度，只会产生向上位移</p>
+</li>
+<li><p>负margin会改变浮动元素的显示位置</p>
+</li>
+</ul>
+<h2 id="居中"><a href="#居中" class="headerlink" title="居中"></a>居中</h2><h3 id="居中对齐"><a href="#居中对齐" class="headerlink" title="居中对齐"></a>居中对齐</h3><ul>
+<li><p>上级容器中设置text-align:center</p>
+</li>
+<li><p>使用margin-left:auto,margin:auto,并设置width:+value 可以创建居中对齐的设定尺寸型元素</p>
+</li>
+<li><p>对绝对元素，可设置right:0,left:0使元素对齐到左右两边</p>
+</li>
+<li><p>将margin-left和margin-right设置为相同值，可以创建居中对齐的拉伸型元素</p>
+</li>
+</ul>
+<h3 id="水平居中元素"><a href="#水平居中元素" class="headerlink" title="水平居中元素"></a>水平居中元素</h3><ul>
+<li>margin + 定宽</li>
+</ul>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="child"&gt;Demo&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">  .child &#123;</div><div class="line">    width: 100px;</div><div class="line">    margin: 0 auto;</div><div class="line">  &#125;</div><div class="line">&lt;/style&gt;</div><div class="line"></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/bb4kpvdr/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li>table + margin</li>
+</ul>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="child"&gt;Demo&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">  .child &#123;</div><div class="line">    display: table;</div><div class="line">    margin: 0 auto;</div><div class="line">  &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">display: table 在表现上类似 block 元素，但是宽度为内容宽。</div><div class="line"></div><div class="line">无需设置父元素样式 （支持 IE 8 及其以上版本）兼容 IE 8 一下版本需要调整为 &lt;table&gt;</div><div class="line"></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/o2o9m9ez/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li>inline-block + text-align</li>
+</ul>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="child"&gt;Demo&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">  .child &#123;</div><div class="line">    display: inline-block;</div><div class="line">  &#125;</div><div class="line">  .parent &#123;</div><div class="line">    text-align: center;</div><div class="line">  &#125;</div><div class="line">&lt;/style&gt;</div><div class="line"> 兼容性佳（甚至可以兼容 IE 6 和 IE 7）</div><div class="line"></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/3zro85cn/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li>absolute + transform</li>
+</ul>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="child"&gt;Demo&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">  .parent &#123;</div><div class="line">    position: relative;</div><div class="line">  &#125;</div><div class="line">  .child &#123;</div><div class="line">    position: absolute;</div><div class="line">    left: 50%;</div><div class="line">    transform: translateX(-50%);</div><div class="line">  &#125;</div><div class="line">&lt;/style&gt;</div><div class="line"> 绝对定位脱离文档流，不会对后续元素的布局造成影响。</div><div class="line"> transform 为 CSS3 属性，有兼容性问题</div><div class="line"></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/52v0z8sb/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li>flex + justify-content</li>
+</ul>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="parent"&gt;</div><div class="line">  &lt;div class="child"&gt;Demo&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">  .parent &#123;</div><div class="line">     justify-content: center;</div><div class="line">    display: flex;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">  </div><div class="line">* 只需设置父节点属性，无需设置子元素</div><div class="line">* flex有兼容性问题</div><div class="line">* </div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/q4yma1sq/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li>text-center法</li>
+</ul>
+<blockquote>
+<p>父容器container加css属性 text-align:center;<br>子容器center加css属性display:inline-block;并设置Line-height</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/EA69DDBE-6A61-46D8-8EFC-2B48ABE36693.png" alt="imgn"></p>
+<h3 id="垂直居中对齐"><a href="#垂直居中对齐" class="headerlink" title="垂直居中对齐"></a>垂直居中对齐</h3><ul>
+<li><p>将行内元素的line-height:value设置为父元素相同的数值，要求父元素必须设定尺寸</p>
+</li>
+<li><p>对绝对元素:设置绝对元素的尺寸，top:0,bottom:0将其对齐到上<br>下边，margin-top:0,margin-bottom:0对齐到中间。</p>
+</li>
+<li><p>将margin-left和margin-right设置为相同值。再top:0,bottom:0将其对齐到上下边</p>
+</li>
+</ul>
+<ul>
+<li>单行文本水平居中只要让line-height 值等于 height值。水平居中的话加上<code>text-align:center</code>即可</li>
+</ul>
+<p><img src="http://haoqiao.qiniudn.com/738CD293-7F8B-4530-A53D-F9A98C9785AF.png" alt="imgn"></p>
+<ul>
+<li>多行内容居中</li>
+</ul>
+<blockquote>
+<p>只要给div设置上下相同的padding就行了</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/73289818-470F-4849-87D5-E8D8B57948F1.png" alt="imgn"></p>
+<ul>
+<li>绝对定位 absolute + 定位高度 top + margin-top 法</li>
+</ul>
+<blockquote>
+<p>这种方法主要是针对多行元素来进行元素的垂直居中，而并非是此元素的内容垂直居中。</p>
+<p>给容器设置绝对定位position:absolute<br>定位高度（top:50%）和margin-top:-height/2 元素进行绝对定位后脱离文档流，其宽度是根据元素内容所占宽度来计算的，为这能让其视觉效果更好，最好给元素定义一个宽度值. 如果需要指定容器宽度，为了让它能够水平居中，我们还需给一个宽度width,并且加上margin-left:-width/2</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/7A4B6FAD-8E0D-49D4-9290-75D44E2C8ED3.png" alt="imgn"></p>
+<ul>
+<li>table法</li>
+</ul>
+<blockquote>
+<p>div模拟表格效果，外部div设置display为table，内部div设置display为table-cell,并且将vertical-align设为middle 但是这样只做到了垂直居中，水平居中需要外度div设置宽度，可以是100%,然后内部添加text-align: center;</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/A2E28B29-8660-4F7E-9FDA-C9E625F17B82.png" alt="imgn"></p>
+<h3 id="两列自适应布局"><a href="#两列自适应布局" class="headerlink" title="两列自适应布局"></a>两列自适应布局</h3><ul>
+<li>右侧固定宽度 左侧自适应 flex</li>
+</ul>
+<p><img src="http://haoqiao.qiniudn.com/40783FD5-8AAF-48A4-9241-17A0DCFE5A9E.png" alt="imgn"></p>
+<ul>
+<li>左列不定宽，右列自适应 float + BFC</li>
+</ul>
+<p><img src="http://haoqiao.qiniudn.com/62FB2027-C3B7-419F-B44D-29BF60E77C1B.png" alt="imgn"></p>
+<h3 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h3><ul>
+<li>position+margin（两侧定宽，中间自适应）</li>
+</ul>
+<blockquote>
+<p>中间自适应的三列布局的：子列和附加列分别浮动到左边和右边，主列设置左右外边距即可,需要注意的是子列和附加列要写在主列的前面，顺序不能变。</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/9C41A983-5F58-4CFD-8E93-54500DCCF5F7.png" alt="imgn"></p>
+<ul>
+<li>圣杯布局</li>
+</ul>
+<blockquote>
+<p>使主要内容列先加载。 允许任何列是最高的。 没有额外的div。 需要的hack很少。</p>
+<p>分别浮动main、sub、extra三列， 然后利用负外边距把sub列和extra列定位到左右两边<br>sub和extra列已经到了正确的位置，但是sub和extra列却覆盖了main的两边，对于这个问题，圣杯布局的解决办法是给容器container添加左、右内边距，从而让main列定位到正确的位置</p>
+<p>sub、extra列也受到容器左右内边距的影响位置发生了移动。为了解决这个问题，圣杯布局使用相对定位使sub、extra列回到正确的位置</p>
+</blockquote>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="container"&gt;</div><div class="line">  &lt;div class="main"&gt;&lt;/div&gt;</div><div class="line">  &lt;div class="sub"&gt;&lt;/div&gt;</div><div class="line">  &lt;div class="extra"&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">                  </div><div class="line">body &#123;</div><div class="line">     min-width: 600px; /* 2*sub + extra */</div><div class="line">&#125;</div><div class="line">.container &#123;</div><div class="line">     padding-left: 210px;</div><div class="line">     padding-right: 190px;</div><div class="line">&#125;</div><div class="line">.main &#123;</div><div class="line">     float: left;</div><div class="line">     width: 100%;</div><div class="line">     height: 300px;</div><div class="line">     background-color: rgba(255, 0, 0, .5);</div><div class="line">&#125;</div><div class="line">.sub &#123;</div><div class="line">     position: relative;</div><div class="line">     left: -210px;</div><div class="line">     float: left;</div><div class="line">     width: 200px;</div><div class="line">     height: 300px;</div><div class="line">     margin-left: -100%;</div><div class="line">     background-color: rgba(0, 255, 0, .5);</div><div class="line">&#125;</div><div class="line">.extra &#123;</div><div class="line">     position: relative;</div><div class="line">     right: -190px;</div><div class="line">     float: left;</div><div class="line">     width: 180px;</div><div class="line">     height: 300px;</div><div class="line">     margin-left: -180px;</div><div class="line">     background-color: rgba(0, 0, 255, .5);</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/6f2go8zj/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li>双飞翼布局</li>
+</ul>
+<blockquote>
+<p>DOM按照主、子、附加列的顺序加载，实现了重要内容先加载。 main部分是自适应宽度的，很容易在定宽布局和流体布局中切换。 在浏览器上的兼容性非常好，IE5.5以上都支持。 实现了内容与布局的分离，即Eric提到的Any-Order Columns.任何一栏都可以是最高栏，不会出问题。需要的hack非常少</p>
+</blockquote>
+<figure class="highlight"><figcaption><span>Javascript Array Syntax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div class="main-wrapper"&gt;</div><div class="line">    &lt;div class="main"&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class="sub"&gt;&lt;/div&gt;</div><div class="line">&lt;div class="extra"&gt;&lt;/div&gt;</div><div class="line"></div><div class="line"></div><div class="line">.main-wrapper &#123;</div><div class="line">     float: left;</div><div class="line">     width: 100%;</div><div class="line">&#125;</div><div class="line">.main &#123;</div><div class="line">     height: 300px;</div><div class="line">     margin-left: 210px;</div><div class="line">     margin-right: 190px;</div><div class="line">     background-color: rgba(255, 0, 0, .5);</div><div class="line">&#125;</div><div class="line">.sub &#123;</div><div class="line">     float: left;</div><div class="line">     width: 200px;</div><div class="line">     height: 300px;</div><div class="line">     margin-left: -100%;</div><div class="line">     background-color: rgba(0, 255, 0, .5);</div><div class="line">&#125;</div><div class="line">.extra &#123;</div><div class="line">     float: left;</div><div class="line">     width: 180px;</div><div class="line">     height: 300px;</div><div class="line">     margin-left: -180px;</div><div class="line">     background-color: rgba(0, 0, 255, .5);</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/4vo1wpv3/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<h3 id="多栏布局"><a href="#多栏布局" class="headerlink" title="多栏布局"></a>多栏布局</h3><blockquote>
+<p>使用float或postion属性的特点</p>
+<p>两个div元素是各自独立的，如果在其中一个加入一些内容，会使两个元素的底部不能对齐，导致页面出现一块空白区域。<br>column-count 配合 -webkit-column-width 将一个元素里的内容分为两栏或多栏显示，但是缩放都是一致的，不存在两边不变中间自适应</p>
+<p>盒布局<br>display: -webkit-box;可以自定义每个栏的宽度</p>
+<p>flex 使用order可以改变显示顺序</p>
+</blockquote>
+<h3 id="多列等高"><a href="#多列等高" class="headerlink" title="多列等高"></a>多列等高</h3><blockquote>
+<p>首先把列的padding-bottom设为一个足够大的值，再把列的margin-bottom设一个与前面的padding- bottom的正值相抵消的负值，父容器设置超出隐藏，这样子父容器的高度就还是它里面的列没有设定padding-bottom时的高度，当它里面的任 一列高度增加了，则父容器的高度被撑到它里面最高那列的高度，其他比这列矮的列则会用它们的padding-bottom来补偿这部分高度差。因为背景是 可以用在padding占用的空间里的，而且边框也是跟随padding变化的，所以就成功的完成了一个障眼法。</p>
+<p>此时运用的是padding可以撑开外层标签而margin不用来撑开外层标签。即当padding-bottom:10000px时撑开外层标签的高度增加10000px,外层标签用overflow:hidden;隐藏掉多余的高，这样可以让高度与最高的那一栏对齐；而margin关乎模块布局，margin:-10000px可以抵消掉padding撑开的盒子使布局能够从内容部分开始。</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/38C1BFD2-F5F8-452A-8FB1-7D96E19D8640.png" alt="imgn"></p>
+<h4 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h4><blockquote>
+<p>简单说呢就针对不同的屏幕分辨率应用不同的CSS样式。比如在电脑、Pad设备上，屏幕比较宽，就可以一行放2个Div。<br>到了手机上，或者Pad竖着拿的的时候，一行就只放1个Div。<br>这里有2个关键点：<br>一是如何在不修改Dom结构的前提下调整布局。<br>二是如何判断屏幕分辨率并应用对应的CSS。<br>以上两点都应该不依赖与JS。<br>实现第一点依靠的是流式布局。就是所有参与布局的DIV都用float:left，宽度都用百分比表示。比如下图，黄色部分的宽度是60%，橘色宽度是40%。</p>
+</blockquote>
+<h2 id="Flex"><a href="#Flex" class="headerlink" title="Flex"></a>Flex</h2><blockquote>
+<p>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</p>
+<p>Flex布局是基于flex-flow流可以很方便的用来做局中，能对不同屏幕大小自适应。</p>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/基础/Css/基础/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    基础
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/基础/Html/基础/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">基础</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2017 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
