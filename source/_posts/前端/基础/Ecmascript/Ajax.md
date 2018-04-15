@@ -169,6 +169,88 @@ removeNode(this)（ie适用）
 12. 所有的空间在引用时都要这样引用：document.getElementById（“XX”）
 
 
+## XHR如何传递二进制流
+
+XMLHttpRequest对象的send方法已被增强,可以通过简单的传入一个ArrayBuffer, Blob, 或者 File对象来发送二进制数据. File 对象是特殊类型的 Blob
+
+
+
+
+通过 `blob`
+
+
+```
+
+var oReq = new XMLHttpRequest();
+oReq.open("POST", url, true);
+oReq.onload = function (oEvent) {
+  // Uploaded.
+};
+
+var blob = new Blob(['abc123'], {type: 'text/plain'});
+
+oReq.send(blob);
+
+```
+
+或者`ArrayBuffer`
+
+```
+
+var myArray = new ArrayBuffer(512);
+var longInt8View = new Uint8Array(myArray);
+
+for (var i=0; i< longInt8View.length; i++) {
+  longInt8View[i] = i % 255;
+}
+
+var xhr = new XMLHttpRequest;
+xhr.open("POST", url, false);
+xhr.send(myArray);
+
+```
+
+读取了一个二进制图像文件,并且由该文件的二进制原生字节创建了一个8位无符号整数的数组.
+
+```
+
+var oReq = new XMLHttpRequest();
+oReq.open("GET", "/myfile.png", true);
+oReq.responseType = "arraybuffer";
+
+oReq.onload = function (oEvent) {
+  var arrayBuffer = oReq.response; // 注意:不是oReq.responseText
+  if (arrayBuffer) {
+    var byteArray = new Uint8Array(arrayBuffer);
+    for (var i = 0; i < byteArray.byteLength; i++) {
+      // 对数组中的每个字节进行操作
+    }
+  }
+};
+
+oReq.send(null);
+
+```
+
+## 在老的浏览器中接受二进制数据
+
+```
+
+function load_binary_resource(url) {
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  //XHR binary charset opt by Marcus Granado 2006 [http://mgran.blogspot.com]
+  req.overrideMimeType('text/plain; charset=x-user-defined');
+  req.send(null);
+  if (req.status != 200) return '';
+  return req.responseText;
+}
+
+```
+
+> 第五行 该行重写了默认的MIME类型,强制浏览器将该响应当成纯文本文件来对待, 使用一个用户自定义的字符集.这样就是告诉了浏览器,不要去解析数据,直接返回未处理过的字节码.
+
+
 
 
 

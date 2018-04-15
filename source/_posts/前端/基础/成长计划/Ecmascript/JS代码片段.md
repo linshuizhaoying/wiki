@@ -256,16 +256,6 @@ Stops the carousel from cycling through items.
 
 ```
 
-### 设计一个轮播图效果，你会如何设计图片切换。图片轮播只给三个标签加载100张图片怎么做
-
-个人思路：
-js做控制，定义一个缓存数组，然后定时替换元素。
-
-一系列的大小相等的图片平铺，利用CSS布局只显示一张图片，其余隐藏。通过计算偏移量利用定时器实现自动播放，或通过手动点击事件切换图片。
-
-对DOM删除再创建是消耗比较大的因此采用全替换方式来完成效果。
-
-
 ## 日历
 
 {% codeblock lang:html %}
@@ -924,6 +914,18 @@ Router.route('/green', function() {
 {% endcodeblock %}
 
 
+react-router的路由机制就是
+
+借助history库，history中实现了push，go,goBack等方法，注册了popstate事件，当路由跳转时，使用浏览器内置的history api 操作 history栈
+
+history库对外暴露的history对象提供了listen方法，<Router></Router>组件会注册一个listener
+
+当调用hsitory.push或popstate事件触发时，执行listener
+
+<Router></Router>注册的监听函数内部会setState更新状态
+
+<Router></Router>的子组件<Route>的componentWillReceiveProps生命周期函数中能得到Router中context,根据当前path和浏览器当前location来判断当前route是否match，匹配就渲染component
+
 ## History API
 
 
@@ -935,4 +937,48 @@ Router.route('/green', function() {
 
 ### 相同之处是两个 API 都会操作浏览器的历史记录，而不会引起页面的刷新。  不同之处在于，pushState会增加一条新的历史记录，而replaceState则会替换当前的历史记录。
 
+
+## 下载文件进度条，显示当前下载进度
+
+>原理 主要是监听 xmlhttprequest 对象的 `progress` 过程
+
+{% codeblock lang:js %}
+
+  var that = this;
+            var page_url = 'download.ashx';
+            var req = new XMLHttpRequest();
+            req.open("POST", page_url, true);
+            //监听进度事件
+            req.addEventListener("progress", function (evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    console.log(percentComplete);
+                    $("#progressing").html((percentComplete * 100) + "%");
+                }
+            }, false);
+
+            req.responseType = "blob";
+            req.onreadystatechange = function () {
+                if (req.readyState === 4 && req.status === 200) {
+                    var filename = $(that).data('filename');
+                    if (typeof window.chrome !== 'undefined') {
+                        // Chrome version
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(req.response);
+                        link.download = filename;
+                        link.click();
+                    } else if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                        // IE version
+                        var blob = new Blob([req.response], { type: 'application/force-download' });
+                        window.navigator.msSaveBlob(blob, filename);
+                    } else {
+                        // Firefox version
+                        var file = new File([req.response], filename, { type: 'application/force-download' });
+                        window.open(URL.createObjectURL(file));
+                    }
+                }
+            };
+            req.send();
+
+{% endcodeblock %}
 
