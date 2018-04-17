@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>框架基础 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,KOA,框架基础">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="koa源码 与中间件知识点koa源码。怎么实现中间件机制。koa2和koa1有什么区别 KOA背景资料 koa 是由 Express 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。使用 koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套，并极大地提升错误处理的效率。koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅">
+<meta name="keywords" content="前端,KOA,框架基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="框架基础">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/框架/框架基础/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="koa源码 与中间件知识点koa源码。怎么实现中间件机制。koa2和koa1有什么区别 KOA背景资料 koa 是由 Express 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。使用 koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套，并极大地提升错误处理的效率。koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/koa2img1.png">
+<meta property="og:image" content="https://developer.mozilla.org/files/464/Gecko_Overview_9.png">
+<meta property="og:image" content="http://haoqiao.qiniudn.com/react%20event%20.jpg">
+<meta property="og:updated_time" content="2018-03-19T03:37:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="框架基础">
+<meta name="twitter:description" content="koa源码 与中间件知识点koa源码。怎么实现中间件机制。koa2和koa1有什么区别 KOA背景资料 koa 是由 Express 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。使用 koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套，并极大地提升错误处理的效率。koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅">
+<meta name="twitter:image" content="http://haoqiao.qiniudn.com/koa2img1.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/CSS 世界/">CSS 世界</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/websocket/">websocket</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/hash/">hash</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/electron/">electron</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机基础
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/计算机基础/浏览器/">浏览器</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/计算机基础/HTTP/">HTTP</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2018-03-25-推送系统源码学习/">推送系统源码学习(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/react/">react</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/react native/">react native</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/Vue/">Vue</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/框架/框架基础/">框架基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            进阶
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/安全/csrf/">CSRF</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/安全/HTTPS/">HTTPS</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/链表/">链表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            设计模式
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/设计模式/设计模式/">设计模式</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/人类简史/">人类简史 - 摘记</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/睡眠革命:如何让睡眠更高效/">睡眠革命:如何让睡眠更高效</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深度工作-如何有效使用每一点脑力/">近期日常与<<深度工作>></深度工作></a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/框架/框架基础" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/框架/">框架</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/KOA/">KOA</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/框架基础/">框架基础</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/框架/框架基础/">
+            <time datetime="2017-10-22T02:35:12.000Z" itemprop="datePublished">2017-10-22</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/raw/writing/source/_posts/前端/框架/框架基础.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/edit/writing/source/_posts/前端/框架/框架基础.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/commits/writing/source/_posts/前端/框架/框架基础.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            框架基础
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#koa源码-与中间件"><span class="toc-number">1.</span> <span class="toc-text">koa源码 与中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点"><span class="toc-number">1.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KOA背景资料"><span class="toc-number">1.2.</span> <span class="toc-text">KOA背景资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KOA2源码剖析"><span class="toc-number">1.3.</span> <span class="toc-text">KOA2源码剖析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#koa1-与-koa2-的区别"><span class="toc-number">1.4.</span> <span class="toc-text">koa1 与 koa2 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-number">1.5.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React"><span class="toc-number">2.</span> <span class="toc-text">React</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点-1"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React背景资料"><span class="toc-number">2.2.</span> <span class="toc-text">React背景资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特性"><span class="toc-number">2.3.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#virtual-dom"><span class="toc-number">2.4.</span> <span class="toc-text">virtual dom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调和"><span class="toc-number">2.5.</span> <span class="toc-text">调和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diff"><span class="toc-number">2.6.</span> <span class="toc-text">diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SyntheticEvent-合成事件"><span class="toc-number">2.7.</span> <span class="toc-text">SyntheticEvent (合成事件)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件热加载方案"><span class="toc-number">2.8.</span> <span class="toc-text">组件热加载方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为啥要给列表类组件设个key"><span class="toc-number">2.9.</span> <span class="toc-text">为啥要给列表类组件设个key?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料-1"><span class="toc-number">2.10.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux"><span class="toc-number">3.</span> <span class="toc-text">Redux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux-是如何管理React"><span class="toc-number">3.1.</span> <span class="toc-text">Redux 是如何管理React</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-有哪些优缺点"><span class="toc-number">4.</span> <span class="toc-text">Redux 有哪些优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HOC"><span class="toc-number">5.</span> <span class="toc-text">HOC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#antd是如何实现组件的封装的"><span class="toc-number">5.1.</span> <span class="toc-text">antd是如何实现组件的封装的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React-Redux的HOC的实现，connect函数的实现"><span class="toc-number">5.2.</span> <span class="toc-text">React-Redux的HOC的实现，connect函数的实现</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="koa源码-与中间件"><a href="#koa源码-与中间件" class="headerlink" title="koa源码 与中间件"></a>koa源码 与中间件</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>koa源码。怎么实现中间件机制。koa2和koa1有什么区别</p>
+<h3 id="KOA背景资料"><a href="#KOA背景资料" class="headerlink" title="KOA背景资料"></a>KOA背景资料</h3><blockquote>
+<p>koa 是由 Express 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。使用 koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套，并极大地提升错误处理的效率。koa 不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库，使得编写 Web 应用变得得心应手。 </p>
+</blockquote>
+<h3 id="KOA2源码剖析"><a href="#KOA2源码剖析" class="headerlink" title="KOA2源码剖析"></a>KOA2源码剖析</h3><p>来一张原理图:</p>
+<p><img src="http://haoqiao.qiniudn.com/koa2img1.png" alt="imgn"></p>
+<p>Koa 的源码中主要为 lib 目录下的 application.js、context.js、request.js 与 response.js 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">application.js: 框架入口，导出 Application 类，即使用时导入的 Koa 类</div><div class="line"></div><div class="line">context.js: context 对象的原型，代理 request 与 response 对象</div><div class="line"></div><div class="line">request.js: request 对象的原型，提供请求相关的数据与操作</div><div class="line"></div><div class="line">response.js: response 对象的原型，提供响应相关的数据与操作</div></pre></td></tr></table></figure>
+<p>我们从核心的<code>application</code>开始读，首先我们会看到加载了一系列的依赖，但最重要的还是<code>Emitter</code></p>
+<p>因为<code>module.exports = class Application extends Emitter</code></p>
+<p>暴露出来的类就直接是继承自<code>Emitter</code></p>
+<p>而<code>Emitter</code>是NodeJS中<code>events</code>模块提供的一个对象，<code>EventEmitter 的核心就是事件触发与事件监听器功能的封装</code></p>
+<p>这样我们不难推导出，<code>Application</code>的主要作用就是绑定监听一些事件，等待触发然后处理。</p>
+<p>所有的异步 I/O 操作在完成时都会发送一个事件到事件队列.</p>
+<p>接着看构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">constructor() &#123;</div><div class="line">  super(); // super 关键字用于调用一个对象的父对象上的函数。(tip 1)</div><div class="line"></div><div class="line">  this.proxy = false; // 默认取消代理</div><div class="line">  this.middleware = []; // 中间件</div><div class="line">  this.subdomainOffset = 2; //子域默认偏移量(tip 2)</div><div class="line">  </div><div class="line">      </div><div class="line">  this.env = process.env.NODE_ENV || &apos;development&apos;; // 环境判断</div><div class="line">  this.context = Object.create(context);</div><div class="line">  // Object.create() 方法会使用指定的原型对象及其属性去创建一个新的对象，context是之前加载的本地context.js依赖</div><div class="line">  </div><div class="line">  this.request = Object.create(request);</div><div class="line">  this.response = Object.create(response);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>初始化之后我们看内部的<code>listen函数</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">listen(...args) &#123;</div><div class="line">  debug(&apos;listen&apos;);</div><div class="line">  const server = http.createServer(this.callback());</div><div class="line">  return server.listen(...args);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过<code>http</code>模块创建Server服务。然后调用本地的<code>callback()</code></p>
+<p>我们来看<code>callback()</code>做了什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">callback() &#123;</div><div class="line">    const fn = compose(this.middleware);</div><div class="line">// 传入中间件数组作为参数组合生成一个函数</div><div class="line"></div><div class="line">    if (!this.listeners(&apos;error&apos;).length) this.on(&apos;error&apos;, this.onerror);</div><div class="line"></div><div class="line">// callback方法返回http.createServer所需要的回调函数handleRequest</div><div class="line"></div><div class="line">    const handleRequest = (req, res) =&gt; &#123;</div><div class="line">      res.statusCode = 404;</div><div class="line">      // 利用createContext函数把node返回的req和res进行了封装创建出context</div><div class="line">      const ctx = this.createContext(req, res);</div><div class="line">      const onerror = err =&gt; ctx.onerror(err);</div><div class="line">      const handleResponse = () =&gt; respond(ctx); //响应处理</div><div class="line">      </div><div class="line">      onFinished(res, onerror);// 当request对象关闭，完成或者报错的时候会执行回调函数。</div><div class="line">      </div><div class="line">      return fn(ctx).then(handleResponse).catch(onerror); // 依次调用所有中间件，然后执行响应处理函数respond(ctx)</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    return handleRequest;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>我们可以看到起手调用了<code>compose</code>,这也是依赖模块<code>koa-compose</code>，但是在源码中没有，我们需要<code>yarn</code>或者<code>npm</code>把依赖下载下来。<code>callback()函数通过 koa-compose 组合所有的中间件，组合成单个函数。</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function compose (middleware) &#123;</div><div class="line">  // middleware 必须是数组不然抛出异常</div><div class="line">  if (!Array.isArray(middleware)) throw new TypeError(&apos;Middleware stack must be an array!&apos;)</div><div class="line">  // middleware数组里必须是function不然抛出异常</div><div class="line">  for (const fn of middleware) &#123;</div><div class="line">    if (typeof fn !== &apos;function&apos;) throw new TypeError(&apos;Middleware must be composed of functions!&apos;)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  /**</div><div class="line">   * @param &#123;Object&#125; context</div><div class="line">   * @return &#123;Promise&#125;</div><div class="line">   * @api public</div><div class="line">   */</div><div class="line">  // 接受上下文，以及next</div><div class="line">  return function (context, next) &#123;</div><div class="line">    // last called middleware #</div><div class="line">    let index = -1</div><div class="line">    return dispatch(0)</div><div class="line">    // dispatch函数的递归调用</div><div class="line">    </div><div class="line">    function dispatch (i) &#123;</div><div class="line">      if (i &lt;= index) return Promise.reject(new Error(&apos;next() called multiple times&apos;))</div><div class="line">      index = i</div><div class="line">      let fn = middleware[i]</div><div class="line">      // 处理最后一个中间件还有next的情况，直接resolve</div><div class="line">      if (i === middleware.length) fn = next</div><div class="line">      if (!fn) return Promise.resolve()</div><div class="line">      try &#123;</div><div class="line">        return Promise.resolve(fn(context, function next () &#123;</div><div class="line">          return dispatch(i + 1)</div><div class="line">        &#125;))</div><div class="line">      &#125; catch (err) &#123;</div><div class="line">        return Promise.reject(err)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Koa处理请求的过程：当请求到来的时候，会通过 req 和 res 来创建一个 context (ctx) ，然后执行中间件。</code></p>
+<p>这就要提到自带的<code>createContext</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">createContext(req, res) &#123;</div><div class="line"> // 通过context.js request.js response.js创建context  request  response</div><div class="line">   const context = Object.create(this.context);</div><div class="line">   const request = context.request = Object.create(this.request);</div><div class="line">   const response = context.response = Object.create(this.response);</div><div class="line">   </div><div class="line">   // 参数赋值</div><div class="line">   context.app = request.app = response.app = this;</div><div class="line">   context.req = request.req = response.req = req;</div><div class="line">   context.res = request.res = response.res = res;</div><div class="line">   request.ctx = response.ctx = context;</div><div class="line">   request.response = response;</div><div class="line">   response.request = request;</div><div class="line">   context.originalUrl = request.originalUrl = req.url;</div><div class="line">   context.cookies = new Cookies(req, res, &#123;</div><div class="line">     keys: this.keys,</div><div class="line">     secure: request.secure</div><div class="line">   &#125;);</div><div class="line">   request.ip = request.ips[0] || req.socket.remoteAddress || &apos;&apos;;</div><div class="line">   context.accept = request.accept = accepts(req);</div><div class="line">   context.state = &#123;&#125;;</div><div class="line">   return context;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>然后我们来看响应处理函数<code>respond</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function respond(ctx) &#123;</div><div class="line">  //  koa 中可以通过设置 ctx.respond = false来跳过这个函数</div><div class="line">  if (false === ctx.respond) return;</div><div class="line">  </div><div class="line">  // 当上下文对象不可写时也会退出该函数</div><div class="line">  const res = ctx.res;</div><div class="line">  if (!ctx.writable) return;</div><div class="line"></div><div class="line">  let body = ctx.body;</div><div class="line">  const code = ctx.status;</div><div class="line"></div><div class="line">  // 当返回的状态码表示没有响应主体时，将响应主体置空：</div><div class="line">  if (statuses.empty[code]) &#123;</div><div class="line">    // strip headers</div><div class="line">    ctx.body = null;</div><div class="line">    return res.end();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">//当请求方法为 HEAD 时，判断响应头是否发送以及响应主体是否为 JSON 格式，若满足则设置响应 Content-Length：</div><div class="line">  if (&apos;HEAD&apos; == ctx.method) &#123;</div><div class="line">    if (!res.headersSent &amp;&amp; isJSON(body)) &#123;</div><div class="line">      ctx.length = Buffer.byteLength(JSON.stringify(body));</div><div class="line">    &#125;</div><div class="line">    return res.end();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 当返回的状态码表示有响应主体，但响应主体为空时，将响应主体设置为响应信息或状态码。并当响应头未发送时设置 Content-Type 与 Content-Length：</div><div class="line">  if (null == body) &#123;</div><div class="line">    body = ctx.message || String(code);</div><div class="line">    if (!res.headersSent) &#123;</div><div class="line">      ctx.type = &apos;text&apos;;</div><div class="line">      ctx.length = Buffer.byteLength(body);</div><div class="line">    &#125;</div><div class="line">    return res.end(body);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 对不同的响应主体进行处理</div><div class="line">  if (Buffer.isBuffer(body)) return res.end(body);</div><div class="line">  if (&apos;string&apos; == typeof body) return res.end(body);</div><div class="line">  if (body instanceof Stream) return body.pipe(res);</div><div class="line"></div><div class="line">  // body: json</div><div class="line">  body = JSON.stringify(body);</div><div class="line">  if (!res.headersSent) &#123;</div><div class="line">    ctx.length = Buffer.byteLength(body);</div><div class="line">  &#125;</div><div class="line">  res.end(body);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以看到处理函数是做了一系列判断，最后是用<code>res.end</code>来输出body.</p>
+<p>读完<code>application.js</code>之后回到之前的列表，接下来读<code>context.js</code></p>
+<p>原以为<code>context.js</code>有一些处理函数。但是读完发现它里面只做了三件事：</p>
+<p>1.暴露一个对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const proto = module.exports</div></pre></td></tr></table></figure>
+<ol>
+<li>错误处理函数,this.app继承自event.emitter，通过error事件触发onerror。onerror方法将取得的error code设置为传入err的status，默认为500，在设置完http相应的长度、状态码及body后，发送该响应至用户。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">onerror(err) &#123;</div><div class="line"></div><div class="line">// 首先对传入的 err 变量进行判断，当 err 为空时退出该函数，或者当 err 不为空且不为 Error 类型时抛出异常。</div><div class="line">    // don&apos;t do anything if there is no error.</div><div class="line">    // this allows you to pass `this.onerror`</div><div class="line">    // to node-style callbacks.</div><div class="line">    if (null == err) return;</div><div class="line"></div><div class="line">    if (!(err instanceof Error)) err = new Error(`non-error thrown: $&#123;err&#125;`);</div><div class="line"></div><div class="line">// 设置 headerSent变量表示响应头是否发送，若响应头以发送，或者不可写（即无法在响应中添加错误信息等），则退出该函数</div><div class="line"></div><div class="line">    let headerSent = false;</div><div class="line">    if (this.headerSent || !this.writable) &#123;</div><div class="line">      headerSent = err.headerSent = true;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 触发 app 自身的 error 事件，将错误抛给 app。</div><div class="line">    // delegate</div><div class="line">    this.app.emit(&apos;error&apos;, err, this);</div><div class="line"></div><div class="line">    // nothing we can do here other</div><div class="line">    // than delegate to the app-level</div><div class="line">    // handler and log.</div><div class="line">    if (headerSent) &#123;</div><div class="line">      return;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    const &#123; res &#125; = this;</div><div class="line"></div><div class="line">// 因为发生了错误，所以必须将之前的中间设置的响应头信息清空。</div><div class="line"></div><div class="line">    // first unset all headers</div><div class="line">    if (typeof res.getHeaderNames === &apos;function&apos;) &#123;</div><div class="line">      res.getHeaderNames().forEach(name =&gt; res.removeHeader(name));</div><div class="line">    &#125; else &#123;</div><div class="line">      res._headers = &#123;&#125;; // Node &lt; 7.7</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // then set those specified</div><div class="line">    this.set(err.headers);</div><div class="line"></div><div class="line">    // force text/plain</div><div class="line">    this.type = &apos;text&apos;;</div><div class="line"></div><div class="line">    // ENOENT support</div><div class="line">    if (&apos;ENOENT&apos; == err.code) err.status = 404;</div><div class="line"></div><div class="line">    // default to 500</div><div class="line">    if (&apos;number&apos; != typeof err.status || !statuses[err.status]) err.status = 500;</div><div class="line"></div><div class="line">    // respond</div><div class="line">    const code = statuses[err.status];</div><div class="line">    // Koa 使用 http-errors 创建错误对象，expose 属性表示是否像客户端暴露错误信息。</div><div class="line">    const msg = err.expose ? err.message : code;</div><div class="line">    this.status = err.status;</div><div class="line">    this.length = Buffer.byteLength(msg);</div><div class="line">    this.res.end(msg);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>3.将request和response的方法代理到自己身上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">delegate(proto, &apos;response&apos;)</div><div class="line">  .method(&apos;attachment&apos;)</div><div class="line">  .method(&apos;redirect&apos;)</div><div class="line">  .method(&apos;remove&apos;)</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"></div><div class="line">delegate(proto, &apos;request&apos;)</div><div class="line">  .method(&apos;acceptsLanguages&apos;)</div><div class="line">  .method(&apos;acceptsEncodings&apos;)</div><div class="line">  .method(&apos;acceptsCharsets&apos;)</div><div class="line">  .method(&apos;accepts&apos;)</div><div class="line">  .method(&apos;get&apos;)</div><div class="line">  .method(&apos;is&apos;)</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>接下来是<code>request.js</code>, 开头加载了一些依赖模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const URL = require(&apos;url&apos;).URL;</div><div class="line">const net = require(&apos;net&apos;);</div><div class="line">const contentType = require(&apos;content-type&apos;);</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>和之前两者不一样，它是直接暴露了里面的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  get header() &#123;</div><div class="line">    return this.req.headers;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  set header(val) &#123;</div><div class="line">    this.req.headers = val;</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  ...</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>request里的方法都是封装了请求相关的属性以及方法。相当于一个代理转发。只是把名称缩写了。</p>
+<p>通过 application.js 中的createContext方法，代理对应的 request 对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">createContext(req, res) &#123;</div><div class="line">   const context = Object.create(this.context);</div><div class="line">   const request = context.request = Object.create(this.request);</div><div class="line">   const response = context.response = Object.create(this.response);</div><div class="line">   context.app = request.app = response.app = this;</div><div class="line">   context.req = request.req = response.req = req;</div><div class="line">   context.res = request.res = response.res = res;</div><div class="line">   request.ctx = response.ctx = context;</div><div class="line">   request.response = response;</div><div class="line">   response.request = request;</div><div class="line">   context.originalUrl = request.originalUrl = req.url;</div></pre></td></tr></table></figure>
+<p>request.req为原生的请求对象，在 request.js 中属性的获取都是通过 ths.req来获取的（即 request.req）。 因为之前context代理了所有事件，</p>
+<p><code>const request = context.request = Object.create(this.request)</code></p>
+<p><code>context.req = request.req = response.req = req;</code> </p>
+<p>同理<code>response</code>也是这么处理的。response.js 封装了响应相关的属性以及方法。与 request 相同，通过createContext方法代理对应的 response 对象。</p>
+<p>这里为什么不细讲，因为牵扯到http协议，准备读完<code>RFC 1945(HTTP/1.0)</code> 和 <code>RFC 2616(HTTP/1.1)</code>再回过来补充</p>
+<h3 id="koa1-与-koa2-的区别"><a href="#koa1-与-koa2-的区别" class="headerlink" title="koa1 与 koa2 的区别"></a>koa1 与 koa2 的区别</h3><p>koa2.0相对于1.0，区别体现在</p>
+<p><code>1.将var换成了let及const</code><br><code>2.使用箭头函数简化书写</code><br><code>3.不再支持generator</code><br><code>4.以及对于中间件的处理上。koa1的中间件使用generator函数，使用yield next进入下一个中间件，koa2中间件使用async函数，使用await next()进入下一个中间件</code></p>
+<blockquote>
+<p>koa1中间件有一个很形象的比喻，就像一个洋葱，一个请求从最外面那一层进入洋葱，一路上进过一层层的中间件，到达洋葱心之后，请求完成了任务，又派了响应出去，带上需要返回的数据，一层层地返回最外面。而在进入出来的过程中，中间件会对请求和响应做『手脚』，比如对请求检验cookie，对响应加etag。</p>
+<p>koa2运用的是递归调用的方式实现中间件的洋葱模型和koa1很不太一样，一般在await next(), 而每次next执行的方法都会返回一个Promsie,await Promise 就是等待该Promise resolve返回，当然也可以通过外层的try catch来捕获Promise的reject信息；这样子只要中间有一个reject的promise直接返回Promise.reject(err)不去执行dispatch(i+1)这样子就不递归下去了；否则会一直递归到最后一个中间件</p>
+</blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><code>tip 1</code>:</p>
+<blockquote>
+<p>子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。<br>ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+</blockquote>
+<p><code>tip 2</code>:</p>
+<blockquote>
+<p>app.subdomainOffset属性默认为2，则域名“tobi.ferrets.example.com”返回[“ferrets”, “tobi”]，如果app.subdomainOffset设为3，则返回[“tobi”]。</p>
+<p><a href="https://github.com/koajs/koa" rel="external nofollow noopener noreferrer" target="_blank">koa github</a></p>
+<p><a href="http://www.runoob.com/nodejs/nodejs-event.html" rel="external nofollow noopener noreferrer" target="_blank">nodejs 简易教程</a></p>
+<p><a href="http://www.ahonn.me/2017/05/17/koa2-analysis/" rel="external nofollow noopener noreferrer" target="_blank">koa2 源码解析</a></p>
+<p><a href="https://github.com/tj/node-delegates/blob/master/index.js" rel="external nofollow noopener noreferrer" target="_blank">node-delegates</a></p>
+<p><a href="https://segmentfault.com/a/1190000009875733" rel="external nofollow noopener noreferrer" target="_blank">Koa2源码阅读笔记</a></p>
+<p><a href="http://man.chinaunix.net/develop/rfc/RFC1945.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC 1945</a></p>
+<p><a href="https://tools.ietf.org/html/rfc2616" rel="external nofollow noopener noreferrer" target="_blank">RFC 2616</a></p>
+</blockquote>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h3><p>React特性、virtual dom、diff 、合成事件、调和等原理</p>
+<h3 id="React背景资料"><a href="#React背景资料" class="headerlink" title="React背景资料"></a>React背景资料</h3><blockquote>
+<p>React是用于构建用户界面的声明性，高效且灵活的JavaScript库。</p>
+<p>React的目的是构建随着时间数据不断变化的大规模应用程序</p>
+</blockquote>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li><p>组件化。仅仅是 UI：许多人使用 React 作为 MVC 架构的 V 层。尽管 React 并没有假设过你的其余技术栈，但它仍可以作为一个小特征轻易地在已有项目中使用。</p>
+</li>
+<li><p>虚拟 DOM：React 为了更高超的性能而使用虚拟 DOM 作为其不同的实现。它同时也可以由服务端 Node.js 渲染——而不需要过重的浏览器DOM支持。</p>
+</li>
+<li><p>数据流：React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。</p>
+</li>
+</ul>
+<h3 id="virtual-dom"><a href="#virtual-dom" class="headerlink" title="virtual dom"></a>virtual dom</h3><p>virtual dom作为核心概念，了解其原理以及在React中实现方式是必不可少的。</p>
+<p>首先我们需要了解<code>真实Dom</code>的构建方式</p>
+<p><img src="https://developer.mozilla.org/files/464/Gecko_Overview_9.png" alt="imgn"></p>
+<p>配合参考资料可以更详细的了解。</p>
+<p>每次操作DOM,DOM中的某些内容都会发生变化。由于DOM被表示为一个树结构，所以DOM的变化非常快，但是更改的元素，而且它的孩子们必须经历Reflow / Layout阶段，然后更改必须重新绘制。</p>
+<p><code>Virtual-DOM是什么，它尝试最小化这两个阶段，从而为一个复杂的应用程序获得更好的性能。</code></p>
+<p><code>Virtual-DOM</code>就是用 JavaScript 对象<br>表示 DOM 信息和结构，当状态变更的时候，重新渲染这个 JavaScript 的对象结构。可以用新渲染的对象树去和旧的树进行对比，记录这两棵树差异。记录下来的不同就是我们需要对页面真正的 DOM 操作，然后把它们应用在真正的 DOM 树上，页面就变更了。这样就可以做到：视图的结构确实是整个全新渲染了，但是最后操作DOM的时候确实只变更有不同的地方。</p>
+<h3 id="调和"><a href="#调和" class="headerlink" title="调和"></a>调和</h3><p><code>什么叫调和？</code></p>
+<blockquote>
+<p>在每次数据更新过后，React 会重新调用 render 渲染出新的组件结构，新的结构应用到 DOM 中的过程就叫做调和过程。</p>
+</blockquote>
+<p><code>调和：react将Virtual DOM树转成真实dom树最少的操作称之为调和</code></p>
+<p><code>为什么需要调和？</code></p>
+<blockquote>
+<p>想一想，假设我们有一个输入组件，这个时候我们正聚焦在输入框中，当修改值过后触发事件导致了数据改变，数据改变导致了重渲染， 这个时候输入框被替换成了新的 DOM。 这个过程对用户来说应该是无感知的，所以那原来的聚焦状态应该被保存， 那怎么做到的呢？ DOM 都被替换了，输入状态，选择状态为什么还能保存。 我们先不急着知道 How，目前只需要知道这就是调和过程.</p>
+</blockquote>
+<p><code>diff算法就是调和的具体体现</code></p>
+<h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h3><p><code>diff 策略</code></p>
+<ul>
+<li><p>Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。</p>
+</li>
+<li><p>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。</p>
+</li>
+<li><p>对于同一层级的一组子节点，它们可以通过唯一 id 进行区分。</p>
+</li>
+</ul>
+<p>React 通过分层求异的策略，对 tree diff 进行算法优化；</p>
+<p>React 通过相同类生成相似树形结构，不同类生成不同树形结构的策略，对 component diff 进行算法优化；</p>
+<p>React 通过设置唯一 key的策略，对 element diff 进行算法优化。</p>
+<p>具体细节可参考我以前的<a href="http://haoqiao.me/2015/08/16/translate-one.html">翻译文章</a> 和 <a href="https://zhuanlan.zhihu.com/p/20346379" rel="external nofollow noopener noreferrer" target="_blank">diff源码剖析</a></p>
+<h3 id="SyntheticEvent-合成事件"><a href="#SyntheticEvent-合成事件" class="headerlink" title="SyntheticEvent (合成事件)"></a>SyntheticEvent (合成事件)</h3><p>React自己实现了一套高效的事件注册，存储，分发和重用逻辑，在DOM事件体系基础上做了很大改进，减少了内存消耗，简化了事件逻辑，并最大化的解决了IE等浏览器的不兼容问题。与DOM事件体系相比，它有如下特点:</p>
+<ul>
+<li><p>React组件上声明的事件最终绑定到了document这个DOM节点上，而不是React组件对应的DOM节点。故只有document这个节点上面才绑定了DOM原生事件，其他节点没有绑定事件。这样简化了DOM原生事件，减少了内存开销</p>
+</li>
+<li><p>React以队列的方式，从触发事件的组件向父组件回溯，调用它们在JSX中声明的callback。也就是React自身实现了一套事件冒泡机制。我们没办法用event.stopPropagation()来停止事件传播，应该使用event.preventDefault()</p>
+</li>
+<li><p>React使用对象池来管理合成事件对象的创建和销毁，这样减少了垃圾的生成和新对象内存的分配，大大提高了性能</p>
+</li>
+</ul>
+<p>原理：</p>
+<blockquote>
+<p>React并不是将click事件绑在该div的真实DOM上，而是在document处监听所有支持的事件，当事件发生并冒泡至document处时，React将事件内容封装并交由真正的处理函数运行。</p>
+</blockquote>
+<p><img src="http://haoqiao.qiniudn.com/react%20event%20.jpg" alt="imgn"></p>
+<p>关于源码级别的分析<a href="http://zhenhua-lee.github.io/react/react-event.html" rel="external nofollow noopener noreferrer" target="_blank">戳这里</a></p>
+<h3 id="组件热加载方案"><a href="#组件热加载方案" class="headerlink" title="组件热加载方案"></a>组件热加载方案</h3><p>webpack 的 HotModuleReplacement 热加载插件</p>
+<h3 id="为啥要给列表类组件设个key"><a href="#为啥要给列表类组件设个key" class="headerlink" title="为啥要给列表类组件设个key?"></a>为啥要给列表类组件设个key?</h3><p>react利用key来识别组件，它是一种身份标识标识，就像我们的身份证用来辨识一个人一样。每个key对应一个组件，相同的key react认为是同一个组件，这样后续相同的key对应组件都不会被创建<br>key相同，若组件属性有所变化，则react只更新组件对应的属性；没有变化则不更新。<br>key值不同，则react先销毁该组件(有状态组件的componentWillUnmount会执行)，然后重新创建该组件（有状态组件的constructor和componentWillUnmount都会执行）</p>
+<p>数组创建子组件的位置并不固定，动态改变的.</p>
+<h3 id="参考资料-1"><a href="#参考资料-1" class="headerlink" title="参考资料"></a>参考资料</h3><blockquote>
+<p><a href="https://reactjs.org/docs/react-api.html" rel="external nofollow noopener noreferrer" target="_blank">官方文档</a><br><a href="https://developer.mozilla.org/en-US/docs/Introduction_to_Layout_in_Mozilla" rel="external nofollow noopener noreferrer" target="_blank">Introduction_to_Layout_in_Mozilla</a><br><a href="https://www.zhihu.com/question/29504639" rel="external nofollow noopener noreferrer" target="_blank">如何理解虚拟DOM</a></p>
+</blockquote>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><h3 id="Redux-是如何管理React"><a href="#Redux-是如何管理React" class="headerlink" title="Redux 是如何管理React"></a>Redux 是如何管理React</h3><p>Redux 主要分为三个部分 Action、Reducer、及 Store</p>
+<p>在 Redux 中，action 主要用来传递操作 State 的信息，以 Javascript Plain Object 的形式存在</p>
+<p>Reducer 一般为简单的处理函数，通过传入旧的 state 和指示操作的 action 来更新 state</p>
+<p>Store 是单一的。维护着一个全局的 State，并且根据 Action 来进行事件分发处理 State。可以看出 Store 是一个把 Action 和 Reducer 结合起来的对象。</p>
+<h2 id="Redux-有哪些优缺点"><a href="#Redux-有哪些优缺点" class="headerlink" title="Redux 有哪些优缺点"></a>Redux 有哪些优缺点</h2><p>一个可预测的状态容器</p>
+<ol>
+<li><p>单一数据源，Single Source of Truth（也即题干中提到的 「单一的 State 状态树」）</p>
+</li>
+<li><p>所有数据都是只读的，要想修改数据，必须 dispatch 一个 action 来描述什么发生了改变</p>
+</li>
+<li><p>当处理 action 时，必须生成一个新的 state，不得直接修改原始对象</p>
+</li>
+</ol>
+<p>开发时可以在不考虑数据修改的情况下，优先完成整体视图逻辑，然后在添加对数据的修改操作等业务逻辑时几乎不用修改视图逻辑代码</p>
+<p>缺点：</p>
+<p>代码量很大。完成一个动作经历三层修改。</p>
+<p>Ajax 等各种异步的副作用，Redux 本身是无能为力。因此大量中间件 redux-thunk，redux-saga，redux-observable 等中间件，非常散乱。</p>
+<h2 id="HOC"><a href="#HOC" class="headerlink" title="HOC"></a>HOC</h2><blockquote>
+<p> React 高阶组件(React High-Order Component) </p>
+</blockquote>
+<p>高阶函数接收函数作为函数的参数，返回一个函数；高阶组件接受组件作为函数的参数，返回一个组件</p>
+<p>高阶组件属于函数式编程(functional programming)思想，对于被包裹的组件时不会感知到高阶组件的存在，而高阶组件返回的组件会在原来的组件之上具有功能增强的效果。而Mixin这种混入的模式，会给组件不断增加新的方法和属性，组件本身不仅可以感知，甚至需要做相关的处理(例如命名冲突、状态维护)，一旦混入的模块变多时，整个组件就变的难以维护，也就是为什么如此多的React库都采用高阶组件的方式进行开发。</p>
+<h3 id="antd是如何实现组件的封装的"><a href="#antd是如何实现组件的封装的" class="headerlink" title="antd是如何实现组件的封装的"></a>antd是如何实现组件的封装的</h3><p>antd是一个表现组件库,它的主要依赖是react-component,react-component是一个行为组件库,很多antd实现起来略复杂的组件是依赖react-component,这个设计思路很好,先定义一个行为组件库,在行为组件库之上可以用各种设计语言实现,ant design自然用的是自己的设计语言</p>
+<h3 id="React-Redux的HOC的实现，connect函数的实现"><a href="#React-Redux的HOC的实现，connect函数的实现" class="headerlink" title="React-Redux的HOC的实现，connect函数的实现"></a>React-Redux的HOC的实现，connect函数的实现</h3><blockquote>
+<p>connect 方法的函数签名是: connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])(Component) =&gt; EnhancedComponent。这正是高阶组件的标准写法。</p>
+</blockquote>
+<p>connect 其实是 connectAdvanced 的包装，在设计模式中叫外观（facade）模式。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/阅读/明朝那些事儿-上/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    明朝那些事儿-上
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/框架/Lodash/源码阅读/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">Lodash源码阅读</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2018 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

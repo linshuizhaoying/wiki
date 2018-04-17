@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>推送系统源码学习(技术篇) | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,实习,CVTE,技术篇">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前言  周二上午到达广州，下午到部门实习，这次的任务是基于原有的推送项目做一些需求增加。  一开始还是很慌的，因为现有系统已经在公司内部跑了，因此压力还是很大的。不过好在导师开发的，带着我过了一遍，然后我也很尽力的死磕源码，边读边做笔记。然后晚上开始了解整个需求，导师将其进行分期分配，第二天就直接开始做需求了，因此是边做边学习的节奏，踩了不少坑，主要是不了解系统，而且用的技术栈是16年的，而且导师">
+<meta name="keywords" content="前端,实习,CVTE,技术篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推送系统源码学习(技术篇)">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/实习/2018-03-25-推送系统源码学习/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="前言  周二上午到达广州，下午到部门实习，这次的任务是基于原有的推送项目做一些需求增加。  一开始还是很慌的，因为现有系统已经在公司内部跑了，因此压力还是很大的。不过好在导师开发的，带着我过了一遍，然后我也很尽力的死磕源码，边读边做笔记。然后晚上开始了解整个需求，导师将其进行分期分配，第二天就直接开始做需求了，因此是边做边学习的节奏，踩了不少坑，主要是不了解系统，而且用的技术栈是16年的，而且导师">
+<meta property="og:image" content="http://wiki.haoqiao.me/wiki/前端/实习/2018-03-25-推送系统源码学习/media/15220630587183.jpg">
+<meta property="og:updated_time" content="2018-03-29T12:30:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推送系统源码学习(技术篇)">
+<meta name="twitter:description" content="前言  周二上午到达广州，下午到部门实习，这次的任务是基于原有的推送项目做一些需求增加。  一开始还是很慌的，因为现有系统已经在公司内部跑了，因此压力还是很大的。不过好在导师开发的，带着我过了一遍，然后我也很尽力的死磕源码，边读边做笔记。然后晚上开始了解整个需求，导师将其进行分期分配，第二天就直接开始做需求了，因此是边做边学习的节奏，踩了不少坑，主要是不了解系统，而且用的技术栈是16年的，而且导师">
+<meta name="twitter:image" content="http://wiki.haoqiao.me/wiki/前端/实习/2018-03-25-推送系统源码学习/media/15220630587183.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/CSS 世界/">CSS 世界</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/websocket/">websocket</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/hash/">hash</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/electron/">electron</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机基础
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/计算机基础/浏览器/">浏览器</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/计算机基础/HTTP/">HTTP</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/实习/2018-03-25-推送系统源码学习/">推送系统源码学习(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/react/">react</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/react native/">react native</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/Vue/">Vue</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/框架基础/">框架基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            进阶
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/安全/csrf/">CSRF</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/安全/HTTPS/">HTTPS</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/链表/">链表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            设计模式
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/设计模式/设计模式/">设计模式</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/人类简史/">人类简史 - 摘记</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/睡眠革命:如何让睡眠更高效/">睡眠革命:如何让睡眠更高效</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深度工作-如何有效使用每一点脑力/">近期日常与<<深度工作>></深度工作></a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/实习/2018-03-25-推送系统源码学习" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/实习/">实习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CVTE/">CVTE</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/实习/">实习</a>, <a class="tag-link" href="/tags/技术篇/">技术篇</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/实习/2018-03-25-推送系统源码学习/">
+            <time datetime="2018-03-25T10:40:00.000Z" itemprop="datePublished">2018-03-25</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/raw/writing/source/_posts/前端/实习/2018-03-25-推送系统源码学习.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/edit/writing/source/_posts/前端/实习/2018-03-25-推送系统源码学习.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/commits/writing/source/_posts/前端/实习/2018-03-25-推送系统源码学习.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            推送系统源码学习(技术篇)
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目源码解析"><span class="toc-number">2.</span> <span class="toc-text">项目源码解析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思想分析"><span class="toc-number">3.</span> <span class="toc-text">思想分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#action生成器"><span class="toc-number">3.1.</span> <span class="toc-text">action生成器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reducer-生成器"><span class="toc-number">3.2.</span> <span class="toc-text">reducer 生成器</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  周二上午到达广州，下午到部门实习，这次的任务是基于原有的推送项目做一些需求增加。<br>  一开始还是很慌的，因为现有系统已经在公司内部跑了，因此压力还是很大的。不过好在导师开发的，带着我过了一遍，然后我也很尽力的死磕源码，边读边做笔记。然后晚上开始了解整个需求，导师将其进行分期分配，第二天就直接开始做需求了，因此是边做边学习的节奏，踩了不少坑，主要是不了解系统，而且用的技术栈是16年的，而且导师在那个时候设计的思想很超前，感觉学习价值很大，因此在周末专门花点时间去梳理和学习。</p>
+<h1 id="项目源码解析"><a href="#项目源码解析" class="headerlink" title="项目源码解析"></a>项目源码解析</h1><p>整个项目目录如下:</p>
+<p>前端架构 采用</p>
+<ul>
+<li>react 15.4.0</li>
+<li>redux 4.4.5</li>
+<li>react-router 2.6.1 </li>
+<li>redux 3.5.2 </li>
+<li>redux-router 2.1.2</li>
+<li>redux-thunk 2.0.1</li>
+</ul>
+<p>看上去是比较老的技术栈，一开始我也觉得好老啊，但是在这样的技术栈上，却有令人惊艳的设计思想。感觉自己还需要学的地方很多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">.</div><div class="line">├── base.less // 设定了一些基础UI的样式 重写覆盖了一些</div><div class="line">├── common.less // 颜色样式</div><div class="line">├── components // 核心两个组件</div><div class="line">    组件这块封装了 antd 2.7 的组件，提供了一些特殊处理的接口</div><div class="line">│   ├── TableFilter // 列表筛选组件 </div><div class="line">│   │   ├── CascaderSelectorFilter  // 级联选择组件</div><div class="line">│   │   │   └── index.jsx</div><div class="line">│   │   ├── DateRangeFilter // 时间筛选组件</div><div class="line">│   │   │   └── index.jsx</div><div class="line">│   │   ├── KeywordFilter // 关键词筛选</div><div class="line">│   │   │   └── index.jsx</div><div class="line">│   │   ├── RangeFilter // 范围筛选</div><div class="line">│   │   │   └── index.jsx</div><div class="line">│   │   ├── SelectFilter // 选择筛选</div><div class="line">│   │   │   └── index.jsx</div><div class="line">│   │   ├── TableFilter.md</div><div class="line">│   │   ├── TreeSelectFilter // 树形结构级联筛选</div><div class="line">│   │   │   └── index.jsx</div><div class="line">│   │   ├── index.jsx // 根据传入参数返回对应组件</div><div class="line">│   │   └── style.less</div><div class="line">│   └── WULIComponents</div><div class="line">│       ├── WULICheckList // 多选类别</div><div class="line">│       │   ├── index.jsx </div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIConfirmDialog // 操作确认对话框</div><div class="line">│       │   ├── WULIConfirmDialog.md</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIDisplayList // 列表</div><div class="line">│       │   ├── ListItem</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIExpandButton //扩展按钮</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIFormItem // 表单</div><div class="line">│       │   ├── CheckGroup</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   ├── CheckedInput</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   ├── Display</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   ├── Input</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   ├── Select</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   └── Textarea</div><div class="line">│       │       ├── index.jsx</div><div class="line">│       │       └── style.less</div><div class="line">│       ├── WULIGlobalLoading // 全局的加载</div><div class="line">│       │   ├── WULIGlobalLoading.md</div><div class="line">│       │   └── index.jsx</div><div class="line">│       ├── WULIHeader // 这里提供了头部的渲染内容，支持action传入，主要是action</div><div class="line">│       │   ├── WULIHeader.md</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIList // 列表的配置，这里生成了多页的选择，配置基本都是调用的时候传入</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIListItem</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULILoginDialog // 这个组件可以删掉的。。。写了居然没用用过</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULINotification</div><div class="line">│       │   ├── WULINotification.md</div><div class="line">│       │   └── index.jsx</div><div class="line">│       ├── WULISelectableList // 写了同样没调用</div><div class="line">│       │   ├── ListItem</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.less</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULISider</div><div class="line">│       │   ├── WULISider.md</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULITable</div><div class="line">│       │   ├── DataTable.jsx</div><div class="line">│       │   ├── SimpleSearch.jsx</div><div class="line">│       │   ├── TableActions.jsx</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULITableList</div><div class="line">│       │   ├── index.jsx</div><div class="line">│       │   └── style.less</div><div class="line">│       ├── WULIToast</div><div class="line">│       │   ├── WULIToast.md</div><div class="line">│       │   └── index.jsx</div><div class="line">│       └── index.js</div><div class="line">├── containers</div><div class="line">│   └── Root  // 把路由和 props.store 注入到页面</div><div class="line">│       └── index.jsx </div><div class="line">├── index.jsx </div><div class="line">├── middlewares</div><div class="line">│   └── request.js // 封装了 ajax, 一些错误捕获方法</div><div class="line">├── modules</div><div class="line">│   ├── action_generator.js </div><div class="line">    // 自动生成 action 配置</div><div class="line">       分成四类</div><div class="line">       ajax,对分页 pagination 做了细致处理，</div><div class="line">          joinActionLoading 和 loading ？？</div><div class="line">          filter ？？？</div><div class="line">          </div><div class="line">      isModal 弹框类型</div><div class="line"></div><div class="line">      isSetter 设置值</div><div class="line"></div><div class="line">      如果不是以上类型，则会生成 action $&#123;module&#125;_$&#123;name&#125;</div><div class="line">     </div><div class="line">      </div><div class="line">    </div><div class="line"></div><div class="line">│   ├── common // UI 模块 userInfo login logout loading 生成</div><div class="line">│   │   ├── actions.js </div><div class="line">           // 配置一些系统基本的动作比如登录登出Loading，并用 action_generator 生成</div><div class="line"></div><div class="line">│   │   ├── constants.js // 基本的 constants</div><div class="line">│   │   ├── index.js</div><div class="line">│   │   └── reducer.js // 基本的 reducer</div><div class="line">│   ├── defines.js // 定义 action 状态 load success fail </div><div class="line">│   ├── dialog // confirm 模块 生成</div><div class="line">│   │   ├── action.js</div><div class="line">│   │   ├── constants.js</div><div class="line">│   │   ├── index.js</div><div class="line">│   │   └── reducer.js</div><div class="line">│   ├── message // 消息 和 提示 模块生成</div><div class="line">│   │   ├── actions.js</div><div class="line">│   │   ├── constants.js</div><div class="line">│   │   ├── index.js</div><div class="line">│   │   └── reducer.js</div><div class="line">│   ├── notice // 推送 api 模块 生成</div><div class="line">│   │   ├── actions.js</div><div class="line">│   │   ├── constants.js</div><div class="line">│   │   ├── index.js</div><div class="line">│   │   ├── reducer.js</div><div class="line">│   │   └── tools.js</div><div class="line">│   ├── reducer_generator.js </div><div class="line">        // 自动生成 reducer 配置</div><div class="line"></div><div class="line">│   ├── tools.js  // 拼接动作字符串</div><div class="line">│   └── userSelector</div><div class="line">│       ├── actions.js</div><div class="line">│       ├── constants.js</div><div class="line">│       ├── index.js</div><div class="line">│       └── reducer.js</div><div class="line">├── pages</div><div class="line">│   ├── AddPage // 添加消息页面</div><div class="line">│   │   ├── business.jsx // 逻辑模块 新功能的状态和功能往里面塞</div><div class="line">│   │   ├── containers // 视图模块 </div><div class="line">│   │   │   ├── ContentPart  // 推送详情</div><div class="line">│   │   │   │   ├── index.jsx</div><div class="line">│   │   │   │   ├── selector.js // 从 store 里拿数据</div><div class="line">│   │   │   │   └── style.css</div><div class="line">│   │   │   └── UserPart // 用户列表</div><div class="line">│   │   │       ├── index.jsx</div><div class="line">│   │   │       ├── selector.js</div><div class="line">│   │   │       └── style.css</div><div class="line">│   │   ├── index.jsx // 页面容器</div><div class="line">│   │   ├── rules.js // 一些表单校验规则</div><div class="line">│   │   ├── selector.js</div><div class="line">│   │   └── style.css</div><div class="line">│   ├── App</div><div class="line">│   │   ├── components</div><div class="line">│   │   │   ├── Breadcrumb // 面包屑导航</div><div class="line">│   │   │   │   ├── index.jsx</div><div class="line">│   │   │   │   └── style.css</div><div class="line">│   │   │   └── Sider // 左边栏</div><div class="line">│   │   │       ├── index.jsx</div><div class="line">│   │   │       └── style.css</div><div class="line">│   │   ├── index.jsx // 后台进入页面</div><div class="line">│   │   ├── selector.js</div><div class="line">│   │   └── style.css</div><div class="line">│   ├── DetailPage // 消息详情页</div><div class="line">│   │   ├── business.jsx // 逻辑处理页面</div><div class="line">│   │   ├── components</div><div class="line">│   │   │   ├── Basic // 基本信息</div><div class="line">│   │   │   │   ├── index.jsx</div><div class="line">│   │   │   │   └── style.css</div><div class="line">│   │   │   └── ReplyModal // 回复框</div><div class="line">│   │   │       ├── index.jsx</div><div class="line">│   │   │       └── style.css</div><div class="line">│   │   ├── containers</div><div class="line">│   │   │   ├── ReplyList</div><div class="line">│   │   │   │   ├── ReplyListTable.jsx</div><div class="line">│   │   │   │   ├── index.jsx</div><div class="line">│   │   │   │   ├── selector.js</div><div class="line">│   │   │   │   └── style.css</div><div class="line">│   │   │   └── StatusList</div><div class="line">│   │   │       ├── StatusListTable.jsx</div><div class="line">│   │   │       ├── index.jsx</div><div class="line">│   │   │       ├── selector.js</div><div class="line">│   │   │       └── style.css</div><div class="line">│   │   ├── index.jsx</div><div class="line">│   │   ├── selector.js</div><div class="line">│   │   └── style.css</div><div class="line">│   ├── LoginPage</div><div class="line">│   │   ├── components</div><div class="line">│   │   │   └── LoginForm</div><div class="line">│   │   │       ├── index.jsx</div><div class="line">│   │   │       └── style.css</div><div class="line">│   │   ├── index.jsx</div><div class="line">│   │   ├── style.css</div><div class="line">│   │   └── style.less</div><div class="line">│   ├── MyListPage</div><div class="line">│   │   ├── business.jsx</div><div class="line">│   │   ├── components</div><div class="line">│   │   │   └── NoticeTable</div><div class="line">│   │   │       └── index.jsx</div><div class="line">│   │   ├── index.jsx</div><div class="line">│   │   ├── selector.js</div><div class="line">│   │   └── style.css</div><div class="line">│   └── _common</div><div class="line">│       ├── components</div><div class="line">│       │   ├── Dropdown</div><div class="line">│       │   │   ├── index.jsx</div><div class="line">│       │   │   └── style.css</div><div class="line">│       │   └── UserList</div><div class="line">│       │       └── index.jsx</div><div class="line">│       └── containers</div><div class="line">│           ├── ConfirmDialog</div><div class="line">│           │   ├── index.jsx</div><div class="line">│           │   └── selector.js</div><div class="line">│           ├── Notification</div><div class="line">│           │   ├── index.jsx</div><div class="line">│           │   └── selector.js</div><div class="line">│           ├── Toast</div><div class="line">│           │   ├── index.jsx</div><div class="line">│           │   └── selector.js</div><div class="line">│           └── UserSelector</div><div class="line">│               ├── ImportTab</div><div class="line">│               │   ├── Info</div><div class="line">│               │   │   └── index.jsx</div><div class="line">│               │   └── index.jsx</div><div class="line">│               ├── business.jsx</div><div class="line">│               ├── index.jsx</div><div class="line">│               ├── selector.js</div><div class="line">│               └── style.css</div><div class="line">├── rootReducer.js</div><div class="line">├── routes.jsx</div><div class="line">├── store</div><div class="line">│   ├── configureStore.js</div><div class="line">│   └── schemas.js</div><div class="line">└── utils</div><div class="line">    ├── defines.js</div><div class="line">    ├── tools.js</div><div class="line">    └── validator.js</div></pre></td></tr></table></figure>
+<p>后端是采用 node + koa + mysql + redis 这个就不分析了。</p>
+<p>主要就是 切分了service层。这个我之前学习过。</p>
+<h1 id="思想分析"><a href="#思想分析" class="headerlink" title="思想分析"></a>思想分析</h1><h2 id="action生成器"><a href="#action生成器" class="headerlink" title="action生成器"></a>action生成器</h2><p>  一开始就以配置优先先入为止，这是暑期实习的时候听到分享的一部分，没想到16年已经实践并应用了。而且导师说那个时候写的很爽。</p>
+<p>  从最初的磕磕碰碰到后面比较熟练的调用，我终于明白写的很爽的体验，而且不止是写的爽，代码的组织条理性都很值得学习，很多地方都考虑的很周全。</p>
+<p>  这里先将最主要的几个部分进行分析。</p>
+<p>  按照18年的 react 技术栈，可以选择的流行全家桶 一般也是 react + redux /mobx + 异步处理中间件。</p>
+<p>  按照我毕设的选型我是选择了 react + redux + rxjs中间件，基础还是一样的 constants + actions + reducers.</p>
+<p>   不过动作的触发是由 rxjs 中间件拦截，有对应的epics去做数据的拉取，然后再构造一个动作去保存到本地的reducer。这个好处是层次分明，从store -&gt; action -&gt; rxjs -&gt; action -&gt; reducer。而且维护起来很方便。就是有个不好，你必须一开始将很多细节考虑清楚，不然你遗漏一个需求，需要更新好几个文件的内容。</p>
+<p>   而配置优先的概念的提出就是解决这个问题，这个很久以前隐隐有看到过相关概念，去年正式接触，到现在真的看到实现代码。感觉有些东西真的是要看到实践才明白是怎么一回事。</p>
+<p>  首先配置优先不仅仅是框架的配置，而且一些组件的配置也可以同样。 </p>
+<p>  首先肯定是代码组织结构:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"> /module</div><div class="line"> </div><div class="line">    /核心数据流</div><div class="line">      action.js</div><div class="line">      reducer.js</div><div class="line">      constants.js</div><div class="line">      index.js</div><div class="line">      </div><div class="line">action_generator.js</div><div class="line">reducer_generator.js</div><div class="line">defines.js</div><div class="line">tools.js</div></pre></td></tr></table></figure>
+<p>感觉比较精髓的一个是action和reducer的生成器，一个是将一个完整的核心动作都组织结合在一起。</p>
+<p>actions 生成器，它通过传入的参数自动生成配置，这个要有业务的积累才能够将大部分的action抽象出来，然后再根据配置生成适合的。</p>
+<p>为了保证 action 的唯一性，我们需要传入一个参数作为前缀，一般用页面名作为前缀。</p>
+<p>为了用配置的方式写 actions，考虑把 actions 用 json 数组的方式传进来，这样可以用到 map 函数来遍历并且生成每一个 action。<br>－ 最后要将所有的 action 组装成一个变量 export 出去，再对原有的 import 方法进行修改就可以了</p>
+<p>因此学习这个的时候跪着看完~</p>
+<p>首先先讨论一下我们究竟需要什么样的action。</p>
+<p>第一个肯定就是普通的数据，比如一些简单的交互产生的数据，存到本地，然后需要的时候获取或者更新。</p>
+<p>第二种就是常用的异步获取数据，远程拿数据然后存本地。(这里其实要考虑的地方还是比较多的)</p>
+<p>以上两种场景是最常用的。</p>
+<p>但是如果想的再全一点会有这设定：<br>isModal</p>
+<p>这样似乎是包含完全了。</p>
+<p>但是项目中是这么划分的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">isAjax: 异步操作，会自动生成 $&#123;module&#125;_$&#123;name&#125;_LOAD, $&#123;module&#125;_$&#123;name&#125;_SUCCESS,</div><div class="line"> *   $&#123;module&#125;_$&#123;name&#125;_FAIL 三个 action，其搭配的配置项如下：</div><div class="line"> ... pagination</div><div class="line"> ... filter</div><div class="line"></div><div class="line">isModal 弹框类型，会生成 reducer: $&#123;name&#125;Show, 并且生成 action: $&#123;module&#125;_show&#123;Name&#125;,</div><div class="line"> *   $&#123;module&#125;_hide&#123;Name&#125; 和 $&#123;module&#125;_toggle&#123;Name&#125;</div><div class="line"></div><div class="line">isSetter: 设置值类型，会生成 reducer: $&#123;name&#125;,</div><div class="line"> *   并且生成 action: $&#123;module&#125;_set$&#123;Name&#125; 和 $&#123;module&#125;_clear$&#123;Name&#125;</div><div class="line"></div><div class="line">如果不是以上类型，则会生成 action $&#123;module&#125;_$&#123;name&#125;</div></pre></td></tr></table></figure>
+<p>这里就会感觉有点矛盾，为什么要区分 isSetter 和 默认的生成项呢。</p>
+<p>通过对其间的配置以及后面 reducer 生成器的一些代码，从而推导出作者其实是想让 action 变得更加纯粹一点。</p>
+<p>isSetter 用于之前说的需要对交互或者一些数据做本地化存储，典型的例子就是token，用户请求需要带着 token 校验用户身份。需要做本地的存储，方便在其它地方能够随时调用。</p>
+<p>而默认的 <code>action ${module}_${name}</code> 它只是一个动作，它是可以再触发后去通过更改一些原来就有的状态，或者通过触发其它动作来实现，典型的例子就是Loading了。</p>
+<p>而且从上面的代码 我们可以看出 <code>${module}_${name}_LOAD</code> 很多都是配置的。</p>
+<p>这里的配置是 按照这样的来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">export const getAction = (actionPrefix, actionName, actionStatus) =&gt;</div><div class="line">  `$&#123;actionPrefix&#125;_$&#123;actionName&#125;$&#123;actionStatus ? `_$&#123;actionStatus&#125;` : &apos;&apos;&#125;`;</div></pre></td></tr></table></figure>
+<p> <code>module</code> 对应的是 <code>${actionPrefix}</code>,这是在对应的模块目录下的 <code>constants.js</code> 中定义的。 </p>
+<p><code>isAjax</code> 会有三个状态，加载，失败，成功。<br>先生成三个 <code>constants</code>, 用于定义动作描述。</p>
+<p>然后对应生成三种 <code>Action</code>，这里需要接受一些 <code>ajax</code> 特定的参数，比如 <code>Api</code>, <code>method</code> , <code>sucCallback</code>, <code>errCallback</code>。</p>
+<p>如果分页还要根据对象生成 <code>set${toCamel(name)}Page</code> 并且生成 无前缀的同名action。</p>
+<p>这里有个细节是为了可读性，需要做驼峰命名处理。</p>
+<p>如果需要过滤器，需要 <code>set${toCamel(name)}Filter</code> 与 <code>clear${toCamel(name)}Filter</code> 俩个 constants 和 action.</p>
+<p>如果是 Modal 类型，就需要考虑 Modal 的几个状态，show || hide || toggle.分别生成对应的 constans 与 action</p>
+<p>然后是 setter, 它有 set 与 clear</p>
+<p>当以上选择都没有，说明要建立一个纯action,以前缀+模块名命名生成。</p>
+<p>简单输出一下生成的结构。</p>
+<p><img src="media/15220630587183.jpg" alt=""></p>
+<h2 id="reducer-生成器"><a href="#reducer-生成器" class="headerlink" title="reducer 生成器"></a>reducer 生成器</h2><p>然后是自动生成 reducer,这个和aciton是一一对应的。</p>
+<p>传统的reducer 就是拦截动作，然后根据状态对 数据初始化赋值，或者更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">典型的写法：</div><div class="line"></div><div class="line">const initialState = &#123;</div><div class="line">   loadingState: &apos;&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const loading = (state = initialState, action: Action) =&gt; &#123;</div><div class="line">  // console.log(action)</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case LOADING_START:</div><div class="line">    return &#123;</div><div class="line">      ...state,</div><div class="line">      loadingState: &apos;start&apos;</div><div class="line">    &#125;</div><div class="line">    case LOADING_SUCCESS:</div><div class="line">    return &#123;</div><div class="line">      ...state,</div><div class="line">      loadingState: &apos;success&apos;</div><div class="line">    &#125;</div><div class="line">    case LOADING_ERROR:</div><div class="line">    return &#123;</div><div class="line">      ...state,</div><div class="line">      loadingState: &apos;error&apos;</div><div class="line">    &#125;</div><div class="line">    default:</div><div class="line">      return state</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以这个load 为例子，我们可以看到 Load 的多个状态与数据都一一对应.</p>
+<p>因此 reducer 生成器也是基于此，但是 reducer 生成器和 action 有区别，那就是需要的配置项更多。因为会涉及到异步去拿数据。</p>
+<p> reducer generator 相关配置</p>
+<ul>
+<li>basics: 基本的 reducer，为一个数组，会往 module 中增加新的 reducer，每一个元素的配置如下</li>
+<li>name: reducer 的名字</li>
+<li>initialState: state 初始值</li>
+<li>mappers: 为一个数组，表示从 action 到 state 的相应，每一个元素配置如下</li>
+<li>action: 响应的 action，会自动合成为 ${module}_action</li>
+<li>nextState: 为一个函数，传入参数为 (state, action)，返回值为下一个 state<br>*</li>
+<li>extras: 为通过 action 配置而自动生成的 reducer 的补充配置</li>
+<li>name: reducer 的名字</li>
+<li>mappers: 为一个数组，表示从 action 到 state 的相应，每一个元素配置如下</li>
+<li>action: 响应的 action，会自动合成为 ${module}_action</li>
+<li>nextState: 为一个函数，传入参数为 (state, action)，返回值为下一个 state</li>
+</ul>
+<p>reducer 生成器它一开始需要根据通过 action 的配置来生成一些常用的 reducer 和 额外的 action。这个主要就是遍历加组合对象。</p>
+<p>比如常见的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">switch (action.type) &#123;</div><div class="line">    case xxx:</div><div class="line">      return true;</div><div class="line">    default:</div><div class="line">      return state;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>将其视为一种类型的 action</p>
+<p>约定生成对应的reducer。</p>
+<p>reducer 生成器还有一种形式就是不根据aciton的配置而是单独写配置然后生成。</p>
+<p>比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">extras: [</div><div class="line">   &#123;</div><div class="line">     name: &apos;xxx&apos;,</div><div class="line">     mappers: [</div><div class="line">       &#123;</div><div class="line">         action: &apos;xxx&apos;,</div><div class="line">         nextState: (state, action) =&gt; action.data.checked ?</div><div class="line">           add(...) :</div><div class="line">           delete(..)</div><div class="line">       &#125;</div><div class="line">     ]</div><div class="line">   &#125;</div><div class="line"> ]</div></pre></td></tr></table></figure>
+<p>需要做的就是根据name，然后读取配置，然后生成。也可以直接 写reducer 通过<code>combineReducers</code>暴露出来。</p>
+<p>通过配置生成所有的 action 和 reducer 的方法，可以让开发效率大增。但是通过对一些模块的了解，发现 reducer 这块覆盖场景虽然广，但是有些地方并不需要考虑使用，然后就是学习成本是有点高的。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/前端/基础/计算机基础/浏览器/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    浏览器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/基础/计算机基础/HTTP/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">HTTP</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2018 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>

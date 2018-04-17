@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>浏览器 | 临水照影&#39;s Wiki</title>
+    
+    
+        <meta name="keywords" content="前端,基础,浏览器">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="资料浏览器的工作原理：新式网络浏览器幕后揭秘 浏览器解析过程浏览器接收到html代码，可能是一份完整的文档，也可能是一个chunk，即开始解析。解析过程是先构建dom树，再根据dom树构建渲染树，最后浏览器将渲染树绘制到页面上。       构建dom树的过程即根据html代码自上而下进行构建，当遇到script文件加载／执行会阻塞后面dom树的构建（javascript可能会改变dom树），而遇">
+<meta name="keywords" content="前端,基础,浏览器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器">
+<meta property="og:url" content="http://wiki.haoqiao.me/wiki/前端/基础/计算机基础/浏览器/index.html">
+<meta property="og:site_name" content="临水照影&#39;s Wiki">
+<meta property="og:description" content="资料浏览器的工作原理：新式网络浏览器幕后揭秘 浏览器解析过程浏览器接收到html代码，可能是一份完整的文档，也可能是一个chunk，即开始解析。解析过程是先构建dom树，再根据dom树构建渲染树，最后浏览器将渲染树绘制到页面上。       构建dom树的过程即根据html代码自上而下进行构建，当遇到script文件加载／执行会阻塞后面dom树的构建（javascript可能会改变dom树），而遇">
+<meta property="og:updated_time" content="2018-04-04T00:13:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器">
+<meta name="twitter:description" content="资料浏览器的工作原理：新式网络浏览器幕后揭秘 浏览器解析过程浏览器接收到html代码，可能是一份完整的文档，也可能是一个chunk，即开始解析。解析过程是先构建dom树，再根据dom树构建渲染树，最后浏览器将渲染树绘制到页面上。       构建dom树的过程即根据html代码自上而下进行构建，当遇到script文件加载／执行会阻塞后面dom树的构建（javascript可能会改变dom树），而遇">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="临水照影&#39;s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">临水照影&#39;s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>Wiki库</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Css
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/布局/">布局</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Css/CSS 世界/">CSS 世界</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ecmascript
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Ajax/">Ajax</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/ES6/">ES6</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Webpack/">Webpack</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/Node/">Node</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/JS代码片段/">JS代码片段</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/PolyFill/">PolyFill</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/javascript异步编程/">javascript异步编程</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/this/">this</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/前端工程化/">前端工程化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/事件/">事件</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/原型/">原型</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/模块化/">模块化</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/正则/">正则</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/浏览器-性能-安全/">浏览器-性能-安全</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/类与对象/">类与对象</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/继承/">继承</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/跨域/">跨域</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/闭包/">闭包</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/考点/">考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/websocket/">websocket</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/hash/">hash</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Ecmascript/electron/">electron</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Html
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/Cookie/">cookie</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/HTML5/">HTML5</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/Html/LocalStorage/">LocalStorage</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            计算机基础
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file active">
+
+                        <a href="/wiki/前端/基础/计算机基础/浏览器/">浏览器</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/基础/计算机基础/HTTP/">HTTP</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实习
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-cvte-生活记录/">在CVTE实习的那些天(生活篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-09-24-实习到工作一条龙/">实习到工作一条龙</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2017-08-19-技术记录/">在CVTE实习的那些天(技术篇)</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/实习/2018-03-25-推送系统源码学习/">推送系统源码学习(技术篇)</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发标准
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb React 标准/">Airbnb React 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Css 标准/">Airbnb CSS 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/Airbnb Es6 标准/">Airbnb ES6 代码风格标准</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/TypeScript开发/">typescript 基础开发</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/开发标准/开发配置/">开发配置</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JQuery
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/JQuery/基础/">基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Lodash
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Lodash/源码阅读/">Lodash源码阅读</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React-ES6对照表/">React-Es6对照表</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React项目开发一些摘要/">React项目开发一些摘要</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/React环境搭配/">React环境搭配</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/深入理解React技术栈/">深入理解React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/react/">react</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/React/react native/">react native</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/基础/">基础</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/Vue/Vue/">Vue</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/前端/框架/框架基础/">框架基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            进阶
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/安全/csrf/">CSRF</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/安全/HTTPS/">HTTPS</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/二叉堆/">二叉堆</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/栈/">栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/数据结构/链表/">链表</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            排序算法
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/冒泡排序/">冒泡排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/堆排序/">堆排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/希尔排序/">希尔排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/归并排序/">归并排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/快速排序/">快速排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/插入排序/">插入排序</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/排序算法/选择排序/">选择排序</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/二分查找实现/">二分查找</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/算法面试考点/">算法面试考点</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/算法/算法基础/">算法基础</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            设计模式
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/进阶/设计模式/设计模式/">设计模式</a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            阅读
+                        </a>
+                         <ul class="unstyled" id="tree">  
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/javascript框架设计第一版/">javascript框架设计第一版</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《大秦帝国》《千面英雄》/">《大秦帝国》  《千面英雄》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/人类简史/">人类简史 - 摘记</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/《小狗钱钱》  《自我激励的100种方法》《活出生命的意义/">《小狗钱钱》  《自我激励的100种方法》《活出生命的意义》</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/国王 武士 祭司 诗人/">国王 武士 祭司 诗人</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深入React技术栈/">深入React技术栈</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/睡眠革命:如何让睡眠更高效/">睡眠革命:如何让睡眠更高效</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/聊聊架构/">聊聊架构</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/明朝那些事儿-上/">明朝那些事儿-上</a></li> 
+                        
+                         
+
+                        <li class="file">
+
+                        <a href="/wiki/阅读/深度工作-如何有效使用每一点脑力/">近期日常与<<深度工作>></深度工作></a></li> 
+                        
+                         </ul> 
+                    </li> 
+                     
+
+                        <li class="file">
+
+                        <a href="/wiki/index/"></a></li> 
+                        
+                         </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-前端/基础/计算机基础/浏览器" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/前端/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/">基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端/基础/计算机基础/">计算机基础</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/基础/">基础</a>, <a class="tag-link" href="/tags/浏览器/">浏览器</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/前端/基础/计算机基础/浏览器/">
+            <time datetime="2018-03-26T00:20:43.000Z" itemprop="datePublished">2018-03-26</time>
+        </a>
+    </div>
+
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/raw/writing/source/_posts/前端/基础/计算机基础/浏览器.md" rel="external nofollow noopener noreferrer" target="_blank"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/edit/writing/source/_posts/前端/基础/计算机基础/浏览器.md" rel="external nofollow noopener noreferrer" target="_blank"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/linshuizhaoying/wiki/commits/writing/source/_posts/前端/基础/计算机基础/浏览器.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            浏览器
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">小目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#资料"><span class="toc-number">1.</span> <span class="toc-text">资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#浏览器解析过程"><span class="toc-number">2.</span> <span class="toc-text">浏览器解析过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#浏览器不同内核之间的区别"><span class="toc-number">3.</span> <span class="toc-text">浏览器不同内核之间的区别</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" rel="external nofollow noopener noreferrer" target="_blank">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
+<h1 id="浏览器解析过程"><a href="#浏览器解析过程" class="headerlink" title="浏览器解析过程"></a>浏览器解析过程</h1><p>浏览器接收到html代码，可能是一份完整的文档，也可能是一个chunk，即开始解析。解析过程是先构建dom树，再根据dom树构建渲染树，最后浏览器将渲染树绘制到页面上。    </p>
+<p>  构建dom树的过程即根据html代码自上而下进行构建，当遇到script文件加载／执行会阻塞后面dom树的构建（javascript可能会改变dom树），而遇到css文件则会阻塞渲染树的构建，即dom树依然继续构建（除非遇到script标签并且css文件依旧未加载完成），但不会渲染绘制到页面上。而无论哪个阻塞，该加载的文件还是会加载，例如html文档中的其他css／js／图片文件。另外javascript被加载后就会被执行，执行的过程也阻塞树的构建。是执行完了才解析其他内容，而不是执行完了才加载其他内容。</p>
+<p>默认情况下，CSS 被视为阻塞渲染的资源，这意味着浏览器将不会渲染任何已处理的内容，直至 CSSOM 构建完毕。<br>JavaScript 不仅可以读取和修改 DOM 属性，还可以读取和修改 CSSOM 属性。<br>存在阻塞的 CSS 资源时，浏览器会延迟 JavaScript 的执行和 DOM 构建。另外：</p>
+<p>当浏览器遇到一个 script 标记时，DOM 构建将暂停，直至脚本完成执行。<br>JavaScript 可以查询和修改 DOM 与 CSSOM。<br>CSSOM 构建时，JavaScript 执行将暂停，直至 CSSOM 就绪。<br>所以，script 标签的位置很重要。实际使用时，可以遵循下面两个原则：</p>
+<p>CSS 优先：引入顺序上，CSS 资源先于 JavaScript 资源。<br>JavaScript 应尽量少影响 DOM 的构建。</p>
+<ul>
+<li><p>HTML解析出DOM Tree</p>
+</li>
+<li><p>CSS解析出Style Rules</p>
+</li>
+<li><p>将二者关联生成Render Tree</p>
+</li>
+<li><p>Layout 根据Render Tree计算每个节点的信息</p>
+</li>
+<li><p>Painting 根据计算好的信息绘制整个页面</p>
+</li>
+</ul>
+<p>浏览器创建Document对象并解析HTML，将解析到的元素和文本节点添加到文档中，此时document.readystate为loading<br>HTML解析器遇到没有async和defer的script时，将他们添加到文档中，然后执行行内或外部脚本。这些脚本会同步执行，并且在脚本下载和执行时解析器会暂停。这样就可以用document.write()把文本插入到输入流中。同步脚本经常简单定义函数和注册事件处理程序，他们可以遍历和操作script和他们之前的文档内容<br>当解析器遇到设置了async属性的script时，开始下载脚本并继续解析文档。脚本会在它下载完成后尽快执行，但是解析器不会停下来等它下载。异步脚本禁止使用document.write()，它们可以访问自己script和之前的文档元素<br>当文档完成解析，document.readState变成interactive<br>所有defer脚本会按照在文档出现的顺序执行，延迟脚本能访问完整文档树，禁止使用document.write()<br>浏览器在Document对象上触发DOMContentLoaded事件<br>此时文档完全解析完成，浏览器可能还在等待如图片等内容加载，等这些内容完成载入并且所有异步脚本完成载入和执行，document.readState变为complete,window触发load事件<br>显示页面（HTML解析过程中会逐步显示页面）</p>
+<h1 id="浏览器不同内核之间的区别"><a href="#浏览器不同内核之间的区别" class="headerlink" title="浏览器不同内核之间的区别"></a>浏览器不同内核之间的区别</h1><ul>
+<li>由于IE的高市场占有率，微软也很长时间没有更新Trident内核，这导致了二个结果</li>
+<li>1，Trident内核和W3C标准脱节。</li>
+<li><p>2，Trident内核的大量Bug等安全问题没有得到解决，加上一些专家学者公开自己认为IE浏览器不安全的观点，使很多用户开始转向其他浏览器，FF,Opera就是这时期兴起的。</p>
+</li>
+<li><p>Gecko：这是Firefox 和 Flock 所采用内核，这个内核的优点就是功能强大、丰富，可以支持很多复杂网页效果和浏览器扩展接口，但是代价是也显而易见就是要消耗很多的资源，比如内存。</p>
+</li>
+<li><p>Presto：Opera 采用的是 Presto内核，Presto内核被称为公认的浏览网页速度最快的内核，这得益于它在开发时的天生优势，在处理JS脚本等脚本语言时，会比其他的内核快3倍左右，缺点就是为了达到很快的速度而丢掉了一部分网页兼容性。</p>
+</li>
+<li><p>Webkit：Webkit 是 Safari 采用的内核，不过 Safari 是苹果系统下的浏览器(虽然也有windows版，但是比较少)，所以只简单介绍一下这个内核的优点和缺点，优点就是网页浏览速度较快，虽然不及 Presto 但是也胜于 Gecko 和 Trident，缺点是对于网页代码的容错性不高，也就是说对网页代码的兼容性较低，会使一些编写不标准的网页无法正确显示。</p>
+</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/进阶/安全/HTTPS/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇Wiki</strong>
+            <div class="article-nav-title">
+                
+                    HTTPS
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/前端/实习/2018-03-25-推送系统源码学习/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇Wiki</strong>
+            <div class="article-nav-title">推送系统源码学习(技术篇)</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            linshuizhaoying &copy; 2018 
+           
+            <br> Powered by <a href="http://haoqiao.me/" target="_blank">LinShuiZhaoYing</a>.
+        </div>
+    </div>
+</footer>
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
